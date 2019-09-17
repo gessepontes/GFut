@@ -1,0 +1,16 @@
+c:\users\gesse\source\repos\GFut\GFut.Infra.IoC\obj\Debug\netcoreapp2.0\GFut.Infra.IoC.csprojResolveAssemblyReference.cache
+c:\users\gesse\source\repos\GFut\GFut.Infra.IoC\obj\Debug\netcoreapp2.0\GFut.Infra.IoC.csproj.CoreCompileInputs.cache
+c:\users\gesse\source\repos\GFut\GFut.Infra.IoC\obj\Debug\netcoreapp2.0\GFut.Infra.IoC.AssemblyInfoInputs.cache
+c:\users\gesse\source\repos\GFut\GFut.Infra.IoC\obj\Debug\netcoreapp2.0\GFut.Infra.IoC.AssemblyInfo.cs
+c:\users\gesse\source\repos\GFut\GFut.Infra.IoC\bin\Debug\netcoreapp2.0\GFut.Infra.IoC.deps.json
+c:\users\gesse\source\repos\GFut\GFut.Infra.IoC\bin\Debug\netcoreapp2.0\GFut.Infra.IoC.dll
+c:\users\gesse\source\repos\GFut\GFut.Infra.IoC\bin\Debug\netcoreapp2.0\GFut.Infra.IoC.pdb
+c:\users\gesse\source\repos\GFut\GFut.Infra.IoC\bin\Debug\netcoreapp2.0\GFut.Application.dll
+c:\users\gesse\source\repos\GFut\GFut.Infra.IoC\bin\Debug\netcoreapp2.0\GFut.Domain.dll
+c:\users\gesse\source\repos\GFut\GFut.Infra.IoC\bin\Debug\netcoreapp2.0\GFut.Infra.Data.dll
+c:\users\gesse\source\repos\GFut\GFut.Infra.IoC\bin\Debug\netcoreapp2.0\GFut.Application.pdb
+c:\users\gesse\source\repos\GFut\GFut.Infra.IoC\bin\Debug\netcoreapp2.0\GFut.Domain.pdb
+c:\users\gesse\source\repos\GFut\GFut.Infra.IoC\bin\Debug\netcoreapp2.0\GFut.Infra.Data.pdb
+c:\users\gesse\source\repos\GFut\GFut.Infra.IoC\obj\Debug\netcoreapp2.0\GFut.Infra.IoC.csproj.CopyComplete
+c:\users\gesse\source\repos\GFut\GFut.Infra.IoC\obj\Debug\netcoreapp2.0\GFut.Infra.IoC.dll
+c:\users\gesse\source\repos\GFut\GFut.Infra.IoC\obj\Debug\netcoreapp2.0\GFut.Infra.IoC.pdb
