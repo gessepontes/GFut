@@ -14016,11 +14016,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\users\\gesse\\source\\repos\\GFut\\GFut.Services.Api\\GFut.Services.Api.csproj",
+      "projectUniqueName": "C:\\Users\\Gesse\\source\\repos\\GFut\\GFut.Services.Api\\GFut.Services.Api.csproj",
       "projectName": "GFut.Services.Api",
-      "projectPath": "c:\\users\\gesse\\source\\repos\\GFut\\GFut.Services.Api\\GFut.Services.Api.csproj",
+      "projectPath": "C:\\Users\\Gesse\\source\\repos\\GFut\\GFut.Services.Api\\GFut.Services.Api.csproj",
       "packagesPath": "C:\\Users\\Gesse\\.nuget\\packages\\",
-      "outputPath": "c:\\users\\gesse\\source\\repos\\GFut\\GFut.Services.Api\\obj\\",
+      "outputPath": "C:\\Users\\Gesse\\source\\repos\\GFut\\GFut.Services.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -14039,11 +14039,11 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "c:\\users\\gesse\\source\\repos\\GFut\\GFut.Application\\GFut.Application.csproj": {
-              "projectPath": "c:\\users\\gesse\\source\\repos\\GFut\\GFut.Application\\GFut.Application.csproj"
+            "C:\\Users\\Gesse\\source\\repos\\GFut\\GFut.Application\\GFut.Application.csproj": {
+              "projectPath": "C:\\Users\\Gesse\\source\\repos\\GFut\\GFut.Application\\GFut.Application.csproj"
             },
-            "c:\\users\\gesse\\source\\repos\\GFut\\GFut.Infra.IoC\\GFut.Infra.IoC.csproj": {
-              "projectPath": "c:\\users\\gesse\\source\\repos\\GFut\\GFut.Infra.IoC\\GFut.Infra.IoC.csproj"
+            "C:\\Users\\Gesse\\source\\repos\\GFut\\GFut.Infra.IoC\\GFut.Infra.IoC.csproj": {
+              "projectPath": "C:\\Users\\Gesse\\source\\repos\\GFut\\GFut.Infra.IoC\\GFut.Infra.IoC.csproj"
             }
           }
         }

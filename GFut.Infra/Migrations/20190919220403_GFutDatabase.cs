@@ -4,35 +4,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GFut.Infra.Data.Migrations
 {
-    public partial class GfutDatabase : Migration
+    public partial class GFutDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "HORARIOAGENDADO",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Active = table.Column<bool>(nullable: false),
-                    RegisterDate = table.Column<DateTime>(nullable: false),
-                    Date = table.Column<DateTime>(nullable: false),
-                    IDHORARIO = table.Column<int>(nullable: false),
-                    SchedulingType = table.Column<int>(nullable: false),
-                    HoraryType = table.Column<int>(nullable: false),
-                    State = table.Column<string>(nullable: true),
-                    IdPerson = table.Column<int>(nullable: true),
-                    CustomerNotRegistered = table.Column<string>(nullable: true),
-                    Fone = table.Column<string>(nullable: true),
-                    CancelDate = table.Column<DateTime>(nullable: true),
-                    IdPersonCancel = table.Column<int>(nullable: true),
-                    MarkedApp = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_HORARIOAGENDADO", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Person",
                 columns: table => new
@@ -45,19 +20,43 @@ namespace GFut.Infra.Data.Migrations
                     Cpf = table.Column<string>(nullable: false),
                     Rg = table.Column<string>(nullable: true),
                     BirthDate = table.Column<DateTime>(nullable: false),
-                    Fone = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    Picture = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true),
+                    Fone = table.Column<string>(nullable: false),
+                    Email = table.Column<string>(nullable: false),
+                    Picture = table.Column<string>(nullable: false),
+                    Password = table.Column<string>(nullable: false),
                     Confirmation = table.Column<bool>(nullable: false),
-                    SecurityStamp = table.Column<string>(nullable: true),
-                    Status = table.Column<bool>(nullable: false),
-                    IdPush = table.Column<string>(nullable: true),
-                    Token = table.Column<string>(nullable: true)
+                    SecurityStamp = table.Column<string>(nullable: false),
+                    IdPush = table.Column<string>(nullable: false),
+                    Token = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Person", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Scheduling",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Active = table.Column<bool>(nullable: false),
+                    RegisterDate = table.Column<DateTime>(nullable: false),
+                    Date = table.Column<DateTime>(nullable: false),
+                    IdHorary = table.Column<int>(nullable: false),
+                    SchedulingType = table.Column<int>(nullable: false),
+                    HoraryType = table.Column<int>(nullable: false),
+                    State = table.Column<string>(nullable: false),
+                    IdPerson = table.Column<int>(nullable: true),
+                    CustomerNotRegistered = table.Column<string>(nullable: false),
+                    Fone = table.Column<string>(nullable: false),
+                    CancelDate = table.Column<DateTime>(nullable: false),
+                    IdPersonCancel = table.Column<int>(nullable: true),
+                    MarkedApp = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Scheduling", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -68,13 +67,13 @@ namespace GFut.Infra.Data.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Active = table.Column<bool>(nullable: false),
                     RegisterDate = table.Column<DateTime>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    Address = table.Column<string>(nullable: true),
-                    Fone = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    Address = table.Column<string>(nullable: false),
+                    Fone = table.Column<string>(nullable: false),
                     Value = table.Column<decimal>(nullable: false),
                     MonthlyValue = table.Column<decimal>(nullable: false),
                     Scheduled = table.Column<bool>(nullable: false),
-                    Picture = table.Column<string>(nullable: true),
+                    Picture = table.Column<string>(nullable: false),
                     IdPerson = table.Column<int>(nullable: false),
                     IdCity = table.Column<int>(nullable: false)
                 },
@@ -120,12 +119,12 @@ namespace GFut.Infra.Data.Migrations
                     Active = table.Column<bool>(nullable: false),
                     RegisterDate = table.Column<DateTime>(nullable: false),
                     IdPerson = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    Symbol = table.Column<string>(nullable: true),
-                    Picture = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    Symbol = table.Column<string>(nullable: false),
+                    Picture = table.Column<string>(nullable: false),
                     Type = table.Column<int>(nullable: false),
-                    Observation = table.Column<string>(nullable: true),
-                    DATAFUNDACAO = table.Column<DateTime>(nullable: false),
+                    Observation = table.Column<string>(nullable: false),
+                    FundationDate = table.Column<DateTime>(nullable: false),
                     State = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -147,7 +146,7 @@ namespace GFut.Infra.Data.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Active = table.Column<bool>(nullable: false),
                     RegisterDate = table.Column<DateTime>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
                     StartDate = table.Column<DateTime>(nullable: false),
                     EndDate = table.Column<DateTime>(nullable: false),
                     ChampionshipType = table.Column<int>(nullable: false),
@@ -157,7 +156,7 @@ namespace GFut.Infra.Data.Migrations
                     AmountTeam = table.Column<int>(nullable: false),
                     ReleaseSubscription = table.Column<bool>(nullable: false),
                     GoBack = table.Column<bool>(nullable: false),
-                    Picture = table.Column<string>(nullable: true),
+                    Picture = table.Column<string>(nullable: false),
                     IdPerson = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -179,7 +178,7 @@ namespace GFut.Infra.Data.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Active = table.Column<bool>(nullable: false),
                     RegisterDate = table.Column<DateTime>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
                     IdField = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -202,11 +201,11 @@ namespace GFut.Infra.Data.Migrations
                     Active = table.Column<bool>(nullable: false),
                     RegisterDate = table.Column<DateTime>(nullable: false),
                     IdTeam = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
                     BirthDate = table.Column<DateTime>(nullable: false),
-                    Picture = table.Column<string>(nullable: true),
-                    Fone = table.Column<string>(nullable: true),
-                    Rg = table.Column<string>(nullable: true),
+                    Picture = table.Column<string>(nullable: false),
+                    Fone = table.Column<string>(nullable: false),
+                    Rg = table.Column<string>(nullable: false),
                     Position = table.Column<int>(nullable: false),
                     Dispensed = table.Column<bool>(nullable: false),
                     DispenseDate = table.Column<DateTime>(nullable: false)
@@ -223,34 +222,6 @@ namespace GFut.Infra.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Registered",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Active = table.Column<bool>(nullable: false),
-                    RegisterDate = table.Column<DateTime>(nullable: false),
-                    IdTeam = table.Column<int>(nullable: false),
-                    IdChampionship = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Registered", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Registered_Championship_IdChampionship",
-                        column: x => x.IdChampionship,
-                        principalTable: "Championship",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Registered_Team_IdTeam",
-                        column: x => x.IdTeam,
-                        principalTable: "Team",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Horary",
                 columns: table => new
                 {
@@ -259,7 +230,7 @@ namespace GFut.Infra.Data.Migrations
                     Active = table.Column<bool>(nullable: false),
                     RegisterDate = table.Column<DateTime>(nullable: false),
                     IdFieldItem = table.Column<int>(nullable: false),
-                    Description = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: false),
                     DayWeek = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -282,7 +253,7 @@ namespace GFut.Infra.Data.Migrations
                     Active = table.Column<bool>(nullable: false),
                     RegisterDate = table.Column<DateTime>(nullable: false),
                     IdFieldItem = table.Column<int>(nullable: false),
-                    Description = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
@@ -332,16 +303,6 @@ namespace GFut.Infra.Data.Migrations
                 column: "IdTeam");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Registered_IdChampionship",
-                table: "Registered",
-                column: "IdChampionship");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Registered_IdTeam",
-                table: "Registered",
-                column: "IdTeam");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Team_IdPerson",
                 table: "Team",
                 column: "IdPerson");
@@ -350,7 +311,7 @@ namespace GFut.Infra.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "HORARIOAGENDADO");
+                name: "Championship");
 
             migrationBuilder.DropTable(
                 name: "Horary");
@@ -365,13 +326,10 @@ namespace GFut.Infra.Data.Migrations
                 name: "Player");
 
             migrationBuilder.DropTable(
-                name: "Registered");
+                name: "Scheduling");
 
             migrationBuilder.DropTable(
                 name: "FieldItem");
-
-            migrationBuilder.DropTable(
-                name: "Championship");
 
             migrationBuilder.DropTable(
                 name: "Team");

@@ -1,7 +1,7 @@
 ﻿using GFut.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
- 
+
 
 namespace GFut.Infra.Data.Mappings
 {
@@ -14,6 +14,16 @@ namespace GFut.Infra.Data.Mappings
             builder.HasOne(p => p.Field)
                 .WithMany(p => p.FieldItens)
                 .HasForeignKey(p => p.IdField);
+
+            builder.HasKey(c => c.Id);
+
+            builder.Property(c => c.Name)
+                .IsRequired()
+                .HasColumnName("Name");
+
+            builder.Property(c => c.IdField)
+                .IsRequired()
+                .HasColumnName("IdField");
         }
     }
 }

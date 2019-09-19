@@ -27,31 +27,45 @@ namespace GFut.Infra.Data.Migrations
 
                     b.Property<bool>("Active");
 
-                    b.Property<int>("AmountTeam");
+                    b.Property<int>("AmountTeam")
+                        .HasColumnName("AmountTeam");
 
-                    b.Property<int>("ChampionshipType");
+                    b.Property<int>("ChampionshipType")
+                        .HasColumnName("ChampionshipType");
 
-                    b.Property<DateTime>("EndDate");
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnName("EndDate");
 
-                    b.Property<bool>("GoBack");
+                    b.Property<bool>("GoBack")
+                        .HasColumnName("GoBack");
 
-                    b.Property<int>("IdField");
+                    b.Property<int>("IdField")
+                        .HasColumnName("IdField");
 
-                    b.Property<int>("IdPerson");
+                    b.Property<int>("IdPerson")
+                        .HasColumnName("IdPerson");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnName("Name");
 
-                    b.Property<string>("Picture");
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnName("Picture");
 
-                    b.Property<int>("RefereeType");
+                    b.Property<int>("RefereeType")
+                        .HasColumnName("RefereeType");
 
                     b.Property<DateTime>("RegisterDate");
 
-                    b.Property<bool>("ReleaseSubscription");
+                    b.Property<bool>("ReleaseSubscription")
+                        .HasColumnName("ReleaseSubscription");
 
-                    b.Property<DateTime>("StartDate");
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnName("StartDate");
 
-                    b.Property<int>("Type");
+                    b.Property<int>("Type")
+                        .HasColumnName("Type");
 
                     b.HasKey("Id");
 
@@ -68,25 +82,38 @@ namespace GFut.Infra.Data.Migrations
 
                     b.Property<bool>("Active");
 
-                    b.Property<string>("Address");
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnName("Address");
 
-                    b.Property<string>("Fone");
+                    b.Property<string>("Fone")
+                        .IsRequired()
+                        .HasColumnName("Fone");
 
-                    b.Property<int>("IdCity");
+                    b.Property<int>("IdCity")
+                        .HasColumnName("IdCity");
 
-                    b.Property<int>("IdPerson");
+                    b.Property<int>("IdPerson")
+                        .HasColumnName("IdPerson");
 
-                    b.Property<decimal>("MonthlyValue");
+                    b.Property<decimal>("MonthlyValue")
+                        .HasColumnName("MonthlyValue");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnName("Name");
 
-                    b.Property<string>("Picture");
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnName("Picture");
 
                     b.Property<DateTime>("RegisterDate");
 
-                    b.Property<bool>("Scheduled");
+                    b.Property<bool>("Scheduled")
+                        .HasColumnName("Scheduled");
 
-                    b.Property<decimal>("Value");
+                    b.Property<decimal>("Value")
+                        .HasColumnName("Value");
 
                     b.HasKey("Id");
 
@@ -103,9 +130,12 @@ namespace GFut.Infra.Data.Migrations
 
                     b.Property<bool>("Active");
 
-                    b.Property<int>("IdField");
+                    b.Property<int>("IdField")
+                        .HasColumnName("IdField");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnName("Name");
 
                     b.Property<DateTime>("RegisterDate");
 
@@ -124,11 +154,15 @@ namespace GFut.Infra.Data.Migrations
 
                     b.Property<bool>("Active");
 
-                    b.Property<int>("DayWeek");
+                    b.Property<int>("DayWeek")
+                        .HasColumnName("DayWeek");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnName("Description");
 
-                    b.Property<int>("IdFieldItem");
+                    b.Property<int>("IdFieldItem")
+                        .HasColumnName("IdFieldItem");
 
                     b.Property<DateTime>("RegisterDate");
 
@@ -147,11 +181,15 @@ namespace GFut.Infra.Data.Migrations
 
                     b.Property<bool>("Active");
 
-                    b.Property<DateTime>("Date");
+                    b.Property<DateTime>("Date")
+                        .HasColumnName("Date");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnName("Description");
 
-                    b.Property<int>("IdFieldItem");
+                    b.Property<int>("IdFieldItem")
+                        .HasColumnName("IdFieldItem");
 
                     b.Property<DateTime>("RegisterDate");
 
@@ -173,35 +211,48 @@ namespace GFut.Infra.Data.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnName("BirthDate");
 
-                    b.Property<bool>("Confirmation");
+                    b.Property<bool>("Confirmation")
+                        .HasColumnName("Confirmation");
 
                     b.Property<string>("Cpf")
                         .IsRequired()
                         .HasColumnName("Cpf");
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnName("Email");
 
-                    b.Property<string>("Fone");
+                    b.Property<string>("Fone")
+                        .IsRequired()
+                        .HasColumnName("Fone");
 
-                    b.Property<string>("IdPush");
+                    b.Property<string>("IdPush")
+                        .IsRequired()
+                        .HasColumnName("IdPush");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnName("Name");
 
-                    b.Property<string>("Password");
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnName("Password");
 
-                    b.Property<string>("Picture");
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnName("Picture");
 
                     b.Property<DateTime>("RegisterDate");
 
                     b.Property<string>("Rg");
 
-                    b.Property<string>("SecurityStamp");
+                    b.Property<string>("SecurityStamp")
+                        .IsRequired()
+                        .HasColumnName("SecurityStamp");
 
-                    b.Property<bool>("Status");
-
-                    b.Property<string>("Token");
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnName("Token");
 
                     b.HasKey("Id");
 
@@ -216,9 +267,11 @@ namespace GFut.Infra.Data.Migrations
 
                     b.Property<bool>("Active");
 
-                    b.Property<int>("IdPerson");
+                    b.Property<int>("IdPerson")
+                        .HasColumnName("IdPerson");
 
-                    b.Property<int>("ProfileType");
+                    b.Property<int>("ProfileType")
+                        .HasColumnName("ProfileType");
 
                     b.Property<DateTime>("RegisterDate");
 
@@ -237,54 +290,44 @@ namespace GFut.Infra.Data.Migrations
 
                     b.Property<bool>("Active");
 
-                    b.Property<DateTime>("BirthDate");
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnName("BirthDate");
 
-                    b.Property<DateTime>("DispenseDate");
+                    b.Property<DateTime>("DispenseDate")
+                        .HasColumnName("DispenseDate");
 
-                    b.Property<bool>("Dispensed");
+                    b.Property<bool>("Dispensed")
+                        .HasColumnName("Dispensed");
 
-                    b.Property<string>("Fone");
+                    b.Property<string>("Fone")
+                        .IsRequired()
+                        .HasColumnName("Fone");
 
-                    b.Property<int>("IdTeam");
+                    b.Property<int>("IdTeam")
+                        .HasColumnName("IdTeam");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnName("Name");
 
-                    b.Property<string>("Picture");
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnName("Picture");
 
-                    b.Property<int>("Position");
+                    b.Property<int>("Position")
+                        .HasColumnName("Position");
 
                     b.Property<DateTime>("RegisterDate");
 
-                    b.Property<string>("Rg");
+                    b.Property<string>("Rg")
+                        .IsRequired()
+                        .HasColumnName("Rg");
 
                     b.HasKey("Id");
 
                     b.HasIndex("IdTeam");
 
                     b.ToTable("Player");
-                });
-
-            modelBuilder.Entity("GFut.Domain.Models.Registered", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Active");
-
-                    b.Property<int>("IdChampionship");
-
-                    b.Property<int>("IdTeam");
-
-                    b.Property<DateTime>("RegisterDate");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdChampionship");
-
-                    b.HasIndex("IdTeam");
-
-                    b.ToTable("Registered");
                 });
 
             modelBuilder.Entity("GFut.Domain.Models.Scheduling", b =>
@@ -295,33 +338,48 @@ namespace GFut.Infra.Data.Migrations
 
                     b.Property<bool>("Active");
 
-                    b.Property<DateTime?>("CancelDate");
+                    b.Property<DateTime?>("CancelDate")
+                        .IsRequired()
+                        .HasColumnName("CancelDate");
 
-                    b.Property<string>("CustomerNotRegistered");
+                    b.Property<string>("CustomerNotRegistered")
+                        .IsRequired()
+                        .HasColumnName("CustomerNotRegistered");
 
-                    b.Property<DateTime>("Date");
+                    b.Property<DateTime>("Date")
+                        .HasColumnName("Date");
 
-                    b.Property<string>("Fone");
+                    b.Property<string>("Fone")
+                        .IsRequired()
+                        .HasColumnName("Fone");
 
-                    b.Property<int>("HoraryType");
+                    b.Property<int>("HoraryType")
+                        .HasColumnName("HoraryType");
 
-                    b.Property<int>("IDHORARIO");
+                    b.Property<int>("IdHorary")
+                        .HasColumnName("IdHorary");
 
-                    b.Property<int?>("IdPerson");
+                    b.Property<int?>("IdPerson")
+                        .HasColumnName("IdPerson");
 
-                    b.Property<int?>("IdPersonCancel");
+                    b.Property<int?>("IdPersonCancel")
+                        .HasColumnName("IdPersonCancel");
 
-                    b.Property<bool>("MarkedApp");
+                    b.Property<bool>("MarkedApp")
+                        .HasColumnName("MarkedApp");
 
                     b.Property<DateTime>("RegisterDate");
 
-                    b.Property<int>("SchedulingType");
+                    b.Property<int>("SchedulingType")
+                        .HasColumnName("SchedulingType");
 
-                    b.Property<string>("State");
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnName("State");
 
                     b.HasKey("Id");
 
-                    b.ToTable("HORARIOAGENDADO");
+                    b.ToTable("Scheduling");
                 });
 
             modelBuilder.Entity("GFut.Domain.Models.Team", b =>
@@ -332,23 +390,35 @@ namespace GFut.Infra.Data.Migrations
 
                     b.Property<bool>("Active");
 
-                    b.Property<DateTime>("DATAFUNDACAO");
+                    b.Property<DateTime>("FundationDate")
+                        .HasColumnName("FundationDate");
 
-                    b.Property<int>("IdPerson");
+                    b.Property<int>("IdPerson")
+                        .HasColumnName("IdPerson");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnName("Name");
 
-                    b.Property<string>("Observation");
+                    b.Property<string>("Observation")
+                        .IsRequired()
+                        .HasColumnName("Observation");
 
-                    b.Property<string>("Picture");
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnName("Picture");
 
                     b.Property<DateTime>("RegisterDate");
 
-                    b.Property<bool>("State");
+                    b.Property<bool>("State")
+                        .HasColumnName("State");
 
-                    b.Property<string>("Symbol");
+                    b.Property<string>("Symbol")
+                        .IsRequired()
+                        .HasColumnName("Symbol");
 
-                    b.Property<int>("Type");
+                    b.Property<int>("Type")
+                        .HasColumnName("Type");
 
                     b.HasKey("Id");
 
@@ -409,19 +479,6 @@ namespace GFut.Infra.Data.Migrations
                 {
                     b.HasOne("GFut.Domain.Models.Team", "Team")
                         .WithMany("Players")
-                        .HasForeignKey("IdTeam")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("GFut.Domain.Models.Registered", b =>
-                {
-                    b.HasOne("GFut.Domain.Models.Championship", "Championship")
-                        .WithMany("Subscribed")
-                        .HasForeignKey("IdChampionship")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("GFut.Domain.Models.Team", "Team")
-                        .WithMany("Inscriptions")
                         .HasForeignKey("IdTeam")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

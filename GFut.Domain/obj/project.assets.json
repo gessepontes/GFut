@@ -7509,11 +7509,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\users\\gesse\\source\\repos\\GFut\\GFut.Domain\\GFut.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\Gesse\\source\\repos\\GFut\\GFut.Domain\\GFut.Domain.csproj",
       "projectName": "GFut.Domain",
-      "projectPath": "c:\\users\\gesse\\source\\repos\\GFut\\GFut.Domain\\GFut.Domain.csproj",
+      "projectPath": "C:\\Users\\Gesse\\source\\repos\\GFut\\GFut.Domain\\GFut.Domain.csproj",
       "packagesPath": "C:\\Users\\Gesse\\.nuget\\packages\\",
-      "outputPath": "c:\\users\\gesse\\source\\repos\\GFut\\GFut.Domain\\obj\\",
+      "outputPath": "C:\\Users\\Gesse\\source\\repos\\GFut\\GFut.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

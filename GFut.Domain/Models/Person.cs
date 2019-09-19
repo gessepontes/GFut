@@ -21,7 +21,6 @@ namespace GFut.Domain.Models
         public string Password { get; set; }
         public bool Confirmation { get; set; }
         public string SecurityStamp { get; set; }
-        public bool Status { get; set; }
         public string IdPush { get; set; }
         public string Token { get; set; }
 

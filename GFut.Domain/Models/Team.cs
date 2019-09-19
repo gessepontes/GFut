@@ -18,7 +18,7 @@ namespace GFut.Domain.Models
         public string Picture { get; set; }
         public int Type { get; set; }
         public string Observation { get; set; }
-        public DateTime DATAFUNDACAO { get; set; }
+        public DateTime FundationDate { get; set; }
         public bool State { get; set; }
 
         public virtual ICollection<Player> Players { get; set; }

@@ -8184,11 +8184,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\users\\gesse\\source\\repos\\GFut\\GFut.Infra\\GFut.Infra.Data.csproj",
+      "projectUniqueName": "C:\\Users\\Gesse\\source\\repos\\GFut\\GFut.Infra\\GFut.Infra.Data.csproj",
       "projectName": "GFut.Infra.Data",
-      "projectPath": "c:\\users\\gesse\\source\\repos\\GFut\\GFut.Infra\\GFut.Infra.Data.csproj",
+      "projectPath": "C:\\Users\\Gesse\\source\\repos\\GFut\\GFut.Infra\\GFut.Infra.Data.csproj",
       "packagesPath": "C:\\Users\\Gesse\\.nuget\\packages\\",
-      "outputPath": "c:\\users\\gesse\\source\\repos\\GFut\\GFut.Infra\\obj\\",
+      "outputPath": "C:\\Users\\Gesse\\source\\repos\\GFut\\GFut.Infra\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -8207,8 +8207,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "c:\\users\\gesse\\source\\repos\\GFut\\GFut.Domain\\GFut.Domain.csproj": {
-              "projectPath": "c:\\users\\gesse\\source\\repos\\GFut\\GFut.Domain\\GFut.Domain.csproj"
+            "C:\\Users\\Gesse\\source\\repos\\GFut\\GFut.Domain\\GFut.Domain.csproj": {
+              "projectPath": "C:\\Users\\Gesse\\source\\repos\\GFut\\GFut.Domain\\GFut.Domain.csproj"
             }
           }
         }
