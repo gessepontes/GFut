@@ -19,39 +19,55 @@ namespace GFut.Infra.Data.Mappings
         
             builder.Property(c => c.IdTeam)
                 .IsRequired()
-                .HasColumnName("IdTeam");
+                .HasColumnName("IdTeam")
+                .HasColumnType("int");
 
             builder.Property(c => c.Name)
                 .IsRequired()
-                .HasColumnName("Name");
+                .HasColumnName("Name")
+                .HasColumnType("varchar(200)");
 
             builder.Property(c => c.BirthDate)
-                .IsRequired()
-                .HasColumnName("BirthDate");
+                .HasColumnName("BirthDate")
+                .HasColumnType("date");
 
             builder.Property(c => c.Picture)
                 .IsRequired()
-                .HasColumnName("Picture");
+                .HasColumnName("Picture")
+                .HasColumnType("varchar(500)");
 
             builder.Property(c => c.Fone)
-                .IsRequired()
-                .HasColumnName("Fone");
+                .HasColumnName("Fone")
+                .HasColumnType("varchar(20)");
+
 
             builder.Property(c => c.Rg)
-                .IsRequired()
-                .HasColumnName("Rg");
+                .HasColumnName("Rg")
+                .HasColumnType("varchar(20)");
 
             builder.Property(c => c.Position)
                 .IsRequired()
-                .HasColumnName("Position");
+                .HasColumnName("Position")
+                .HasColumnType("int");
 
             builder.Property(c => c.Dispensed)
-                .IsRequired()
-                .HasColumnName("Dispensed");
+                .HasColumnName("Dispensed")
+                .HasColumnType("bit");
 
             builder.Property(c => c.DispenseDate)
+                .HasColumnName("DispenseDate")
+                .HasColumnType("date");
+
+            builder.Property(c => c.Active)
                 .IsRequired()
-                .HasColumnName("DispenseDate");
+                .HasColumnName("Active")
+                .HasColumnType("bit");
+
+            builder.Property(c => c.RegisterDate)
+                .IsRequired()
+                .HasColumnName("RegisterDate")
+                .HasColumnType("date");
+
         }
     }
 }

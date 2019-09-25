@@ -22,6 +22,8 @@ namespace GFut.Domain.Models
         public bool State { get; set; }
 
         public virtual ICollection<Player> Players { get; set; }
+        public virtual Match Match { get; set; }
+
         //public virtual ICollection<Registered> Inscriptions { get; set; }
         public Person Person { get; set; }
 

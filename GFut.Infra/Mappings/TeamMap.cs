@@ -19,35 +19,51 @@ namespace GFut.Infra.Data.Mappings
 
             builder.Property(c => c.IdPerson)
                 .IsRequired()
-                .HasColumnName("IdPerson");
+                .HasColumnName("IdPerson")
+                .HasColumnType("int");
 
             builder.Property(c => c.Name)
                 .IsRequired()
-                .HasColumnName("Name");
+                .HasColumnName("Name")
+                .HasColumnType("varchar(200)");
 
             builder.Property(c => c.Symbol)
                 .IsRequired()
-                .HasColumnName("Symbol");
+                .HasColumnName("Symbol")
+                .HasColumnType("varchar(500)");
 
             builder.Property(c => c.Picture)
                 .IsRequired()
-                .HasColumnName("Picture");
+                .HasColumnName("Picture")
+                .HasColumnType("varchar(500)");
 
             builder.Property(c => c.Type)
                 .IsRequired()
-                .HasColumnName("Type");
+                .HasColumnName("Type")
+                .HasColumnType("int");
 
             builder.Property(c => c.Observation)
-                .IsRequired()
-                .HasColumnName("Observation");
+                .HasColumnName("Observation")
+                .HasColumnType("varchar(500)");
 
             builder.Property(c => c.FundationDate)
-                .IsRequired()
-                .HasColumnName("FundationDate");
+                .HasColumnName("FundationDate")
+                .HasColumnType("date");
 
             builder.Property(c => c.State)
+                .HasColumnName("State")
+                .HasColumnType("bit");
+
+            builder.Property(c => c.Active)
                 .IsRequired()
-                .HasColumnName("State");
+                .HasColumnName("Active")
+                .HasColumnType("bit");
+
+            builder.Property(c => c.RegisterDate)
+                .IsRequired()
+                .HasColumnName("RegisterDate")
+                .HasColumnType("date");
+
         }
     }
 }

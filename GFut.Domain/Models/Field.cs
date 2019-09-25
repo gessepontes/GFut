@@ -20,6 +20,7 @@ namespace GFut.Domain.Models
         public virtual Person Person { get; set; }
         public virtual ICollection<FieldItem> FieldItens { get; set; }
         public virtual ICollection<Championship> Championship { get; set; }
-
+        public virtual ICollection<Match> Matches { get; set; }
+        public virtual Match Match { get; set; }
     }
 }

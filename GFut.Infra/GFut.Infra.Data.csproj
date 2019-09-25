@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20190917183835_GfutDatabase.cs" />
     <Compile Remove="Migrations\20190917200629_GfutDatabase.cs" />
+    <Compile Remove="Migrations\20190925221626_GFutDatabase1.cs" />
+    <Compile Remove="Migrations\20190925221746_GFutDatabase2.cs" />
   </ItemGroup>
 
   <ItemGroup>

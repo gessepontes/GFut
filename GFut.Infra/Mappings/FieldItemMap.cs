@@ -19,11 +19,23 @@ namespace GFut.Infra.Data.Mappings
 
             builder.Property(c => c.Name)
                 .IsRequired()
-                .HasColumnName("Name");
+                .HasColumnName("Name")
+                .HasColumnType("varchar(200)");
 
             builder.Property(c => c.IdField)
                 .IsRequired()
-                .HasColumnName("IdField");
+                .HasColumnName("IdField")
+                .HasColumnType("int");
+
+            builder.Property(c => c.Active)
+                .IsRequired()
+                .HasColumnName("Active")
+                .HasColumnType("bit");
+
+            builder.Property(c => c.RegisterDate)
+                .IsRequired()
+                .HasColumnName("RegisterDate")
+                .HasColumnType("date");
         }
     }
 }
