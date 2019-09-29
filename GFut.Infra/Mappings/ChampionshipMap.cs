@@ -13,57 +13,76 @@ namespace GFut.Infra.Data.Mappings
 
             builder.HasOne(p => p.Field)
                 .WithMany(p => p.Championship)
-                .HasForeignKey(p => p.IdField);
+                .HasForeignKey(p => p.FieldId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasKey(c => c.Id);
 
             builder.Property(c => c.Name)
                 .IsRequired()
-                .HasColumnName("Name");
+                .HasColumnName("Name")
+                .HasColumnType("varchar(200)");
+
 
             builder.Property(c => c.StartDate)
                 .IsRequired()
-                .HasColumnName("StartDate");
+                .HasColumnName("StartDate")
+                .HasColumnType("date");
 
             builder.Property(c => c.EndDate)
                 .IsRequired()
-                .HasColumnName("EndDate");
+                .HasColumnName("EndDate")
+                .HasColumnType("date");
+
 
             builder.Property(c => c.ChampionshipType)
                 .IsRequired()
-                .HasColumnName("ChampionshipType");
+                .HasColumnName("ChampionshipType")
+                .HasColumnType("int");
 
             builder.Property(c => c.RefereeType)
                 .IsRequired()
-                .HasColumnName("RefereeType");
+                .HasColumnName("RefereeType")
+                .HasColumnType("int");
 
             builder.Property(c => c.Type)
                 .IsRequired()
-                .HasColumnName("Type");
+                .HasColumnName("Type")
+                .HasColumnType("int");
 
-            builder.Property(c => c.IdField)
+            builder.Property(c => c.FieldId)
                 .IsRequired()
-                .HasColumnName("IdField");
+                .HasColumnName("FieldId")
+                .HasColumnType("int");
+
 
             builder.Property(c => c.AmountTeam)
                 .IsRequired()
-                .HasColumnName("AmountTeam");
+                .HasColumnName("AmountTeam")
+                .HasColumnType("int");
+
 
             builder.Property(c => c.ReleaseSubscription)
             .IsRequired()
-            .HasColumnName("ReleaseSubscription");
+            .HasColumnName("ReleaseSubscription")
+                .HasColumnType("bit");
+
 
             builder.Property(c => c.GoBack)
                 .IsRequired()
-                .HasColumnName("GoBack");
+                .HasColumnName("GoBack")
+                .HasColumnType("bit");
 
             builder.Property(c => c.Picture)
                 .IsRequired()
-                .HasColumnName("Picture");
+                .HasColumnName("Picture")
+                .HasColumnType("varchar(500)");
 
-            builder.Property(c => c.IdPerson)
+            builder.Property(c => c.PersonId)
                 .IsRequired()
-                .HasColumnName("IdPerson");
+                .HasColumnName("PersonId")
+                .HasColumnType("int");
+
         }
     }
 }

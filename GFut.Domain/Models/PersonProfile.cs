@@ -7,7 +7,7 @@ namespace GFut.Domain.Models
     {
         public ProfileType ProfileType { get; set; }
 
-        public int IdPerson { get; set; }
+        public int PersonId { get; set; }
         public Person Person { get; set; }
     }
 }

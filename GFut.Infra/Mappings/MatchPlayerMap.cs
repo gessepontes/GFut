@@ -1,32 +1,33 @@
 ﻿using GFut.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace GFut.Infra.Data.Mappings
 {
-    public class FieldItemMap : IEntityTypeConfiguration<FieldItem>
+    public class MatchPlayerMap : IEntityTypeConfiguration<MatchPlayer>
     {
-        public void Configure(EntityTypeBuilder<FieldItem> builder)
+        public void Configure(EntityTypeBuilder<MatchPlayer> builder)
         {
-            builder.ToTable("FieldItem");
-
-            builder.HasOne(p => p.Field)
-                .WithMany(p => p.FieldItens)
-                .HasForeignKey(p => p.FieldId)
-                .OnDelete(DeleteBehavior.Restrict);
-
+            builder.ToTable("MatchPlayer");
 
             builder.HasKey(c => c.Id);
 
-            builder.Property(c => c.Name)
-                .IsRequired()
-                .HasColumnName("Name")
-                .HasColumnType("varchar(200)");
+            builder.HasOne(p => p.Match)
+                .WithMany(t => t.MatchPlayer)
+                .HasForeignKey(m => m.MatchId)
+                .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Property(c => c.FieldId)
+            builder.Property(c => c.MatchId)
                 .IsRequired()
-                .HasColumnName("FieldId")
+                .HasColumnName("MatchId")
+                .HasColumnType("int");
+
+            builder.Property(c => c.Number)
+                .IsRequired()
+                .HasColumnName("Number")
                 .HasColumnType("int");
 
             builder.Property(c => c.Active)
@@ -38,6 +39,8 @@ namespace GFut.Infra.Data.Mappings
                 .IsRequired()
                 .HasColumnName("RegisterDate")
                 .HasColumnType("date");
+
         }
     }
+
 }

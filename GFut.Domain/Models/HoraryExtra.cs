@@ -4,7 +4,7 @@ namespace GFut.Domain.Models
 {
     public class HoraryExtra : BaseEntity
     {
-        public int IdFieldItem { get; set; }
+        public int FieldItemId { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
 

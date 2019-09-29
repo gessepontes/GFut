@@ -14,8 +14,8 @@ namespace GFut.Domain.Models
         public decimal MonthlyValue { get; set; }
         public bool Scheduled { get; set; }
         public string Picture { get; set; }
-        public int IdPerson { get; set; }
-        public int IdCity { get; set; }
+        public int PersonId { get; set; }
+        public int CityId { get; set; }
 
         public virtual Person Person { get; set; }
         public virtual ICollection<FieldItem> FieldItens { get; set; }

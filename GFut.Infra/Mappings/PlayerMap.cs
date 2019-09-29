@@ -15,11 +15,12 @@ namespace GFut.Infra.Data.Mappings
 
             builder.HasOne(p => p.Team)
                 .WithMany(p => p.Players)
-                .HasForeignKey(p => p.IdTeam);
-        
-            builder.Property(c => c.IdTeam)
+                .HasForeignKey(p => p.TeamId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Property(c => c.TeamId)
                 .IsRequired()
-                .HasColumnName("IdTeam")
+                .HasColumnName("TeamId")
                 .HasColumnType("int");
 
             builder.Property(c => c.Name)
@@ -38,11 +39,6 @@ namespace GFut.Infra.Data.Mappings
 
             builder.Property(c => c.Fone)
                 .HasColumnName("Fone")
-                .HasColumnType("varchar(20)");
-
-
-            builder.Property(c => c.Rg)
-                .HasColumnName("Rg")
                 .HasColumnType("varchar(20)");
 
             builder.Property(c => c.Position)

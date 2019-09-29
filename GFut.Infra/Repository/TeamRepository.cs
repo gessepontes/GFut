@@ -18,14 +18,14 @@ namespace GFut.Infra.Data.Repository
 
         public IEnumerable<Team> GetTeamPerson(int id)
         {
-            return Db.Teams.Where(p => p.IdPerson == id && p.Active == true).OrderBy(p => p.Name).ToList();
+            return Db.Teams.Where(p => p.PersonId == id && p.Active == true).OrderBy(p => p.Name).ToList();
         }
 
         public override void Update(Team obj)
         {
 
             if (obj.Active) {
-                foreach (var item in Db.Teams.Where(p => p.IdPerson == obj.IdPerson && p.State == true && p.Active == true).ToList())
+                foreach (var item in Db.Teams.Where(p => p.PersonId == obj.PersonId && p.State == true && p.Active == true).ToList())
                 {
                     Db.Entry(item).State = EntityState.Modified;
                     item.Active = false;
@@ -58,7 +58,7 @@ namespace GFut.Infra.Data.Repository
         {
             if (obj.Active)
             {
-                foreach (var item in Db.Teams.Where(p => p.IdPerson == obj.IdPerson && p.State == true && p.Active == true).ToList())
+                foreach (var item in Db.Teams.Where(p => p.PersonId == obj.PersonId && p.State == true && p.Active == true).ToList())
                 {
                     Db.Entry(item).State = EntityState.Modified;
                     item.Active = false;

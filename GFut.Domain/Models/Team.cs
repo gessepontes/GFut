@@ -11,7 +11,7 @@ namespace GFut.Domain.Models
             Players = new HashSet<Player>();
         }
 
-        public int IdPerson { get; set; }
+        public int PersonId { get; set; }
 
         public string Name { get; set; }
         public string Symbol { get; set; }
@@ -22,9 +22,10 @@ namespace GFut.Domain.Models
         public bool State { get; set; }
 
         public virtual ICollection<Player> Players { get; set; }
-        public virtual Match Match { get; set; }
+        public virtual ICollection<Match> HomeMatches { get; set; }
+        public virtual ICollection<Match> AwayMatches { get; set; }
+        public virtual ICollection<Subscription> Subscriptions { get; set; }
 
-        //public virtual ICollection<Registered> Inscriptions { get; set; }
         public Person Person { get; set; }
 
     }

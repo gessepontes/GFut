@@ -13,7 +13,9 @@ namespace GFut.Infra.Data.Mappings
 
             builder.HasOne(p => p.Person)
                 .WithMany(p => p.Field)
-                .HasForeignKey(p => p.IdPerson);
+                .HasForeignKey(p => p.PersonId)
+                .OnDelete(DeleteBehavior.Restrict);
+
 
             builder.HasKey(c => c.Id);
 
@@ -45,13 +47,13 @@ namespace GFut.Infra.Data.Mappings
             .IsRequired()
             .HasColumnName("Picture");
 
-            builder.Property(c => c.IdPerson)
+            builder.Property(c => c.PersonId)
                 .IsRequired()
-                .HasColumnName("IdPerson");
+                .HasColumnName("PersonId");
 
-            builder.Property(c => c.IdCity)
+            builder.Property(c => c.CityId)
                 .IsRequired()
-                .HasColumnName("IdCity");
+                .HasColumnName("CityId");
         }
     }
 }

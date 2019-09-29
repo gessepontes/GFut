@@ -19,7 +19,7 @@ namespace GFut.Infra.Data.Repository
 
         public IEnumerable<Player> GetPlayerTeam(int id)
         {
-            return Db.Players.Where(p => p.Team.IdPerson == id && p.Team.Active == true && p.Active == true).OrderBy(p=>p.Name).ToList();
+            return Db.Players.Where(p => p.Team.PersonId == id && p.Team.Active == true && p.Active == true).OrderBy(p=>p.Name).ToList();
         }
 
         public override void Update(Player obj)

@@ -2,31 +2,29 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-
 namespace GFut.Infra.Data.Mappings
 {
-    public class FieldItemMap : IEntityTypeConfiguration<FieldItem>
+    public class PlayerPointsMap : IEntityTypeConfiguration<PlayerPoints>
     {
-        public void Configure(EntityTypeBuilder<FieldItem> builder)
+        public void Configure(EntityTypeBuilder<PlayerPoints> builder)
         {
-            builder.ToTable("FieldItem");
-
-            builder.HasOne(p => p.Field)
-                .WithMany(p => p.FieldItens)
-                .HasForeignKey(p => p.FieldId)
-                .OnDelete(DeleteBehavior.Restrict);
-
+            builder.ToTable("PlayerPoints");
 
             builder.HasKey(c => c.Id);
 
-            builder.Property(c => c.Name)
-                .IsRequired()
-                .HasColumnName("Name")
-                .HasColumnType("varchar(200)");
+            builder.HasOne(p => p.MatchPlayer)
+                .WithMany(t => t.PlayerPoints)
+                .HasForeignKey(m => m.MatchPlayerId)
+                .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Property(c => c.FieldId)
+            builder.Property(c => c.MatchPlayerId)
                 .IsRequired()
-                .HasColumnName("FieldId")
+                .HasColumnName("MatchPlayerId")
+                .HasColumnType("int");
+
+            builder.Property(c => c.Points)
+                .IsRequired()
+                .HasColumnName("Points")
                 .HasColumnType("int");
 
             builder.Property(c => c.Active)
@@ -38,6 +36,8 @@ namespace GFut.Infra.Data.Mappings
                 .IsRequired()
                 .HasColumnName("RegisterDate")
                 .HasColumnType("date");
+
         }
     }
+
 }

@@ -7,8 +7,23 @@
   <ItemGroup>
     <Compile Remove="Migrations\20190917183835_GfutDatabase.cs" />
     <Compile Remove="Migrations\20190917200629_GfutDatabase.cs" />
+    <Compile Remove="Migrations\20190925221240_GFutDatabase.cs" />
     <Compile Remove="Migrations\20190925221626_GFutDatabase1.cs" />
     <Compile Remove="Migrations\20190925221746_GFutDatabase2.cs" />
+    <Compile Remove="Migrations\20190928220938_GFutDatabase.cs" />
+    <Compile Remove="Migrations\20190928221611_GFutDatabase.cs" />
+    <Compile Remove="Migrations\20190928221845_GFutDatabase4.cs" />
+    <Compile Remove="Migrations\20190929001508_GFutDatabase.cs" />
+    <Compile Remove="Migrations\20190929002314_GFutDatabase.cs" />
+    <Compile Remove="Migrations\20190929002844_GFutDatabase.cs" />
+    <Compile Remove="Migrations\20190929114409_GFutDatabase4.cs" />
+    <Compile Remove="Migrations\20190929114722_GFutDatabase4.cs" />
+    <Compile Remove="Migrations\20190929123138_GFutDatabase4.cs" />
+    <Compile Remove="Migrations\20190929123542_GFutDatabase4.cs" />
+    <Compile Remove="Migrations\20190929124009_GFutDatabase4.cs" />
+    <Compile Remove="Migrations\20190929130046_GFutDatabase4.cs" />
+    <Compile Remove="Migrations\20190929130802_GFutDatabase.cs" />
+    <Compile Remove="Migrations\20190929131101_GFutDatabase.cs" />
   </ItemGroup>
 
   <ItemGroup>

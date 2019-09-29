@@ -10,39 +10,30 @@ namespace GFut.Infra.Data.Mappings
         public void Configure(EntityTypeBuilder<Match> builder)
         {
             builder.ToTable("Match");
-
-            builder.HasOne(p => p.Field)
-                .WithMany(p => p.Matches)
-                .HasForeignKey(p => p.IdField);
-
-            //builder.HasOne(p => p.Team1)
-            //    .WithMany(p => p.Matches)
-            //    .HasForeignKey(p => p.IdTeam1)
-            //    .OnDelete(DeleteBehavior.Cascade);
-
-            //builder.HasOne(p => p.Team2)
-            //    .WithMany(p => p.Matches)
-            //    .HasForeignKey(p => p.IdTeam2)
-            //    .OnDelete(DeleteBehavior.Restrict);
-
-            builder.HasOne(a => a.Team1)
-                .WithOne(b => b.Match)
-                .HasForeignKey<Match>(b => b.IdTeam1);
-
-            //builder.HasOne(a => a.Team2)
-            //    .WithOne(b => b.Match)
-            //    .HasForeignKey<Match>(b => b.IdTeam2);
-
             builder.HasKey(c => c.Id);
 
-            builder.Property(c => c.IdTeam1)
+            builder.HasOne(p => p.HomeTeam)
+                .WithMany(t => t.HomeMatches)
+                .HasForeignKey(m => m.HomeTeamId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(p => p.GuestTeam)
+                .WithMany(t => t.AwayMatches)
+                .HasForeignKey(m => m.GuestTeamId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(p => p.Field)
+                .WithMany(t => t.Matches)
+                .HasForeignKey(m => m.FieldId);
+
+            builder.Property(c => c.HomeTeamId)
                 .IsRequired()
-                .HasColumnName("IdTeam1")
+                .HasColumnName("HomeTeamId")
                 .HasColumnType("int");
 
-            builder.Property(c => c.IdTeam2)
+            builder.Property(c => c.GuestTeamId)
                 .IsRequired()
-                .HasColumnName("IdTeam2")
+                .HasColumnName("GuestTeamId")
                 .HasColumnType("int");
 
             builder.Property(c => c.MatchDate)
@@ -55,19 +46,19 @@ namespace GFut.Infra.Data.Mappings
                 .HasColumnName("StartTime")
                 .HasColumnType("varchar(10)");
 
-            builder.Property(c => c.IdField)
+            builder.Property(c => c.FieldId)
                 .IsRequired()
-                .HasColumnName("IdField")
+                .HasColumnName("FieldId")
                 .HasColumnType("int");
 
-            builder.Property(c => c.Gol1)
+            builder.Property(c => c.HomePoints)
                 .IsRequired()
-                .HasColumnName("Gol1")
+                .HasColumnName("HomePoints")
                 .HasColumnType("int");
 
-            builder.Property(c => c.Gol2)
+            builder.Property(c => c.GuestPoints)
                 .IsRequired()
-                .HasColumnName("Gol2")
+                .HasColumnName("GuestPoints")
                 .HasColumnType("int");
 
             builder.Property(c => c.TeamNotRegistered)

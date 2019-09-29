@@ -13,13 +13,14 @@ namespace GFut.Infra.Data.Mappings
 
             builder.HasOne(p => p.FieldItem)
                 .WithMany(p => p.Horarys)
-                .HasForeignKey(p => p.IdFieldItem);
+                .HasForeignKey(p => p.FieldItemId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasKey(c => c.Id);
 
-            builder.Property(c => c.IdFieldItem)
+            builder.Property(c => c.FieldItemId)
                 .IsRequired()
-                .HasColumnName("IdFieldItem");
+                .HasColumnName("FieldItemId");
 
             builder.Property(c => c.Description)
                 .IsRequired()

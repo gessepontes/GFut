@@ -14,12 +14,10 @@ namespace GFut.Infra.Data.Mappings
             builder.HasKey(c => c.Id);
 
             builder.Property(c => c.Cpf)
-                .IsRequired()
                 .HasColumnName("Cpf")
                 .HasColumnType("varchar(11)");
 
             builder.Property(c => c.BirthDate)
-                .IsRequired()
                 .HasColumnName("BirthDate")
                 .HasColumnType("date");
 

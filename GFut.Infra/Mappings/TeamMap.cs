@@ -13,13 +13,14 @@ namespace GFut.Infra.Data.Mappings
 
             builder.HasOne(p => p.Person)
                 .WithMany(p => p.Teams)
-                .HasForeignKey(p => p.IdPerson);
+                .HasForeignKey(p => p.PersonId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasKey(c => c.Id);
 
-            builder.Property(c => c.IdPerson)
+            builder.Property(c => c.PersonId)
                 .IsRequired()
-                .HasColumnName("IdPerson")
+                .HasColumnName("PersonId")
                 .HasColumnType("int");
 
             builder.Property(c => c.Name)

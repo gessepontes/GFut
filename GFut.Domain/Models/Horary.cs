@@ -2,7 +2,7 @@
 {
     public class Horary : BaseEntity
     {
-        public int IdFieldItem { get; set; }
+        public int FieldItemId { get; set; }
         public string Description { get; set; }
         public int DayWeek { get; set; }
 
