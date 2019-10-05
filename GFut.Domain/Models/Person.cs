@@ -28,5 +28,9 @@ namespace GFut.Domain.Models
         public ICollection<PersonProfile> PersonProfiles { get; set; }
         public virtual ICollection<Team> Teams { get; set; }
         public virtual ICollection<Field> Field { get; set; }
+        public virtual ICollection<Championship> Championship { get; set; }
+        public virtual ICollection<Scheduling> Scheduling { get; set; }
+
+
     }
 }

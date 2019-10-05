@@ -13,6 +13,11 @@ namespace GFut.Infra.Data.Mappings
 
             builder.HasKey(c => c.Id);
 
+            builder.HasOne(p => p.Person)
+                .WithMany(p => p.Scheduling)
+                .HasForeignKey(p => p.PersonId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             builder.Property(c => c.Date)
                 .IsRequired()
                 .HasColumnName("Date")

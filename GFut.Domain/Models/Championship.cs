@@ -29,6 +29,7 @@ namespace GFut.Domain.Models
         public virtual ICollection<Subscription> Subscriptions { get; set; }
 
         public virtual Field Field { get; set; }
+        public virtual Person Person { get; set; }
 
     }
 }

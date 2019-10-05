@@ -24,5 +24,8 @@ namespace GFut.Domain.Models
         public DateTime? CancelDate { get; set; }
         public int? PersonCancelId { get; set; }
         public bool MarkedApp { get; set; }
+
+        public virtual Person Person { get; set; }
+
     }
 }
