@@ -16,7 +16,6 @@ namespace GFut.Infra.Data.Mappings
                 .HasForeignKey(p => p.PersonId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-
             builder.HasKey(c => c.Id);
 
             builder.Property(c => c.Name)

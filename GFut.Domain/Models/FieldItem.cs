@@ -11,5 +11,6 @@ namespace GFut.Domain.Models
         public virtual Field Field { get; set; }
         public virtual ICollection<Horary> Horarys { get; set; }
         public virtual ICollection<HoraryExtra> HoraryExtras { get; set; }
+        public virtual ICollection<MatchChampionship> MatchChampionships { get; set; }
     }
 }
