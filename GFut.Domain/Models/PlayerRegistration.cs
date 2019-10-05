@@ -12,5 +12,8 @@ namespace GFut.Domain.Models
 
         public virtual Player Player { get; set; }
         public virtual Subscription Subscription { get; set; }
+
+        public virtual ICollection<MatchPlayerChampionship> MatchPlayerChampionships { get; set; }
+
     }
 }

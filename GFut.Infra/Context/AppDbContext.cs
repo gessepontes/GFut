@@ -47,6 +47,12 @@ namespace GFut.Infra.Data.Context
             modelBuilder.ApplyConfiguration(new ChampionshipMap());
             modelBuilder.ApplyConfiguration(new MatchMap());
 
+            modelBuilder.ApplyConfiguration(new MatchChampionshipMap());
+            modelBuilder.ApplyConfiguration(new MatchPlayerChampionshipMap());
+            modelBuilder.ApplyConfiguration(new MatchPlayerMap());
+            modelBuilder.ApplyConfiguration(new PlayerRegistrationMap());
+            modelBuilder.ApplyConfiguration(new SubscriptionMap());
+
             base.OnModelCreating(modelBuilder);
         }
 

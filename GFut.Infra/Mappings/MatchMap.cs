@@ -24,7 +24,8 @@ namespace GFut.Infra.Data.Mappings
 
             builder.HasOne(p => p.Field)
                 .WithMany(t => t.Matches)
-                .HasForeignKey(m => m.FieldId);
+                .HasForeignKey(m => m.FieldId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.Property(c => c.HomeTeamId)
                 .IsRequired()
