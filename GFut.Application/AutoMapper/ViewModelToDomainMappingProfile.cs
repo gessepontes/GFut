@@ -9,6 +9,8 @@ namespace GFut.Application.AutoMapper
         public ViewModelToDomainMappingProfile()
         {
             CreateMap<PersonViewModel, Person>();
+            CreateMap<TeamViewModel, Team>();
+            CreateMap<PlayerViewModel, Player>();
 
             //CreateMap<PersonViewModel, RegisterNewPersonCommand>()
             //    .ConstructUsing(c => new RegisterNewPersonCommand(c.Name, c.Email, c.BirthDate));

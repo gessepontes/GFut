@@ -1,0 +1,240 @@
+2019-10-06T13:14:02.3187738+01:00 0HLQAAQM9HK4H:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:51933/api/person   (ca22a1cb)
+2019-10-06T13:14:03.9232576+01:00 0HLQAAQM9HK4H:00000001 [INF] Route matched with "{action = \"Get\", controller = \"Person\"}". Executing action "GFut.Services.Api.Controllers.PersonController.Get (GFut.Services.Api)" (a44c0341)
+2019-10-06T13:14:08.5269249+01:00 0HLQAAQM9HK4H:00000001 [INF] Executing action method "GFut.Services.Api.Controllers.PersonController.Get (GFut.Services.Api)" - Validation state: Valid (dad538d7)
+2019-10-06T13:14:08.6601020+01:00 0HLQAAQM9HK4H:00000001 [INF] Executed action method "GFut.Services.Api.Controllers.PersonController.Get (GFut.Services.Api)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 82.0228ms. (50a9e262)
+2019-10-06T13:14:08.9423363+01:00 0HLQAAQM9HK4H:00000001 [INF] Executing ObjectResult, writing value of type '"Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1[[GFut.Application.ViewModels.PersonViewModel, GFut.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2019-10-06T13:14:12.9731713+01:00 0HLQAAQM9HK4H:00000001 [INF] Executed action "GFut.Services.Api.Controllers.PersonController.Get (GFut.Services.Api)" in 8829.9687ms (afa2e885)
+2019-10-06T13:14:13.0259622+01:00 0HLQAAQM9HK4H:00000001 [INF] Request finished in 10818.3479ms 200 application/json; charset=utf-8 (791a596a)
+2019-10-06T13:14:13.0932509+01:00 0HLQAAQM9HK4H:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:51933/favicon.ico   (ca22a1cb)
+2019-10-06T13:14:13.2034345+01:00 0HLQAAQM9HK4H:00000002 [INF] Request finished in 101.7636ms 404  (791a596a)
+2019-10-06T13:48:17.6038372+01:00 0HLQABDQPMPC8:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:51933/api/person   (ca22a1cb)
+2019-10-06T13:48:18.9191800+01:00 0HLQABDQPMPC8:00000001 [INF] Route matched with "{action = \"Get\", controller = \"Person\"}". Executing action "GFut.Services.Api.Controllers.PersonController.Get (GFut.Services.Api)" (a44c0341)
+2019-10-06T13:48:22.2797718+01:00 0HLQABDQPMPC8:00000001 [INF] Executing action method "GFut.Services.Api.Controllers.PersonController.Get (GFut.Services.Api)" - Validation state: Valid (dad538d7)
+2019-10-06T13:48:22.3744026+01:00 0HLQABDQPMPC8:00000001 [INF] Executed action method "GFut.Services.Api.Controllers.PersonController.Get (GFut.Services.Api)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 70.1985ms. (50a9e262)
+2019-10-06T13:48:22.4386094+01:00 0HLQABDQPMPC8:00000001 [INF] Executing ObjectResult, writing value of type '"Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1[[GFut.Application.ViewModels.PersonViewModel, GFut.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2019-10-06T13:48:25.1802428+01:00 0HLQABDQPMPC8:00000001 [INF] Executed action "GFut.Services.Api.Controllers.PersonController.Get (GFut.Services.Api)" in 6223.8918ms (afa2e885)
+2019-10-06T13:48:25.2358627+01:00 0HLQABDQPMPC8:00000001 [INF] Request finished in 7737.4144ms 200 application/json; charset=utf-8 (791a596a)
+2019-10-06T13:48:25.2946415+01:00 0HLQABDQPMPC8:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:51933/favicon.ico   (ca22a1cb)
+2019-10-06T13:48:25.3600935+01:00 0HLQABDQPMPC8:00000002 [INF] Request finished in 64.7956ms 404  (791a596a)
+2019-10-06T13:49:32.2490842+01:00 0HLQABDQPMPC9:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:51933/api/team   (ca22a1cb)
+2019-10-06T13:49:32.2699624+01:00 0HLQABDQPMPC9:00000001 [INF] Route matched with "{action = \"Get\", controller = \"Team\"}". Executing action "GFut.Services.Api.Controllers.TeamController.Get (GFut.Services.Api)" (a44c0341)
+2019-10-06T13:49:32.2897252+01:00 0HLQABDQPMPC9:00000001 [INF] Executed action "GFut.Services.Api.Controllers.TeamController.Get (GFut.Services.Api)" in 2.4273ms (afa2e885)
+2019-10-06T13:49:32.5462850+01:00 0HLQABDQPMPC9:00000001 [ERR] An unhandled exception has occurred while executing the request (cf926119)
+System.InvalidOperationException: Unable to resolve service for type 'GFut.Application.Interfaces.ITeamAppService' while attempting to activate 'GFut.Services.Api.Controllers.TeamController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeInnerFilterAsync>d__13.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeNextResourceFilter>d__23.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeFilterPipelineAsync>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeAsync>d__16.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.<Invoke>d__8.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__7.MoveNext()
+2019-10-06T13:49:32.7967738+01:00 0HLQABDQPMPC9:00000001 [INF] Request finished in 550.6319ms 500 text/html; charset=utf-8 (791a596a)
+2019-10-06T13:50:50.7553597+01:00 0HLQABF8FBSD0:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:51933/api/person   (ca22a1cb)
+2019-10-06T13:50:51.8872535+01:00 0HLQABF8FBSD0:00000001 [INF] Route matched with "{action = \"Get\", controller = \"Person\"}". Executing action "GFut.Services.Api.Controllers.PersonController.Get (GFut.Services.Api)" (a44c0341)
+2019-10-06T13:50:55.3208083+01:00 0HLQABF8FBSD0:00000001 [INF] Executing action method "GFut.Services.Api.Controllers.PersonController.Get (GFut.Services.Api)" - Validation state: Valid (dad538d7)
+2019-10-06T13:50:55.4317454+01:00 0HLQABF8FBSD0:00000001 [INF] Executed action method "GFut.Services.Api.Controllers.PersonController.Get (GFut.Services.Api)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 86.1903ms. (50a9e262)
+2019-10-06T13:50:55.5330705+01:00 0HLQABF8FBSD0:00000001 [INF] Executing ObjectResult, writing value of type '"Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1[[GFut.Application.ViewModels.PersonViewModel, GFut.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2019-10-06T13:50:58.6477113+01:00 0HLQABF8FBSD0:00000001 [INF] Executed action "GFut.Services.Api.Controllers.PersonController.Get (GFut.Services.Api)" in 6710.3705ms (afa2e885)
+2019-10-06T13:50:58.7036998+01:00 0HLQABF8FBSD0:00000001 [INF] Request finished in 8037.3813ms 200 application/json; charset=utf-8 (791a596a)
+2019-10-06T13:50:58.7594508+01:00 0HLQABF8FBSD0:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:51933/favicon.ico   (ca22a1cb)
+2019-10-06T13:50:58.8674524+01:00 0HLQABF8FBSD0:00000002 [INF] Request finished in 100.782ms 404  (791a596a)
+2019-10-06T13:51:06.4658204+01:00 0HLQABF8FBSD0:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:51933/api/team   (ca22a1cb)
+2019-10-06T13:51:06.4871866+01:00 0HLQABF8FBSD0:00000003 [INF] Route matched with "{action = \"Get\", controller = \"Team\"}". Executing action "GFut.Services.Api.Controllers.TeamController.Get (GFut.Services.Api)" (a44c0341)
+2019-10-06T13:51:06.5146228+01:00 0HLQABF8FBSD0:00000003 [INF] Executing action method "GFut.Services.Api.Controllers.TeamController.Get (GFut.Services.Api)" - Validation state: Valid (dad538d7)
+2019-10-06T13:51:06.5330410+01:00 0HLQABF8FBSD0:00000003 [INF] Executed action method "GFut.Services.Api.Controllers.TeamController.Get (GFut.Services.Api)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 4.1274ms. (50a9e262)
+2019-10-06T13:51:06.5518292+01:00 0HLQABF8FBSD0:00000003 [INF] Executing ObjectResult, writing value of type '"Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1[[GFut.Application.ViewModels.TeamViewModel, GFut.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2019-10-06T13:51:06.8630684+01:00 0HLQABF8FBSD0:00000003 [INF] Executed action "GFut.Services.Api.Controllers.TeamController.Get (GFut.Services.Api)" in 332.0026ms (afa2e885)
+2019-10-06T13:51:06.9122716+01:00 0HLQABF8FBSD0:00000003 [INF] Request finished in 424.9777ms 200 application/json; charset=utf-8 (791a596a)
+2019-10-06T13:51:24.6146403+01:00 0HLQABF8FBSD0:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:51933/api/team   (ca22a1cb)
+2019-10-06T13:51:24.6394738+01:00 0HLQABF8FBSD0:00000004 [INF] Route matched with "{action = \"Get\", controller = \"Team\"}". Executing action "GFut.Services.Api.Controllers.TeamController.Get (GFut.Services.Api)" (a44c0341)
+2019-10-06T13:51:24.6692054+01:00 0HLQABF8FBSD0:00000004 [INF] Executing action method "GFut.Services.Api.Controllers.TeamController.Get (GFut.Services.Api)" - Validation state: Valid (dad538d7)
+2019-10-06T13:51:53.1295947+01:00 0HLQABF8FBSD0:00000004 [INF] Executed action method "GFut.Services.Api.Controllers.TeamController.Get (GFut.Services.Api)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 28410.4783ms. (50a9e262)
+2019-10-06T13:51:53.1472748+01:00 0HLQABF8FBSD0:00000004 [INF] Executing ObjectResult, writing value of type '"Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1[[GFut.Application.ViewModels.TeamViewModel, GFut.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2019-10-06T13:51:53.3447829+01:00 0HLQABF8FBSD0:00000004 [INF] Executed action "GFut.Services.Api.Controllers.TeamController.Get (GFut.Services.Api)" in 28684.2406ms (afa2e885)
+2019-10-06T13:51:53.3807866+01:00 0HLQABF8FBSD0:00000004 [INF] Request finished in 28747.8853ms 200 application/json; charset=utf-8 (791a596a)
+2019-10-06T13:52:14.4756265+01:00 0HLQABF8FBSD0:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:51933/api/team   (ca22a1cb)
+2019-10-06T13:52:14.4937875+01:00 0HLQABF8FBSD0:00000005 [INF] Route matched with "{action = \"Get\", controller = \"Team\"}". Executing action "GFut.Services.Api.Controllers.TeamController.Get (GFut.Services.Api)" (a44c0341)
+2019-10-06T13:52:14.5267882+01:00 0HLQABF8FBSD0:00000005 [INF] Executing action method "GFut.Services.Api.Controllers.TeamController.Get (GFut.Services.Api)" - Validation state: Valid (dad538d7)
+2019-10-06T13:52:35.5941613+01:00 0HLQABF8FBSD0:00000005 [INF] Executed action method "GFut.Services.Api.Controllers.TeamController.Get (GFut.Services.Api)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 21050.7693ms. (50a9e262)
+2019-10-06T13:52:35.6096390+01:00 0HLQABF8FBSD0:00000005 [INF] Executing ObjectResult, writing value of type '"Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1[[GFut.Application.ViewModels.TeamViewModel, GFut.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2019-10-06T13:52:35.8233730+01:00 0HLQABF8FBSD0:00000005 [INF] Executed action "GFut.Services.Api.Controllers.TeamController.Get (GFut.Services.Api)" in 21287.7413ms (afa2e885)
+2019-10-06T13:52:35.8577971+01:00 0HLQABF8FBSD0:00000005 [INF] Request finished in 21369.1408ms 200 application/json; charset=utf-8 (791a596a)
+2019-10-06T14:20:14.3863836+01:00 0HLQABVM0F028:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:51933/api/person   (ca22a1cb)
+2019-10-06T14:20:15.6055107+01:00 0HLQABVM0F028:00000001 [ERR] An unhandled exception has occurred while executing the request (cf926119)
+System.InvalidOperationException: The following errors occurred with attribute routing information:
+
+Error 1:
+Attribute routes with the same name 'Get' must have the same template:
+Action: 'GFut.Services.Api.Controllers.PlayerController.Get (GFut.Services.Api)' - Template: 'api/Player/{id}'
+Action: 'GFut.Services.Api.Controllers.TeamController.Get (GFut.Services.Api)' - Template: 'api/Team/{id}'
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionDescriptorBuilder.Build(ApplicationModel application)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionDescriptorProvider.OnProvidersExecuting(ActionDescriptorProviderContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionDescriptorCollectionProvider.UpdateCollection()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionDescriptorCollectionProvider.get_ActionDescriptors()
+   at Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.GetTreeRouter()
+   at Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.RouteAsync(RouteContext context)
+   at Microsoft.AspNetCore.Routing.RouteCollection.<RouteAsync>d__10.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.<Invoke>d__8.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__7.MoveNext()
+2019-10-06T14:20:15.9287076+01:00 0HLQABVM0F028:00000001 [INF] Request finished in 1688.8695ms 500 text/html; charset=utf-8 (791a596a)
+2019-10-06T14:20:16.1236572+01:00 0HLQABVM0F028:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:51933/favicon.ico   (ca22a1cb)
+2019-10-06T14:20:16.2393150+01:00 0HLQABVM0F028:00000002 [ERR] An unhandled exception has occurred while executing the request (cf926119)
+System.InvalidOperationException: The following errors occurred with attribute routing information:
+
+Error 1:
+Attribute routes with the same name 'Get' must have the same template:
+Action: 'GFut.Services.Api.Controllers.PlayerController.Get (GFut.Services.Api)' - Template: 'api/Player/{id}'
+Action: 'GFut.Services.Api.Controllers.TeamController.Get (GFut.Services.Api)' - Template: 'api/Team/{id}'
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionDescriptorBuilder.Build(ApplicationModel application)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionDescriptorProvider.OnProvidersExecuting(ActionDescriptorProviderContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionDescriptorCollectionProvider.UpdateCollection()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionDescriptorCollectionProvider.get_ActionDescriptors()
+   at Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.GetTreeRouter()
+   at Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.RouteAsync(RouteContext context)
+   at Microsoft.AspNetCore.Routing.RouteCollection.<RouteAsync>d__10.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.<Invoke>d__8.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__7.MoveNext()
+2019-10-06T14:20:16.3924835+01:00 0HLQABVM0F028:00000002 [INF] Request finished in 255.3066ms 500 text/html; charset=utf-8 (791a596a)
+2019-10-06T14:22:37.0372424+01:00 0HLQAC10J0J82:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:51933/api/person   (ca22a1cb)
+2019-10-06T14:22:38.1891429+01:00 0HLQAC10J0J82:00000001 [INF] Route matched with "{action = \"Get\", controller = \"Person\"}". Executing action "GFut.Services.Api.Controllers.PersonController.Get (GFut.Services.Api)" (a44c0341)
+2019-10-06T14:22:41.6997959+01:00 0HLQAC10J0J82:00000001 [INF] Executing action method "GFut.Services.Api.Controllers.PersonController.Get (GFut.Services.Api)" - Validation state: Valid (dad538d7)
+2019-10-06T14:22:41.8126998+01:00 0HLQAC10J0J82:00000001 [INF] Executed action method "GFut.Services.Api.Controllers.PersonController.Get (GFut.Services.Api)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 77.2959ms. (50a9e262)
+2019-10-06T14:22:41.9184340+01:00 0HLQAC10J0J82:00000001 [INF] Executing ObjectResult, writing value of type '"Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1[[GFut.Application.ViewModels.PersonViewModel, GFut.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2019-10-06T14:22:45.1829155+01:00 0HLQAC10J0J82:00000001 [INF] Executed action "GFut.Services.Api.Controllers.PersonController.Get (GFut.Services.Api)" in 6952.3507ms (afa2e885)
+2019-10-06T14:22:45.2873897+01:00 0HLQAC10J0J82:00000001 [INF] Request finished in 8304.5248ms 200 application/json; charset=utf-8 (791a596a)
+2019-10-06T14:22:45.3409537+01:00 0HLQAC10J0J82:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:51933/favicon.ico   (ca22a1cb)
+2019-10-06T14:22:45.4706695+01:00 0HLQAC10J0J82:00000002 [INF] Request finished in 104.3449ms 404  (791a596a)
+2019-10-06T14:23:14.5537406+01:00 0HLQAC10J0J82:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:51933/api/player   (ca22a1cb)
+2019-10-06T14:23:14.5738789+01:00 0HLQAC10J0J82:00000003 [INF] Route matched with "{action = \"Get\", controller = \"Player\"}". Executing action "GFut.Services.Api.Controllers.PlayerController.Get (GFut.Services.Api)" (a44c0341)
+2019-10-06T14:23:14.6229035+01:00 0HLQAC10J0J82:00000003 [INF] Executing action method "GFut.Services.Api.Controllers.PlayerController.Get (GFut.Services.Api)" - Validation state: Valid (dad538d7)
+2019-10-06T14:23:32.4445097+01:00 0HLQAC10J0J82:00000003 [INF] Executed action "GFut.Services.Api.Controllers.PlayerController.Get (GFut.Services.Api)" in 17853.8897ms (afa2e885)
+2019-10-06T14:23:32.7892738+01:00 0HLQAC10J0J82:00000003 [ERR] An unhandled exception has occurred while executing the request (cf926119)
+AutoMapper.AutoMapperMappingException: Unable to create a map expression from Player.Position (GFut.Domain.Others.Enum+Position) to PlayerViewModel.Position (System.Int32)
+
+Mapping types:
+Player -> PlayerViewModel
+GFut.Domain.Models.Player -> GFut.Application.ViewModels.PlayerViewModel
+
+Type Map configuration:
+Player -> PlayerViewModel
+GFut.Domain.Models.Player -> GFut.Application.ViewModels.PlayerViewModel
+
+Destination Member:
+Position
+
+   at AutoMapper.QueryableExtensions.ExpressionBuilder.<>c__DisplayClass15_0.<CreateMemberBindings>g__CreateMemberBinding|0(PropertyExpression propertyExpression) in C:\projects\automapper\src\AutoMapper\QueryableExtensions\ExpressionBuilder.cs:line 239
+   at AutoMapper.QueryableExtensions.ExpressionBuilder.CreateMemberBindings(ExpressionRequest request, TypeMap typeMap, Expression instanceParameter, IDictionary`2 typePairCount, LetPropertyMaps letPropertyMaps) in C:\projects\automapper\src\AutoMapper\QueryableExtensions\ExpressionBuilder.cs:line 220
+   at AutoMapper.QueryableExtensions.ExpressionBuilder.CreateMapExpressionCore(ExpressionRequest request, Expression instanceParameter, IDictionary`2 typePairCount, TypeMap typeMap, LetPropertyMaps letPropertyMaps) in C:\projects\automapper\src\AutoMapper\QueryableExtensions\ExpressionBuilder.cs:line 157
+   at AutoMapper.QueryableExtensions.ExpressionBuilder.CreateMapExpression(ExpressionRequest request, IDictionary`2 typePairCount, LetPropertyMaps letPropertyMaps) in C:\projects\automapper\src\AutoMapper\QueryableExtensions\ExpressionBuilder.cs:line 105
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at AutoMapper.QueryableExtensions.ExpressionBuilder.GetMapExpression(Type sourceType, Type destinationType, Object parameters, MemberInfo[] membersToExpand) in C:\projects\automapper\src\AutoMapper\QueryableExtensions\ExpressionBuilder.cs:line 72
+   at AutoMapper.QueryableExtensions.ProjectionExpression.ToCore[TResult](Object parameters, IEnumerable`1 memberPathsToExpand) in C:\projects\automapper\src\AutoMapper\QueryableExtensions\ProjectionExpression.cs:line 35
+   at AutoMapper.QueryableExtensions.Extensions.ProjectTo[TDestination](IQueryable source, IConfigurationProvider configuration, Expression`1[] membersToExpand) in C:\projects\automapper\src\AutoMapper\QueryableExtensions\Extensions.cs:line 53
+   at GFut.Application.Services.PlayerAppService.GetAll() in C:\Users\Gesse\source\repos\GFut\GFut.Application\Services\PlayerAppService.cs:line 25
+   at GFut.Services.Api.Controllers.PlayerController.Get() in C:\Users\Gesse\source\repos\GFut\GFut.Services.Api\Controllers\PlayerController.cs:line 27
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.SyncObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeActionMethodAsync>d__12.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeNextActionFilterAsync>d__10.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeInnerFilterAsync>d__13.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeNextResourceFilter>d__23.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeFilterPipelineAsync>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeAsync>d__16.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.<Invoke>d__8.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__7.MoveNext()
+2019-10-06T14:23:33.1357375+01:00 0HLQAC10J0J82:00000003 [INF] Request finished in 18572.167ms 500 text/html; charset=utf-8 (791a596a)
+2019-10-06T14:26:02.0509907+01:00 0HLQAC2TMJ79N:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:51933/api/person   (ca22a1cb)
+2019-10-06T14:26:02.9865346+01:00 0HLQAC2TMJ79N:00000001 [INF] Route matched with "{action = \"Get\", controller = \"Person\"}". Executing action "GFut.Services.Api.Controllers.PersonController.Get (GFut.Services.Api)" (a44c0341)
+2019-10-06T14:26:06.8950468+01:00 0HLQAC2TMJ79N:00000001 [INF] Executing action method "GFut.Services.Api.Controllers.PersonController.Get (GFut.Services.Api)" - Validation state: Valid (dad538d7)
+2019-10-06T14:26:07.0465223+01:00 0HLQAC2TMJ79N:00000001 [INF] Executed action method "GFut.Services.Api.Controllers.PersonController.Get (GFut.Services.Api)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 117.5375ms. (50a9e262)
+2019-10-06T14:26:07.1551765+01:00 0HLQAC2TMJ79N:00000001 [INF] Executing ObjectResult, writing value of type '"Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1[[GFut.Application.ViewModels.PersonViewModel, GFut.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2019-10-06T14:26:10.2006325+01:00 0HLQAC2TMJ79N:00000001 [INF] Executed action "GFut.Services.Api.Controllers.PersonController.Get (GFut.Services.Api)" in 7166.1646ms (afa2e885)
+2019-10-06T14:26:10.3277853+01:00 0HLQAC2TMJ79N:00000001 [INF] Request finished in 8296.6773ms 200 application/json; charset=utf-8 (791a596a)
+2019-10-06T14:26:10.3877734+01:00 0HLQAC2TMJ79N:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:51933/favicon.ico   (ca22a1cb)
+2019-10-06T14:26:10.5241667+01:00 0HLQAC2TMJ79N:00000002 [INF] Request finished in 117.7787ms 404  (791a596a)
+2019-10-06T14:26:18.1614378+01:00 0HLQAC2TMJ79N:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:51933/api/player   (ca22a1cb)
+2019-10-06T14:26:18.1804476+01:00 0HLQAC2TMJ79N:00000003 [INF] Route matched with "{action = \"Get\", controller = \"Player\"}". Executing action "GFut.Services.Api.Controllers.PlayerController.Get (GFut.Services.Api)" (a44c0341)
+2019-10-06T14:26:18.2136469+01:00 0HLQAC2TMJ79N:00000003 [INF] Executing action method "GFut.Services.Api.Controllers.PlayerController.Get (GFut.Services.Api)" - Validation state: Valid (dad538d7)
+2019-10-06T14:26:18.2305078+01:00 0HLQAC2TMJ79N:00000003 [INF] Executed action method "GFut.Services.Api.Controllers.PlayerController.Get (GFut.Services.Api)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 3.4481ms. (50a9e262)
+2019-10-06T14:26:18.2491355+01:00 0HLQAC2TMJ79N:00000003 [INF] Executing ObjectResult, writing value of type '"Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1[[GFut.Application.ViewModels.PlayerViewModel, GFut.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2019-10-06T14:26:18.5129933+01:00 0HLQAC2TMJ79N:00000003 [INF] Executed action "GFut.Services.Api.Controllers.PlayerController.Get (GFut.Services.Api)" in 314.0276ms (afa2e885)
+2019-10-06T14:26:18.5518288+01:00 0HLQAC2TMJ79N:00000003 [INF] Request finished in 371.4511ms 200 application/json; charset=utf-8 (791a596a)
+2019-10-06T14:27:10.2175173+01:00 0HLQAC2TMJ79N:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:51933/api/person   (ca22a1cb)
+2019-10-06T14:27:10.2356523+01:00 0HLQAC2TMJ79N:00000004 [INF] Route matched with "{action = \"Get\", controller = \"Person\"}". Executing action "GFut.Services.Api.Controllers.PersonController.Get (GFut.Services.Api)" (a44c0341)
+2019-10-06T14:27:10.2601728+01:00 0HLQAC2TMJ79N:00000004 [INF] Executing action method "GFut.Services.Api.Controllers.PersonController.Get (GFut.Services.Api)" - Validation state: Valid (dad538d7)
+2019-10-06T14:27:10.2752935+01:00 0HLQAC2TMJ79N:00000004 [INF] Executed action method "GFut.Services.Api.Controllers.PersonController.Get (GFut.Services.Api)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 1.4667ms. (50a9e262)
+2019-10-06T14:27:10.2891056+01:00 0HLQAC2TMJ79N:00000004 [INF] Executing ObjectResult, writing value of type '"Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1[[GFut.Application.ViewModels.PersonViewModel, GFut.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2019-10-06T14:27:10.4879302+01:00 0HLQAC2TMJ79N:00000004 [INF] Executed action "GFut.Services.Api.Controllers.PersonController.Get (GFut.Services.Api)" in 237.8322ms (afa2e885)
+2019-10-06T14:27:10.5246869+01:00 0HLQAC2TMJ79N:00000004 [INF] Request finished in 295.0925ms 200 application/json; charset=utf-8 (791a596a)

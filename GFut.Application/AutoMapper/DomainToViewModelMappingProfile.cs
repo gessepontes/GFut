@@ -9,6 +9,8 @@ namespace GFut.Application.AutoMapper
         public DomainToViewModelMappingProfile()
         {
             CreateMap<Person, PersonViewModel>();
+            CreateMap<Player, PlayerViewModel>();
+            CreateMap<Team, TeamViewModel>();
         }
     }
 }

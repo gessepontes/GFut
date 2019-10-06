@@ -27,6 +27,9 @@ namespace GFut.Infra.IoC
 
             // Application
             services.AddScoped<IPersonAppService, PersonAppService>();
+            services.AddScoped<ITeamAppService, TeamAppService>();
+            services.AddScoped<IPlayerAppService, PlayerAppService>();
+
         }
     }
 }
