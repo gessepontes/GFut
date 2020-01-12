@@ -1,0 +1,17 @@
+c:\users\gesse\source\repos\GFut\GFut.Domain\obj\Debug\netcoreapp2.0\GFut.Domain.csprojResolveAssemblyReference.cache
+c:\users\gesse\source\repos\GFut\GFut.Domain\obj\Debug\netcoreapp2.0\GFut.Domain.csproj.CoreCompileInputs.cache
+c:\users\gesse\source\repos\GFut\GFut.Domain\obj\Debug\netcoreapp2.0\GFut.Domain.AssemblyInfoInputs.cache
+c:\users\gesse\source\repos\GFut\GFut.Domain\obj\Debug\netcoreapp2.0\GFut.Domain.AssemblyInfo.cs
+c:\users\gesse\source\repos\GFut\GFut.Domain\bin\Debug\netcoreapp2.0\GFut.Domain.deps.json
+c:\users\gesse\source\repos\GFut\GFut.Domain\bin\Debug\netcoreapp2.0\GFut.Domain.dll
+c:\users\gesse\source\repos\GFut\GFut.Domain\bin\Debug\netcoreapp2.0\GFut.Domain.pdb
+c:\users\gesse\source\repos\GFut\GFut.Domain\obj\Debug\netcoreapp2.0\GFut.Domain.dll
+c:\users\gesse\source\repos\GFut\GFut.Domain\obj\Debug\netcoreapp2.0\GFut.Domain.pdb
+C:\Users\gessepontes\Source\Repos\GFut\GFut.Domain\bin\Debug\netcoreapp2.0\GFut.Domain.deps.json
+C:\Users\gessepontes\Source\Repos\GFut\GFut.Domain\bin\Debug\netcoreapp2.0\GFut.Domain.dll
+C:\Users\gessepontes\Source\Repos\GFut\GFut.Domain\bin\Debug\netcoreapp2.0\GFut.Domain.pdb
+C:\Users\gessepontes\Source\Repos\GFut\GFut.Domain\obj\Debug\netcoreapp2.0\GFut.Domain.csprojAssemblyReference.cache
+C:\Users\gessepontes\Source\Repos\GFut\GFut.Domain\obj\Debug\netcoreapp2.0\GFut.Domain.AssemblyInfoInputs.cache
+C:\Users\gessepontes\Source\Repos\GFut\GFut.Domain\obj\Debug\netcoreapp2.0\GFut.Domain.AssemblyInfo.cs
+C:\Users\gessepontes\Source\Repos\GFut\GFut.Domain\obj\Debug\netcoreapp2.0\GFut.Domain.dll
+C:\Users\gessepontes\Source\Repos\GFut\GFut.Domain\obj\Debug\netcoreapp2.0\GFut.Domain.pdb
