@@ -12,6 +12,7 @@ namespace GFut.Application.AutoMapper
             CreateMap<TeamViewModel, Team>();
             CreateMap<PlayerViewModel, Player>();
             CreateMap<ChampionshipViewModel, Championship>();
+            CreateMap<FieldViewModel, Field>();
 
 
             //CreateMap<PersonViewModel, RegisterNewPersonCommand>()

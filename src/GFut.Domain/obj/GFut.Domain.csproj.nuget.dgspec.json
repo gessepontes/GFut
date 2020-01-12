@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj": {}
+    "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj": {
+    "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj",
         "projectName": "GFut.Domain",
-        "projectPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj",
+        "projectPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj",
         "packagesPath": "C:\\Users\\gessepontes\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Domain\\obj\\",
+        "outputPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\gessepontes\\AppData\\Roaming\\NuGet\\NuGet.Config",

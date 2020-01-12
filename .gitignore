@@ -2,14 +2,15 @@
 # Este arquivo .gitignore foi criado automaticamente pelo Microsoft(R) Visual Studio.
 ################################################################################
 
-/GFut.Services.Api/obj/Release/netcoreapp2.0
-/GFut.Services.Api/Logs
-/GFut.Services.Api/bin/Debug/netcoreapp2.0/Properties
-/GFut.Infra.IoC/obj/Release/netcoreapp2.0
-/GFut.Infra/obj/Release/netcoreapp2.0
-Debug/netcoreapp2.0
-/GFut.Domain/obj/Release/netcoreapp2.0
-/GFut.Application/bin/Debug/netcoreapp2.0
+/src/GFut.Services.Api/obj/
+/src/GFut.Services.Api/Logs/
+/src/GFut.Services.Api/bin/Debug/netcoreapp2.0/Properties
+/src/GFut.Infra.IoC/bin/Debug/netcoreapp2.0/
+/src/GFut.Infra.IoC/obj/Release/netcoreapp2.0
+/src/GFut.Infra.IoC/obj/Debug/netcoreapp2.0
+/src/GFut.Infra.IoC/bin/Debug/netcoreapp2.0
+/src/GFut.Domain/obj/Release/netcoreapp2.0
+/src/GFut.Application/bin/Debug/netcoreapp2.0
 /.vs/GFut/v16/Server/sqlite3
 /.vs/GFut/DesignTimeBuild
 /.vs/GFut/config

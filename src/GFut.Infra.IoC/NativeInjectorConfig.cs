@@ -30,7 +30,7 @@ namespace GFut.Infra.IoC
             services.AddScoped<ITeamAppService, TeamAppService>();
             services.AddScoped<IPlayerAppService, PlayerAppService>();
             services.AddScoped<IChampionshipAppService, ChampionshipAppService>();
-
+            services.AddScoped<IFieldAppService, FieldAppService>();
         }
     }
 }
