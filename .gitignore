@@ -5,6 +5,7 @@
 /src/GFut.Services.Api/obj
 /src/GFut.Services.Api/bin
 /src/GFut.Services.Api/Logs
+/src/GFut.Services.Api/appsettings.json
 /src/GFut.Domain/bin
 /src/GFut.Domain/obj
 /src/GFut.Infra/bin
