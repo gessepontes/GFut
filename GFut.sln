@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GFut.Infra.IoC", "src\GFut.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GFut.Infra.Data", "src\GFut.Infra\GFut.Infra.Data.csproj", "{18EB8A35-C98B-4F75-897D-23CFB027F1A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GFut", "src\GFut\GFut.csproj", "{11868638-706F-4A2A-ABC1-BD3617B9A979}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{18EB8A35-C98B-4F75-897D-23CFB027F1A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18EB8A35-C98B-4F75-897D-23CFB027F1A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18EB8A35-C98B-4F75-897D-23CFB027F1A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11868638-706F-4A2A-ABC1-BD3617B9A979}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11868638-706F-4A2A-ABC1-BD3617B9A979}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11868638-706F-4A2A-ABC1-BD3617B9A979}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11868638-706F-4A2A-ABC1-BD3617B9A979}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +65,7 @@ Global
 		{93F842F4-44AC-4404-9634-D2145AF4DBE5} = {9385DD12-9C4B-4999-8EC2-0306594BBB4D}
 		{8E368221-DF4B-4ADC-8A83-5D8CB50BF2FF} = {797A2D07-A098-44F0-A49B-844FA218955B}
 		{18EB8A35-C98B-4F75-897D-23CFB027F1A5} = {797A2D07-A098-44F0-A49B-844FA218955B}
+		{11868638-706F-4A2A-ABC1-BD3617B9A979} = {3505716F-DDAF-4E8F-AE0E-847193497E71}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {81B3B617-4E3D-402C-949B-E3B596A39A3F}
