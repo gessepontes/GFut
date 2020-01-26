@@ -56,7 +56,7 @@ namespace GFut.Infra.Data.Context
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<PersonProfile> PessoaPerfis { get; set; }
+        public DbSet<PersonProfile> PersonProfile { get; set; }
         public DbSet<Person> People { get; set; }
         public DbSet<Player> Players { get; set; }
         public DbSet<Team> Teams { get; set; }
