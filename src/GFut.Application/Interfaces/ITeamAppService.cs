@@ -10,6 +10,10 @@ namespace GFut.Application.Interfaces
         TeamViewModel GetById(int id);
         void Add(TeamViewModel teamViewModel);
         void Update(TeamViewModel teamViewModel);
+        void Status(int id);
         void Remove(int id);
+        IEnumerable<TeamViewModel> GetTeamPerson(int id);
+        IEnumerable<TeamViewModel> GetSearchTeamPerson(int id, string search);
+
     }
 }

@@ -30,6 +30,18 @@ namespace GFut.Services.Api.Controllers
             return _teamAppService.GetById(id);
         }
 
+        [HttpGet("idPerson/{idPerson}", Name = "GetTeamPerson")]
+        public IEnumerable<TeamViewModel> GetTeamPerson(int idPerson)
+        {
+            return _teamAppService.GetTeamPerson(idPerson);
+        }
+
+        [HttpGet("idPerson/{idPerson}/{search}", Name = "GetSearchTeamPerson")]
+        public IEnumerable<TeamViewModel> GetSearchTeamPerson(int idPerson, string search)
+        {
+            return _teamAppService.GetSearchTeamPerson(idPerson, search);
+        }
+
         // POST: api/Team
         [HttpPost]
         public void Post([FromBody] TeamViewModel teamViewModel)
@@ -37,16 +49,18 @@ namespace GFut.Services.Api.Controllers
             _teamAppService.Add(teamViewModel);
         }
 
-        // PUT: api/Team/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] TeamViewModel teamViewModel)
+        // PUT: api/Team
+        [HttpPut]
+        public void Put([FromBody] TeamViewModel teamViewModel)
         {
-            if (id != teamViewModel.Id)
-            {
-                BadRequest();
-            }
-
             _teamAppService.Update(teamViewModel);
+        }
+
+        // PUT: api/Team
+        [HttpPut("{id}", Name = "PutStatus")]
+        public void PutStatus(int id)
+        {
+            _teamAppService.Status(id);
         }
 
         // DELETE: api/ApiWithActions/5

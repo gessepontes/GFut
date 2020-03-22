@@ -10,13 +10,13 @@ namespace GFut.Infra.Data.Mappings
         public void Configure(EntityTypeBuilder<Team> builder)
         {
             builder.ToTable("Team");
+            
+            builder.HasKey(c => c.Id);
 
             builder.HasOne(p => p.Person)
                 .WithMany(p => p.Teams)
                 .HasForeignKey(p => p.PersonId)
                 .OnDelete(DeleteBehavior.Restrict);
-
-            builder.HasKey(c => c.Id);
 
             builder.Property(c => c.PersonId)
                 .IsRequired()

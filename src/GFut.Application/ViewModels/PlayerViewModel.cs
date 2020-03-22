@@ -26,9 +26,9 @@ namespace GFut.Application.ViewModels
         [Display(Name = "Picture")]
         public string Picture { get; set; }
 
-        [Display(Name = "Fone")]
+        [Display(Name = "Phone")]
         [Required(ErrorMessage = "{0} é um campo obrigatório.")]
-        public string Fone { get; set; }
+        public string Phone { get; set; }
 
         [Display(Name = "Position")]
         [Required(ErrorMessage = "{0} é um campo obrigatório.")]
@@ -41,8 +41,11 @@ namespace GFut.Application.ViewModels
         [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Dispense Date")]
-        [Required(ErrorMessage = "{0} é um campo obrigatório.")]
-        public DateTime DispenseDate { get; set; }
+        public DateTime? DispenseDate { get; set; }
+
+        public bool Active { get; set; }
+
+        public DateTime RegisterDate { get; set; }
 
     }
 }

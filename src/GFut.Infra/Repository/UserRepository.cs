@@ -5,6 +5,7 @@ using System.Linq;
 using GFut.Infra.Data.Context;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using Microsoft.EntityFrameworkCore;
 
 namespace GFut.Infra.Data.Repository
 {
@@ -17,45 +18,32 @@ namespace GFut.Infra.Data.Repository
 
         }
 
+        public void UpdateUser(User user)
+        {
+            Person person = Db.People.Find(user.Id);
+
+            person.Name = user.Name;
+            person.Phone = user.Phone;
+            person.BirthDate = user.BirthDate;
+            person.Picture = user.Picture;
+
+            if (user.Password != null)
+            {
+                person.Password = user.Password;
+            }
+
+            Db.People.Update(person);
+            Db.SaveChanges();
+        }
+
         public Person SignIn(User user)
         {
-            var person = Db.People.FirstOrDefault(x => x.Email == user.Email && x.Password == user.Password);
+            var person = Db.People.Include(t => t.Teams).Include(p => p.PersonProfiles).FirstOrDefault(x => x.Email == user.Email && x.Password == user.Password);
 
             if (person == null)
                 return null;
 
             return person;
-        }
-
-        public void SignUp(User user)
-        {
-            var config = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .Build();
-
-            Person person = new Person
-            {
-                Name = user.Name,
-                Email = user.Email,
-                Password = user.Password,
-                Phone = user.Phone,
-                Picture = Divers.Base64ToImage(config.GetSection(key: "Config")["UserBase64"], "PERSON"),
-                Confirmation = true,
-            };
-
-
-            Db.People.Add(person);
-
-            PersonProfile personProfile = new PersonProfile
-            {
-                PersonId = person.Id,
-                ProfileType = Enum.ProfileType.Jogador
-            };
-
-            Db.PersonProfile.Add(personProfile);
-            Db.SaveChanges();
-
         }
     }
 }

@@ -37,8 +37,8 @@ namespace GFut.Infra.Data.Mappings
                 .HasColumnName("Picture")
                 .HasColumnType("varchar(500)");
 
-            builder.Property(c => c.Fone)
-                .HasColumnName("Fone")
+            builder.Property(c => c.Phone)
+                .HasColumnName("Phone")
                 .HasColumnType("varchar(20)");
 
             builder.Property(c => c.Position)

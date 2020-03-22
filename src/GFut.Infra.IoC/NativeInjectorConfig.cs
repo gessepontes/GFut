@@ -17,6 +17,7 @@ namespace GFut.Infra.IoC
 
             // Infra - Data
             services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<IPersonProfileRepository, PersonProfileRepository>();
             services.AddScoped<IPlayerRepository, PlayerRepository>();
             services.AddScoped<ITeamRepository, TeamRepository>();
             services.AddScoped<IFieldRepository, FieldRepository>();

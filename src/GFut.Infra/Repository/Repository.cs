@@ -20,6 +20,7 @@ namespace GFut.Infra.Data.Repository
         public virtual void Add(TEntity obj)
         {
             DbSet.Add(obj);
+            SaveChanges();
         }
 
         public virtual TEntity GetById(int id)
@@ -35,11 +36,13 @@ namespace GFut.Infra.Data.Repository
         public virtual void Update(TEntity obj)
         {
             DbSet.Update(obj);
+            SaveChanges();
         }
 
         public virtual void Remove(int id)
         {
             DbSet.Remove(DbSet.Find(id));
+            SaveChanges();
         }
 
         public int SaveChanges()

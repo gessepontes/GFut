@@ -63,6 +63,17 @@ namespace GFut.Domain.Others
         }
 
 
+        public static string ImageToBase64(string sNome, string destino) {
+
+            string path = PathArquivo(sNome, destino);
+
+            byte[] imageArray = System.IO.File.ReadAllBytes(path);
+            string base64ImageRepresentation = Convert.ToBase64String(imageArray);
+
+            return base64ImageRepresentation;
+        }
+
+
         public static string PathArquivo(string sFoto, string origem)
         {
             string path = "";
@@ -74,6 +85,9 @@ namespace GFut.Domain.Others
                     break;
                 case "PLAYER":
                     path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\picture\\player", sFoto);
+                    break;
+                case "TEAM":
+                    path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\picture\\team", sFoto);
                     break;
             }
 

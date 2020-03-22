@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using GFut.Application.Interfaces;
 using GFut.Application.ViewModels;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GFut.Services.Api.Controllers
@@ -42,16 +38,10 @@ namespace GFut.Services.Api.Controllers
         }
 
         // PUT: api/Player/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] PlayerViewModel playerViewModel)
+        [HttpPut]
+        public void Put([FromBody] PlayerViewModel playerViewModel)
         {
-            if (id != playerViewModel.Id)
-            {
-                BadRequest();
-            }
-
             _playerAppService.Update(playerViewModel);
-
         }
 
         // DELETE: api/ApiWithActions/5
@@ -59,6 +49,18 @@ namespace GFut.Services.Api.Controllers
         public void Delete(int id)
         {
             _playerAppService.Remove(id);
+        }
+
+        [HttpGet("idTeam/{id}", Name = "GetPlayerTeam")]
+        public IEnumerable<PlayerViewModel> GetPlayerTeam(int id)
+        {
+            return _playerAppService.GetPlayerTeam(id);
+        }
+
+        [HttpGet("idTeam/{idTeam}/{search}", Name = "GetSearchPlayerTeam")]
+        public IEnumerable<PlayerViewModel> GetSearchPlayerTeam(int idTeam, string search)
+        {
+            return _playerAppService.GetSearchPlayerTeam(idTeam, search);
         }
     }
 }

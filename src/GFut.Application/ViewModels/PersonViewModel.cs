@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -62,9 +63,6 @@ namespace GFut.Application.ViewModels
 
         }
 
-        [Display(Name = "Ativo")]
-        public bool Active { get; set; }
-
         [Display(Name = "Confirmação")]
         public bool Confirmation { get; set; }
 
@@ -73,15 +71,13 @@ namespace GFut.Application.ViewModels
         [Display(Name = "Status")]
         public bool Status { get; set; }
 
-        public DateTime RegisterDate { get; set; }
-
         public string IdPush { get; set; }
 
         [NotMapped]
         public string Token { get; set; }
 
         //public ICollection<PersonProfile> PessoaPerfis { get; set; }
-        //public virtual ICollection<Team> Teams { get; set; }
+        public virtual TeamViewModel Team { get; set; }
         //public virtual ICollection<Field> Field { get; set; }
 
     }

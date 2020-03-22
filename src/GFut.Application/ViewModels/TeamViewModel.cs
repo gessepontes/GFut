@@ -6,6 +6,12 @@ namespace GFut.Application.ViewModels
 {
     public class TeamViewModel : BaseEntity
     {
+        public TeamViewModel()
+        {
+            State = true;
+            Active = true;
+        }
+
         [Display(Name = "PersonId")]
         [Required(ErrorMessage = "{0} é um campo obrigatório.")]
         public int PersonId { get; set; }

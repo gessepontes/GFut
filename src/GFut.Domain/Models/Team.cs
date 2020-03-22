@@ -9,10 +9,11 @@ namespace GFut.Domain.Models
         public Team()
         {
             Players = new HashSet<Player>();
+            State = true;
+            Active = true;
         }
 
         public int PersonId { get; set; }
-
         public string Name { get; set; }
         public string Symbol { get; set; }
         public string Picture { get; set; }

@@ -11,5 +11,7 @@ namespace GFut.Application.Interfaces
         void Add(PlayerViewModel playerViewModel);
         void Update(PlayerViewModel playerViewModel);
         void Remove(int id);
+        IEnumerable<PlayerViewModel> GetPlayerTeam(int id);
+        IEnumerable<PlayerViewModel> GetSearchPlayerTeam(int id, string search);
     }
 }

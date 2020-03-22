@@ -16,7 +16,7 @@ namespace GFut.Domain.Models
         [NotMapped]
         public string OldPicture { get; set; }
 
-        public string Fone { get; set; }
+        public string Phone { get; set; }
         public Position Position { get; set; }
 
         public bool Dispensed { get; set; }

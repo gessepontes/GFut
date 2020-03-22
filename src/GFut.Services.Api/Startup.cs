@@ -27,6 +27,7 @@ namespace GFut.Services.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDirectoryBrowser();
 
             services.AddSingleton<IFileProvider>(
                 new PhysicalFileProvider(
@@ -66,6 +67,13 @@ namespace GFut.Services.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "picture")),
+                RequestPath = "/picture"
+            });
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddFile($"Logs/Api.Log.txt");

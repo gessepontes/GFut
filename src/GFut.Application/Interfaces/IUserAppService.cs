@@ -8,5 +8,6 @@ namespace GFut.Application.Interfaces
     {
         void SignUp(UserViewModel userViewModel);
         PersonViewModel SignIn(UserViewModel userViewModel);
+        void UpdateUser(UserViewModel userViewModel);
     }
 }
