@@ -5,15 +5,22 @@ export function updateProfileRequest(data) {
   };
 }
 
-export function updateProfileSuccess(profile) {
+export function updateProfileSuccess(data) {
   return {
     type: '@user/UPDATE_PROFILE_SUCCESS',
-    payload: { profile },
+    payload: { data },
   };
 }
 
 export function updateProfileFailure() {
   return {
     type: '@user/UPDATE_PROFILE_REQUEST',
+  };
+}
+
+export function updatePictureProfileSuccess(data) {
+  return {
+    type: '@user/UPDATE_PICTURE_PROFILE_SUCCESS',
+    payload: { data }
   };
 }

@@ -5,24 +5,36 @@ import api from '~/services/api';
 
 import { updateProfileSuccess, updateProfileFailure } from './actions';
 
+import { loading } from '~/store/modules/auth/actions';  
+
 export function* updateProfile({ payload }) {
   try {
-    const { name, email, avatar_id, ...rest } = payload.data;
+    const { id, name, email, phone,  
+      birthDate, password, picture } = payload.data;
 
     const profile = Object.assign(
-      { name, email, avatar_id },
-      rest.oldPassword ? rest : {}
+      { id, name, email, phone,  
+        birthDate, password, picture }
     );
 
-    const response = yield call(api.put, 'users', profile);
+    yield put(loading(true));
 
-    toast.success('Perfil atualizado com sucesso!');
+    yield call(api.put, 'user', profile);
 
-    yield put(updateProfileSuccess(response.data));
+    yield put(loading(false));
+
+    toast.success('Operação realizada com sucesso!');
+
+    yield put(updateProfileSuccess(profile));
   } catch (err) {
-    toast.error('Erro ao atualizar perfil, confira seus dados!');
+    yield put(loading(false));
+
+    toast.error('Erro ao realizar a operação!');
     yield put(updateProfileFailure());
   }
 }
 
-export default all([takeLatest('@user/UPDATE_PROFILE_REQUEST', updateProfile)]);
+
+export default all([
+  takeLatest('@user/UPDATE_PROFILE_REQUEST', updateProfile)
+]);

@@ -1,5 +1,6 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
+import { format } from 'date-fns';
 
 import history from '~/services/history';
 import api from '~/services/api';
@@ -15,16 +16,23 @@ export function* signIn({ payload }) {
       password,      
     });
 
-    const { token, user } = response.data;
+    const user  = response.data;
 
-    if (!user.provider) {
-      toast.error('Usuário não é prestador');
+    if (!user) {
+      toast.error('Usuário ou senha incorretos.');
       return;
     }
 
-    api.defaults.headers.Authorization = `Bearer ${token}`;
+    if (!user.active) {
+      toast.error('Usuário não está ativo.');
+      return;
+    }
 
-    yield put(signInSuccess(token, user));
+    user.birthDate = format(new Date(user.birthDate),"yyyy-MM-dd");
+
+    api.defaults.headers.Authorization = `Bearer ${user.token}`;
+
+    yield put(signInSuccess(user));
 
     history.push('/dashboard');
   } catch (err) {
@@ -42,7 +50,6 @@ export function* signUp({ payload }) {
       email,
       phone,
       password,
-      provider: true,
     });
 
     history.push('/');
@@ -64,7 +71,7 @@ export function setToken({ payload }) {
 }
 
 export function signOut() {
-  history.push('/');
+  history.push('/sign-in');
 }
 
 export default all([

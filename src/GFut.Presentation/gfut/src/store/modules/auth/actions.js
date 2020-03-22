@@ -1,3 +1,10 @@
+export function loading(value) {
+  return {
+    type: '@auth/LOADING',
+    payload:  value ,
+  };
+}
+
 export function signInRequest(email, password) {
   return {
     type: '@auth/SIGN_IN_REQUEST',
@@ -5,10 +12,10 @@ export function signInRequest(email, password) {
   };
 }
 
-export function signInSuccess(token, user) {
+export function signInSuccess(user) {
   return {
     type: '@auth/SIGN_IN_SUCCESS',
-    payload: { token, user },
+    payload: { user },
   };
 }
 
