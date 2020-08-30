@@ -28,6 +28,12 @@
     <Compile Remove="Migrations\20191005115347_GFutDatabase.cs" />
     <Compile Remove="Migrations\20191005144645_GFutDatabase.cs" />
     <Compile Remove="Migrations\20191005145715_GFutDatabase.cs" />
+    <Compile Remove="Migrations\20200802132747_Field.cs" />
+    <Compile Remove="Migrations\20200802132747_Field.Designer.cs" />
+    <Compile Remove="Migrations\20200808124341_HoraryPrice.cs" />
+    <Compile Remove="Migrations\20200808124341_HoraryPrice.Designer.cs" />
+    <Compile Remove="Migrations\20200823101850_Schedule.cs" />
+    <Compile Remove="Migrations\20200823101850_Schedule.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

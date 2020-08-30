@@ -1,44 +1,18 @@
-/* eslint-disable react/no-multi-comp */
-/* eslint-disable react/display-name */
 import React, { forwardRef } from 'react';
 import { NavLink as RouterLink } from 'react-router-dom';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/styles';
-import { List, ListItem, Button, colors } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
-  root: {},
-  item: {
-    display: 'flex',
-    paddingTop: 0,
-    paddingBottom: 0
-  },
-  button: {
-    color: colors.blueGrey[800],
-    padding: '10px 8px',
-    justifyContent: 'flex-start',
-    textTransform: 'none',
-    letterSpacing: 0,
-    width: '100%',
-    fontWeight: theme.typography.fontWeightMedium
-  },
-  icon: {
-    color: theme.palette.icon,
-    width: 24,
-    height: 24,
-    display: 'flex',
-    alignItems: 'center',
-    marginRight: theme.spacing(1)
-  },
-  active: {
-    color: theme.palette.primary.main,
-    fontWeight: theme.typography.fontWeightMedium,
-    '& $icon': {
-      color: theme.palette.primary.main
-    }
-  }
-}));
+import PropTypes from 'prop-types'
+import { makeStyles, createStyles } from '@material-ui/core/styles'
+
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemText from '@material-ui/core/ListItemText'
+import Divider from '@material-ui/core/Divider'
+import Collapse from '@material-ui/core/Collapse'
+
+import IconExpandLess from '@material-ui/icons/ExpandLess'
+import IconExpandMore from '@material-ui/icons/ExpandMore'
 
 const CustomRouterLink = forwardRef((props, ref) => (
   <div
@@ -49,40 +23,81 @@ const CustomRouterLink = forwardRef((props, ref) => (
   </div>
 ));
 
-const SidebarNav = props => {
-  const { pages, className, ...rest } = props;
+// React runtime PropTypes
+export const AppMenuItemPropTypes = {
+  title: PropTypes.string.isRequired,
+  href: PropTypes.string,
+  Icon: PropTypes.elementType,
+  items: PropTypes.array,
+}
 
-  const classes = useStyles();
+const SidebarNav = props => {
+  const { title, href, Icon, items = [] } = props
+  const classes = useStyles()
+  const isExpandable = items && items.length > 0
+  const [open, setOpen] = React.useState(false)
+
+  function handleClick() {
+    setOpen(!open)
+  }
+
+  const MenuItemRoot = (
+    <ListItem button component={CustomRouterLink} to={href} className={classes.menuItem} onClick={handleClick}>
+      {/* Display an icon if any */}
+      {!!Icon && (
+        <ListItemIcon className={classes.menuItemIcon}>
+          <Icon />
+        </ListItemIcon>
+      )}
+      <ListItemText primary={title} inset={!Icon} />
+    </ListItem>
+  )
+
+  const MenuItemRootWithChildren = (
+    <ListItem button className={classes.menuItem} onClick={handleClick}>
+      {/* Display an icon if any */}
+      {!!Icon && (
+        <ListItemIcon className={classes.menuItemIcon}>
+          <Icon />
+        </ListItemIcon>
+      )}
+      <ListItemText primary={title} inset={!Icon} />
+
+      {/* Display the expand menu if the item has children */}
+      {isExpandable && !open && <IconExpandMore />}
+      {isExpandable && open && <IconExpandLess />}
+    </ListItem>
+  )
+
+  const MenuItemChildren = isExpandable ? (
+    <Collapse in={open} timeout="auto" unmountOnExit>
+      <Divider />
+      <List component="div" disablePadding>
+        {items.map((item, index) => (
+          <SidebarNav {...item} key={index} />
+        ))}
+      </List>
+    </Collapse>
+  ) : null
 
   return (
-    <List
-      {...rest}
-      className={clsx(classes.root, className)}
-    >
-      {pages.map(page => (
-        <ListItem
-          className={classes.item}
-          disableGutters
-          key={page.title}
-        >
-          <Button
-            activeClassName={classes.active}
-            className={classes.button}
-            component={CustomRouterLink}
-            to={page.href}
-          >
-            <div className={classes.icon}>{page.icon}</div>
-            {page.title}
-          </Button>
-        </ListItem>
-      ))}
-    </List>
-  );
-};
+    <>
+      {!isExpandable && MenuItemRoot}
+      {isExpandable && MenuItemRootWithChildren}
+      {MenuItemChildren}
+    </>
+  )
+}
 
-SidebarNav.propTypes = {
-  className: PropTypes.string,
-  pages: PropTypes.array.isRequired
-};
+SidebarNav.propTypes = AppMenuItemPropTypes
 
-export default SidebarNav;
+const useStyles = makeStyles(theme =>
+  createStyles({
+    menuItem: {},
+    menuItemIcon: {
+      //color: '#97c05c',
+    },
+  }),
+)
+
+export default SidebarNav

@@ -83,20 +83,20 @@ namespace GFut.Application.Services
 
             _teamRepository.Update(team);
 
-            foreach (var item in _teamRepository.GetTeamPerson(team.Id).Where(p => p.Active == true && p.Id != team.Id))
-            {
-                item.Active = false;
-                _teamRepository.Update(item);
-            }
+            List<Team> list = _teamRepository.GetTeamPerson(team.PersonId).Where(p => p.Id != team.Id).ToList();
+
+            list.ForEach(m => m.Active = false);
+
+            _teamRepository.UpdateRange(list);
+
         }
 
         public void Add(TeamViewModel teamViewModel)
         {
-            foreach (var item in _teamRepository.GetTeamPerson(teamViewModel.PersonId).Where(p => p.Active == true))
-            {
-                item.Active = false;
-                _teamRepository.Update(item);
-            }
+            List<Team> list = _teamRepository.GetTeamPerson(teamViewModel.PersonId).ToList();
+
+            list.ForEach(m => m.Active = false);
+            _teamRepository.UpdateRange(list);
 
             var config = new ConfigurationBuilder()
                 .SetBasePath(_env.ContentRootPath)
@@ -110,7 +110,7 @@ namespace GFut.Application.Services
             }
             else
             {
-                teamViewModel.Symbol = Divers.Base64ToImage(teamViewModel.Picture, "TEAM");
+                teamViewModel.Symbol = Divers.Base64ToImage(teamViewModel.Symbol, "TEAM");
             }
 
             teamViewModel.Picture = "semimagem.png";

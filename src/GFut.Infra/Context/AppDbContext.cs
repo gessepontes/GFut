@@ -35,6 +35,7 @@ namespace GFut.Infra.Data.Context
             modelBuilder.ApplyConfiguration(new FieldMap());
             modelBuilder.ApplyConfiguration(new FieldItemMap());
             modelBuilder.ApplyConfiguration(new HoraryExtraMap());
+            modelBuilder.ApplyConfiguration(new HoraryPriceMap());
             modelBuilder.ApplyConfiguration(new HoraryMap());
             modelBuilder.ApplyConfiguration(new SchedulingMap());
             modelBuilder.ApplyConfiguration(new ChampionshipMap());
@@ -60,5 +61,6 @@ namespace GFut.Infra.Data.Context
         public DbSet<Scheduling> Schedulings { get; set; }
         public DbSet<Championship> Championships { get; set; }
         public DbSet<Match> Matches { get; set; }
+        public DbSet<HoraryPrice> HoraryPrices { get; set; }
     }
 }

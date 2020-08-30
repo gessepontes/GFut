@@ -52,13 +52,12 @@ namespace GFut.Infra.Data.Mappings
                 .HasColumnName("CustomerNotRegistered")
                 .HasColumnType("varchar(100)");
 
-            builder.Property(c => c.Fone)
+            builder.Property(c => c.Phone)
                 .IsRequired()
-                .HasColumnName("Fone")
+                .HasColumnName("Phone")
                 .HasColumnType("varchar(20)");
 
             builder.Property(c => c.CancelDate)
-                .IsRequired()
                 .HasColumnName("CancelDate")
                 .HasColumnType("datetime");
 

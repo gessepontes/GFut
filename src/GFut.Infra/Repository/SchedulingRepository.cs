@@ -18,6 +18,11 @@ namespace GFut.Infra.Data.Repository
 
         }
 
+        public override IQueryable<Scheduling> GetAll()
+        {
+            return Db.Schedulings.Include(p => p.Person).Include(p => p.Horary).ThenInclude(p => p.FieldItem).OrderBy(p => p.Person.Name).AsQueryable();
+        }
+
         //public IEnumerable<HoraryComplete> GetFieldScheduling(int idCampo, int idPessoa)
         //{
         //    IQueryable<int> hp = from p in Db.Horarys
@@ -91,7 +96,7 @@ namespace GFut.Infra.Data.Repository
 
         //        HoraryExtra h = Db.HoraryExtras.Include(b => b.FieldItem).Include(b => b.FieldItem.Field).Where(b => b.Id == item.IDHORARIO).FirstOrDefault();
 
-              
+
         //        hpc.HORA = h.Description;
         //        hpc.CAMPO = h.FieldItem.Name;
         //        hpc.LOGO = h.FieldItem.Field.Picture;

@@ -2,10 +2,11 @@ import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { Form, Input } from '@rocketseat/unform';
 import { makeStyles, withStyles } from '@material-ui/styles';
 
-import { MTextField, MCheckbox } from '~/components';
+import { Input, MCheckbox, InputMaskPhone } from '~/components';
+import { position } from '~/data';
+import { Form } from '@unform/web';
 
 import {
   Card,
@@ -46,6 +47,11 @@ const PlayerDetails = props => {
 
   function handleSubmit(data) {
     data.teamId = team.id; 
+    data.id = player.id; 
+    data.picture = player.picture; 
+    data.active = player.active; 
+    data.registerDate = player.registerDate; 
+
     dispatch(savePlayerRequest(data));
   }
 
@@ -62,33 +68,6 @@ const PlayerDetails = props => {
       backgroundColor: red[500]
     },
   }))(Button);
-
-  const position = [
-    {
-      value: '1',
-      label: 'Goleiro'
-    },
-    {
-      value: '2',
-      label: 'Zagueiro'
-    },
-    {
-      value: '3',
-      label: 'Volante'
-    },        
-    {
-      value: '4',
-      label: 'Meio-Campo'
-    },
-    {
-      value: '5',
-      label: 'Atacante'
-    },
-    {
-      value: '6',
-      label: 'Lateral'
-    }
-  ];
 
   return (
     <Card
@@ -108,30 +87,32 @@ const PlayerDetails = props => {
           >
             <Grid
               item
-              md={6}
+              md={12}
               xs={12}
             >
-              <Input name="id" type='hidden' />
-              <Input name="teamId" type='hidden' />
-              <Input name="picture" type='hidden' />   
-              <Input name="active" type='hidden' />        
-              <Input name="registerDate" type='hidden' />   
+              <Input name="TimeName" disabled defaultValue={team.name} label="Time"/>
+            </Grid>
 
-              <MTextField required name="name" label="Nome"/>
+            <Grid
+              item
+              md={12}
+              xs={12}
+            >
+              <Input required name="name" label="Nome"/>
             </Grid>
             <Grid
               item
               md={6}
               xs={12}
             >             
-              <MTextField required name="phone" label="Celular"/>
+              <InputMaskPhone required name="phone" label="Celular"/>
             </Grid>
             <Grid
               item
               md={6}
               xs={12}
             >
-              <MTextField name="position" label="Posição"
+              <Input name="position" label="Posição"
                 required                              
                 select
                 SelectProps={{ native: true }}
@@ -144,14 +125,14 @@ const PlayerDetails = props => {
                     {option.label}
                   </option>
                 ))}
-              </MTextField>
+              </Input>
             </Grid>
             <Grid
               item
               md={6}
               xs={12}
             >
-              <MTextField name="birthDate" type='date' label="Data de aniversário"
+              <Input name="birthDate" type='date' label="Data de aniversário"
                 required                              
                 InputLabelProps={{
                   shrink: true,
@@ -172,7 +153,7 @@ const PlayerDetails = props => {
               md={6}
               xs={12}
             >
-              <MTextField disabled = {dispenseDate} name="dispenseDate" type='date' label="Data de Dispensa"                                              
+              <Input disabled = {dispenseDate} name="dispenseDate" type='date' label="Data de Dispensa"                                              
                 InputLabelProps={{
                   shrink: true,
                 }}

@@ -39,7 +39,7 @@ export default function team(state = INITIAL_STATE, action) {
       case '@team/UPDATE_SIMBOL_TEAM_SUCCESS': {
         draft.team.symbol = action.payload.data;
         break;
-      }      
+      }            
       case '@team/UPDATE_TEAM_SUCCESS': {
         return { ...state, team: action.payload.data };  
       }case '@team/DELETE_TEAM_SUCCESS': {              

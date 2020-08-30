@@ -7,8 +7,10 @@ namespace GFut.Application.Interfaces
     public interface IFieldAppService : IDisposable
     {
         IEnumerable<FieldViewModel> GetAll();
+        IEnumerable<FieldViewModel> GetSearchField(string search);
         FieldViewModel GetById(int id);
-        void Update(FieldViewModel championshipViewModel);
+        void Update(FieldViewModel fieldViewModel);
+        void Add(FieldViewModel fieldViewModel);
         void Remove(int id);
     }
 }

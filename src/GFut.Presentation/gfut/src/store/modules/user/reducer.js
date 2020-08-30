@@ -23,6 +23,10 @@ export default function user(state = INITIAL_STATE, action) {
       case '@user/UPDATE_PROFILE_SUCCESS': {
         return { ...state, profile: action.payload.data }; 
       }
+      case '@user/UPDATE_TEAM_ACTIVE_SUCCESS': {
+        draft.profile.team = action.payload.data;
+        break;
+      }       
       case '@user/UPDATE_PICTURE_PROFILE_SUCCESS': {
         draft.profile.picture = action.payload.data;
         break;

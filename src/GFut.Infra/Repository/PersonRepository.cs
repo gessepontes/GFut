@@ -30,6 +30,10 @@ namespace GFut.Infra.Data.Repository
         public override IQueryable<Person> GetAll() =>
             Db.People.Include(x => x.PersonProfiles).AsQueryable();
 
+        public IQueryable<Person> GetPersonCampeonato() {
+            return Db.People;
+        }
+
         public override Person GetById(int id) {
             Person _p = Db.People.Include(x => x.PersonProfiles).FirstOrDefault(x => x.Id == id);
 

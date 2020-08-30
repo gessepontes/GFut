@@ -1,33 +1,42 @@
-import React, { useRef, useEffect } from "react";
-import { useField } from "@rocketseat/unform";
+import React, { useRef, useEffect, useState } from "react";
+import { useField } from '@unform/core';
 import { Checkbox, FormControlLabel  } from "@material-ui/core";
 
 function MCheckbox({ name, label, apiError, ...rest }) {
-  const ref = useRef(null);
-  const { fieldName, registerField } = useField(name);
+  const inputRefs = useRef(null);
+  const { fieldName, registerField, defaultValue} = useField(name);
 
   useEffect(() => {
-    if (ref.current) {
+    if(inputRefs.current){
       registerField({
         name: fieldName,
-        ref: ref.current,
+        ref: inputRefs.current,
         path: "checked"
       });
     }
-  }, [ref.current, fieldName]); // eslint-disable-line
+  }, [fieldName, registerField]); // eslint-disable-line
+
+  const [state, setState] = useState(defaultValue);
 
   return (
+    <div>
     <FormControlLabel
       control={
         <Checkbox
+          id={fieldName}
+          name={fieldName}
           color="primary"
-          checked={ref.checked}
-          inputRef={ref}
+          checked={state}
+          onChange={() => setState(!state)}
+          inputRef={ref => {
+            inputRefs.current = ref;
+          }}
           {...rest}
         />
       }
       label={label}
-   />    
+   /> 
+   </div>   
   );
 }
 

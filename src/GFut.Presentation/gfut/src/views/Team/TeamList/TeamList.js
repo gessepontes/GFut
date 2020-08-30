@@ -3,10 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { makeStyles } from '@material-ui/styles';
 
-import { TeamsToolbar, TeamsTable } from './components';
+import { TeamsTable } from './components';
+import { BottomRightFAB } from 'components';
+
+import { teamInitialValues } 
+from '~/store/modules/team/actions';
 
 import { fetchTeamRequest
 } from '~/store/modules/team/actions';
+
+import { fetchPersonRequest
+} from '~/store/modules/person/actions';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,11 +28,16 @@ const TeamList = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
+  const handleClick = () => {
+    dispatch(teamInitialValues());
+  };
+
   const profile = useSelector(state => state.user.profile);
 
   useEffect(() => {
     const fetchData = async () => {
       dispatch(fetchTeamRequest(profile.id));
+      dispatch(fetchPersonRequest());
     }
 
     fetchData();
@@ -33,7 +45,7 @@ const TeamList = () => {
 
   return (
     <div className={classes.root}>
-      <TeamsToolbar />
+        <BottomRightFAB size='small' color='primary' onClick={() => handleClick()} />
       <div className={classes.content}>
         <TeamsTable />
       </div>

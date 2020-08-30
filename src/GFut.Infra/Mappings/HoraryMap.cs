@@ -18,13 +18,17 @@ namespace GFut.Infra.Data.Mappings
 
             builder.HasKey(c => c.Id);
 
+            builder.Property(c => c.State)
+                .IsRequired()
+                .HasColumnName("State");
+
             builder.Property(c => c.FieldItemId)
                 .IsRequired()
                 .HasColumnName("FieldItemId");
 
-            builder.Property(c => c.Description)
+            builder.Property(c => c.Hour)
                 .IsRequired()
-                .HasColumnName("Description");
+                .HasColumnName("Hour");
 
             builder.Property(c => c.DayWeek)
                 .IsRequired()

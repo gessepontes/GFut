@@ -25,6 +25,11 @@ namespace GFut.Application.Services
             return _personRepository.GetAll().ProjectTo<PersonViewModel>(_mapper.ConfigurationProvider);
         }
 
+        public IEnumerable<PersonViewModel> GetPersonCampeonato()
+        {
+            return _personRepository.GetPersonCampeonato().ProjectTo<PersonViewModel>(_mapper.ConfigurationProvider);
+        }
+
         public PersonViewModel GetById(int id)
         {
             return _mapper.Map<PersonViewModel>(_personRepository.GetById(id));

@@ -28,11 +28,9 @@ export function* savePlayer({ payload }) {
       player.dispenseDate = "";
     }
 
-    player.registerDate = format(new Date(player.registerDate),"yyyy-MM-dd");
-
     yield put(loading(true));
 
-    if (id !== "0"){
+    if (id !== 0){
       yield call(api.put, 'player', player);
       yield put(updatePlayerSuccess(player));
     }else{

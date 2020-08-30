@@ -9,7 +9,7 @@ namespace GFut.Domain.Models
     {
         public string Name { get; set; }
         public string Address { get; set; }
-        public string Fone { get; set; }
+        public string Phone { get; set; }
         public decimal Value { get; set; }
         public decimal MonthlyValue { get; set; }
         public bool Scheduled { get; set; }
@@ -21,6 +21,5 @@ namespace GFut.Domain.Models
         public virtual ICollection<FieldItem> FieldItens { get; set; }
         public virtual ICollection<Championship> Championship { get; set; }
         public virtual ICollection<Match> Matches { get; set; }
-        public virtual Match Match { get; set; }
     }
 }

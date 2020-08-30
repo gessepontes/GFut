@@ -2,11 +2,11 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { Form, Input } from '@rocketseat/unform';
+
+import { Form } from '@unform/web';
+import { Input } from '~/components';
 
 import { makeStyles } from '@material-ui/styles';
-
-import { MTextField } from '~/components';
 
 import {
   Card,
@@ -62,28 +62,28 @@ const AccountDetails = props => {
               <Input name="id" type='hidden' />
               <Input name="picture" type='hidden' />
 
-              <MTextField required name="name" label="Nome"/>
+              <Input required name="name" label="Nome"/>
             </Grid>
             <Grid
               item
               md={6}
               xs={12}
             >             
-              <MTextField required name="email" label="E-mail" disabled/>
+              <Input required name="email" label="E-mail" disabled/>
             </Grid>            
             <Grid
               item
               md={6}
               xs={12}
             >
-              <MTextField name="phone" label="Celular"/>
+              <Input name="phone" label="Celular"/>
             </Grid>
             <Grid
               item
               md={6}
               xs={12}
             >
-              <MTextField name="birthDate" type='date' label="Data de nascimento"
+              <Input name="birthDate" type='date' label="Data de nascimento"
                 required                              
                 InputLabelProps={{
                   shrink: true,
@@ -95,7 +95,7 @@ const AccountDetails = props => {
               md={12}
               xs={12}
             >
-              <MTextField name="password" label="Senha" type='password'/>
+              <Input name="password" label="Senha" type='password'/>
             </Grid>
           </Grid>
         </CardContent>

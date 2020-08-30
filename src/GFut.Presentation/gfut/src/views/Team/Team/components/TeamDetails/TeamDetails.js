@@ -2,11 +2,13 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { Form, Input } from '@rocketseat/unform';
+
+import { Form } from '@unform/web';
+import { Input } from '~/components';
+
+import { tipoCampo } from '~/data';
 
 import { makeStyles } from '@material-ui/styles';
-
-import { MTextField } from '~/components';
 
 import {
   Card,
@@ -39,24 +41,18 @@ const TeamDetails = props => {
   };
 
   function handleSubmit(data) {
-    data.personId = profile.id; 
+    data.id = team.id; 
+    data.symbol = team.symbol; 
+    data.active = team.active; 
+    data.state = team.state; 
+    data.registerDate = team.registerDate; 
+
     dispatch(saveTeamRequest(data));
   }
 
-  const profile = useSelector(state => state.user.profile);
   const team = useSelector(state => state.team.team);
-
-  const states = [
-    {
-      value: '1',
-      label: 'Society'
-    },
-    {
-      value: '2',
-      label: '11'
-    }
-  ];
-
+  const people = useSelector(state => state.person.people);
+  
   return (
     <Card
       {...rest}
@@ -73,38 +69,53 @@ const TeamDetails = props => {
             container
             spacing={3}
           >
+          <Grid
+              item
+              md={12}
+              xs={12}
+            >
+              <Input name="personId" label="Responsável"
+                required                              
+                select
+                SelectProps={{ native: true }}
+              >
+                <option>
+                  </option>
+                {people.map(option => (
+                  <option
+                    key={option.id}
+                    value={option.id}
+                  >
+                    {option.name}
+                  </option>
+                ))}
+              </Input>
+            </Grid> 
             <Grid
               item
               md={6}
               xs={12}
             >
-              <Input name="id" type='hidden' />
-              <Input name="registerDate" type='hidden' />
-              <Input name="symbol" type='hidden' />
-              <Input name="state" type='hidden' />
-              <Input name="active" type='hidden' />
-              <Input name="personId" type='hidden' />
-
-              <MTextField required name="name" label="Nome"/>
+              <Input required name="name" label="Nome"/>
             </Grid>
             <Grid
               item
               md={6}
               xs={12}
             >             
-              <MTextField required name="observation" label="Observação"/>
+              <Input required name="observation" label="Observação"/>
             </Grid>
             <Grid
               item
               md={6}
               xs={12}
             >
-              <MTextField name="type" label="Tipo"
+              <Input name="type" label="Tipo"
                 required                              
                 select
                 SelectProps={{ native: true }}
               >
-                {states.map(option => (
+                {tipoCampo.map(option => (
                   <option
                     key={option.value}
                     value={option.value}
@@ -112,14 +123,14 @@ const TeamDetails = props => {
                     {option.label}
                   </option>
                 ))}
-              </MTextField>
+              </Input>
             </Grid>
             <Grid
               item
               md={6}
               xs={12}
             >
-              <MTextField name="fundationDate" type='date' label="Data de Fundação"
+              <Input name="fundationDate" type='date' label="Data de Fundação"
                 required                              
                 InputLabelProps={{
                   shrink: true,

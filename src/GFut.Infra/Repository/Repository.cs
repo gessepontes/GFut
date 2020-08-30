@@ -2,6 +2,7 @@
 using GFut.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace GFut.Infra.Data.Repository
@@ -36,6 +37,12 @@ namespace GFut.Infra.Data.Repository
         public virtual void Update(TEntity obj)
         {
             DbSet.Update(obj);
+            SaveChanges();
+        }
+
+        public virtual void UpdateRange(IEnumerable<TEntity> obj)
+        {
+            DbSet.UpdateRange(obj);
             SaveChanges();
         }
 

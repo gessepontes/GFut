@@ -29,6 +29,8 @@ namespace GFut.Infra.Data.Mappings
                 .HasColumnName("FieldId")
                 .HasColumnType("int");
 
+            builder.Property(c => c.Picture);
+
             builder.Property(c => c.Active)
                 .IsRequired()
                 .HasColumnName("Active")

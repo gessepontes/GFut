@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/styles';
 
-import { PlayerToolbar, PlayersCard } from './components';
+import {  PlayersTable } from './components';
+import { BottomRightFAB } from 'components';
 
-import { fetchPlayerRequest
+import { fetchPlayerRequest, playerInitialValues
 } from '~/store/modules/player/actions';
 
 const useStyles = makeStyles(theme => ({
@@ -21,6 +22,10 @@ const PlayerList = () => {
   const teamId = useSelector(state => state.user.profile.team.id);
   const dispatch = useDispatch();
 
+  const handleClick = () => {
+    dispatch(playerInitialValues());
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       dispatch(fetchPlayerRequest(teamId));
@@ -33,9 +38,9 @@ const PlayerList = () => {
   return (
 <>
     <div className={classes.root}>
-      <PlayerToolbar />
+        <BottomRightFAB size='small' color='primary' onClick={() => handleClick()} />
       <div className={classes.content}>
-           <PlayersCard />
+           <PlayersTable />
       </div>
     </div>
     </>

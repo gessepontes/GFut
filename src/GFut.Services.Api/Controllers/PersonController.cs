@@ -24,6 +24,12 @@ namespace GFut.Services.Api.Controllers
             return _personAppService.GetAll();
         }
 
+        [HttpGet("campeonato/", Name = "GetPersonCampeonato")]
+        public IEnumerable<PersonViewModel> GetPersonCampeonato()
+        {
+            return _personAppService.GetPersonCampeonato();
+        }
+
         [AllowAnonymous]
         [HttpGet("{id}", Name = "GetPersonById")]
         public PersonViewModel Get(int id)

@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Divider, Drawer, Hidden } from '@material-ui/core';
@@ -9,8 +10,9 @@ import PersonIcon from '@material-ui/icons/Person';
 import TextFieldsIcon from '@material-ui/icons/TextFields';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import SettingsIcon from '@material-ui/icons/Settings';
-import LockOpenIcon from '@material-ui/icons/LockOpen';
-import InputIcon from '@material-ui/icons/Input';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+
+import List from '@material-ui/core/List'
 
 import { Profile, SidebarNav } from './components';
 
@@ -41,95 +43,72 @@ const Sidebar = props => {
   const { open, variant, onClose, className, ...rest } = props;
 
   const classes = useStyles();
-
-  const pagesLgUp = [
-    {
-      title: 'Dashboard',
-      href: '/dashboard',
-      icon: <DashboardIcon />
-    },
-    {
-      title: 'Users',
-      href: '/users',
-      icon: <PeopleIcon />
-    },
-    {
-      title: 'Team',
-      href: '/teams',
-      icon: <PeopleIcon />
-    },    
-    {
-      title: 'Player',
-      href: '/players',
-      icon: <PersonIcon />
-    },
-    {
-      title: 'Authentication',
-      href: '/sign-in',
-      icon: <LockOpenIcon />
-    },
-    {
-      title: 'Typography',
-      href: '/typography',
-      icon: <TextFieldsIcon />
-    },
-    {
-      title: 'Account',
-      href: '/account',
-      icon: <AccountBoxIcon />
-    },
-    {
-      title: 'Settings',
-      href: '/settings',
-      icon: <SettingsIcon />
-    },
-    {
-      title: 'Sair',
-      href: '/sign-in',
-      icon: <InputIcon />
-    }
-  ];
-
   const pages = [
     {
       title: 'Dashboard',
       href: '/dashboard',
-      icon: <DashboardIcon />
+      Icon: DashboardIcon 
     },
     {
       title: 'Users',
       href: '/users',
-      icon: <PeopleIcon />
+      Icon: PeopleIcon 
     },
     {
-      title: 'Team',
+      title: 'Time',
       href: '/teams',
-      icon: <PeopleIcon />
+      Icon: PeopleIcon 
     },    
     {
-      title: 'Player',
+      title: 'Atleta',
       href: '/players',
-      icon: <PersonIcon />
-    },
+      Icon: PersonIcon 
+    },    
     {
-      title: 'Authentication',
-      href: '/sign-in',
-      icon: <LockOpenIcon />
-    },
+      title: 'Campos',
+      href: '',
+      Icon: LocationOnIcon ,
+      items: [
+        {
+          title: 'Campo',
+          href: '/fields',
+        },
+        {
+          title: 'Campo Item',
+          href: '/fieldItens',
+        },
+        {
+          title: 'Valor',
+          href: '/horaryPrices',
+        },   
+        {
+          title: 'Horários',
+          href: '/horaryFields',
+        }, 
+        {
+          title: 'Horário Extra',
+          href: '/horaryExtraFields',
+        }, 
+        {
+          title: 'Agendar Horário',
+          href: '/schedulings',
+        },     
+      ],
+    },  
     {
       title: 'Typography',
       href: '/typography',
-      icon: <TextFieldsIcon />
+      Icon: TextFieldsIcon 
     },
     {
       title: 'Account',
       href: '/account',
-      icon: <AccountBoxIcon />
+      Icon: AccountBoxIcon 
     },
     {
       title: 'Settings',
       href: '/settings',
-      icon: <SettingsIcon />
+      Icon: SettingsIcon 
     }
   ];
 
@@ -148,16 +127,18 @@ const Sidebar = props => {
         <Profile />
         <Divider className={classes.divider} />
         <Hidden lgUp>
-          <SidebarNav
-            className={classes.nav}
-            pages={pagesLgUp}
-          />
+              <List component="nav" className={classes.appMenu} disablePadding>
+                {pages.map((item, index) => (
+                  <SidebarNav {...item} key={index} />
+                ))}
+              </List>
         </Hidden>
         <Hidden mdDown>
-          <SidebarNav
-            className={classes.nav}
-            pages={pages}
-          />        
+              <List component="nav" className={classes.appMenu} disablePadding>
+                {pages.map((item, index) => (
+                  <SidebarNav {...item} key={index} />
+                ))}
+              </List>
         </Hidden>
       </div>
     </Drawer>

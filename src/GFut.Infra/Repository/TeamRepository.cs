@@ -16,7 +16,12 @@ namespace GFut.Infra.Data.Repository
 
         public IEnumerable<Team> GetTeamPerson(int id)
         {
-            return Db.Teams.Where(p => p.PersonId == id && p.State == true).OrderBy(p => p.Name).ToList();
+            return Db.Teams.Where(p => p.PersonId == id && p.State == true).OrderBy(p => p.Name);
+        }
+
+        public override Team GetById(int id)
+        {
+            return Db.Teams.Where(p => p.Id == id).FirstOrDefault();
         }
     }
 }

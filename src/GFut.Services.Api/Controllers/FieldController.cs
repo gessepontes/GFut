@@ -24,11 +24,24 @@ namespace GFut.Services.Api.Controllers
             return _fieldAppService.GetAll();
         }
 
+        [HttpGet("search/{search}", Name = "GetSearchField")]
+        public IEnumerable<FieldViewModel> GetSearchField(string search)
+        {
+            return _fieldAppService.GetSearchField(search);
+        }
+
         [AllowAnonymous]
         [HttpGet("{id}", Name = "GetFieldById")]
         public FieldViewModel Get(int id)
         {
             return _fieldAppService.GetById(id);
+        }
+
+        // POST: api/field
+        [HttpPost]
+        public void Post([FromBody] FieldViewModel fieldViewModel)
+        {
+            _fieldAppService.Add(fieldViewModel);
         }
 
         [HttpPut(Name = "PutField")]

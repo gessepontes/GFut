@@ -10,30 +10,33 @@ import { saveTeamFailure, addTeamSuccess,
           fetchTeamSuccess,  fetchTeamFailure, 
           fetchTeamByIdSuccess, updateStatusTeamSuccess, 
           updateStatusTeamFailure, fetchSearchTeamFailure,
-          fetchSearchTeamSuccess} from './actions';
+          fetchSearchTeamSuccess} from './actions';        
 
-import { loading } from '~/store/modules/auth/actions';          
+import { loading } from '~/store/modules/auth/actions';  
+import { updateTeamActiveSuccess } from '~/store/modules/user/actions';          
 
 export function* saveTeam({ payload }) {
   try {
 
     const { id, name, personId, observation, type, 
-      fundationDate,active, symbol } = payload.data;
+      fundationDate,active, symbol, state, registerDate } = payload.data;
 
     const team = Object.assign(
       { id, name, personId, observation, type, 
-        fundationDate,active, symbol }
+        fundationDate,active, symbol, state, registerDate }
     );
 
     yield put(loading(true));
 
-    if (id !== "0"){
+    if (id !== 0){
       yield call(api.put, 'team', team);
       yield put(updateTeamSuccess(team));
     }else{
       yield call(api.post, 'team', team); 
       yield put(addTeamSuccess(team));
     }
+
+    yield put(updateTeamActiveSuccess(team));
   
     yield put(loading(false));
 
@@ -112,11 +115,11 @@ export function* fetchSearchTeam({ payload }) {
 export function* updateStatusTeam({ payload }) {
   try {
     const { id, name, personId, observation, type, 
-      fundationDate,active, symbol } = payload.data;
+      fundationDate,active, symbol, state, registerDate } = payload.data;
 
     const team = Object.assign(
       { id, name, personId, observation, type, 
-        fundationDate,active, symbol }
+        fundationDate,active, symbol, state, registerDate }
     );
 
     yield put(loading(true));
@@ -124,8 +127,10 @@ export function* updateStatusTeam({ payload }) {
     yield call(api.put, `team/${team.id}`);
 
     yield put(updateStatusTeamSuccess(team));
+   
+    yield put(updateTeamActiveSuccess(team));
 
-    const response = yield call(api.get, `team/idperson/${team.personId}`);
+    const response = yield call(api.get, `team/idPerson/${team.personId}`);
 
     yield put(loading(false));
 
@@ -134,8 +139,7 @@ export function* updateStatusTeam({ payload }) {
     yield put(fetchTeamSuccess(response.data));
 
  } catch (err) {
-   toast.success('status atualizado com sucesso!');
-  
+console.log(err); 
    toast.error('Erro ao atualizar o status Team, confira seus dados!');
    yield put(updateStatusTeamFailure());
  }
@@ -145,11 +149,11 @@ export function* fetchTeamById({ payload }) {
   try {
 
     const { id, name, personId, observation, type, 
-      fundationDate,active, symbol } = payload.data;
+      fundationDate,active, symbol, state, registerDate } = payload.data;
 
     const team = Object.assign(
       { id, name, personId, observation, type, 
-        fundationDate,active, symbol }
+        fundationDate,active, symbol, state, registerDate }
     );
 
     team.fundationDate = format(new Date(team.fundationDate),"yyyy-MM-dd");

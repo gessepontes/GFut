@@ -12,6 +12,13 @@ export function updateProfileSuccess(data) {
   };
 }
 
+export function updateTeamActiveSuccess(data) {
+  return {
+    type: '@user/UPDATE_TEAM_ACTIVE_SUCCESS',
+    payload: { data },
+  };
+}
+
 export function updateProfileFailure() {
   return {
     type: '@user/UPDATE_PROFILE_REQUEST',

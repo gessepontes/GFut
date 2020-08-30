@@ -11,6 +11,18 @@ import {
   UserList as UserListView,
   TeamList as TeamListView,
   Team as TeamView,
+  FieldList as FieldListView,
+  Field as FieldView, 
+  FieldItemList as FieldItemListView,
+  FieldItem as FieldItemView,  
+  HoraryPrice as HoraryPriceView,   
+  HoraryPriceList as HoraryPriceListView,
+  HoraryField as HoraryFieldView,   
+  HoraryFieldList as HoraryFieldListView, 
+  HoraryExtraField as HoraryExtraFieldView,   
+  HoraryExtraFieldList as HoraryExtraFieldListView,  
+  Scheduling as SchedulingView,   
+  SchedulingList as SchedulingListView,     
   Account as AccountView,
   Settings as SettingsView,
   SignUp as SignUpView,
@@ -67,7 +79,91 @@ const Routes = () => {
         layout={MainLayout}
         path="/player"
         isPrivate
-      />        
+      />  
+      <RouteWithLayout
+        component={FieldListView}
+        exact
+        layout={MainLayout}
+        path="/fields"
+        isPrivate
+      />
+      <RouteWithLayout
+        component={FieldView}
+        exact
+        layout={MainLayout}
+        path="/field"
+        isPrivate
+      />  
+      <RouteWithLayout
+        component={FieldItemListView}
+        exact
+        layout={MainLayout}
+        path="/fieldItens"
+        isPrivate
+      />
+      <RouteWithLayout
+        component={FieldItemView}
+        exact
+        layout={MainLayout}
+        path="/fieldItem"
+        isPrivate
+      /> 
+      <RouteWithLayout
+        component={HoraryPriceListView}
+        exact
+        layout={MainLayout}
+        path="/horaryPrices"
+        isPrivate
+      />
+      <RouteWithLayout
+        component={HoraryPriceView}
+        exact
+        layout={MainLayout}
+        path="/horaryPrice"
+        isPrivate
+      />  
+      <RouteWithLayout
+        component={HoraryFieldListView}
+        exact
+        layout={MainLayout}
+        path="/horaryFields"
+        isPrivate
+      />
+      <RouteWithLayout
+        component={HoraryFieldView}
+        exact
+        layout={MainLayout}
+        path="/horaryField"
+        isPrivate
+      />  
+      <RouteWithLayout
+        component={HoraryExtraFieldListView}
+        exact
+        layout={MainLayout}
+        path="/horaryExtraFields"
+        isPrivate
+      />
+      <RouteWithLayout
+        component={HoraryExtraFieldView}
+        exact
+        layout={MainLayout}
+        path="/horaryExtraField"
+        isPrivate
+      /> 
+      <RouteWithLayout
+        component={SchedulingListView}
+        exact
+        layout={MainLayout}
+        path="/schedulings"
+        isPrivate
+      />
+      <RouteWithLayout
+        component={SchedulingView}
+        exact
+        layout={MainLayout}
+        path="/scheduling"
+        isPrivate
+      />                                           
       <RouteWithLayout
         component={AccountView}
         exact

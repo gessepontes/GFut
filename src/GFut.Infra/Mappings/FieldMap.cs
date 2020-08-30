@@ -26,9 +26,9 @@ namespace GFut.Infra.Data.Mappings
                 .IsRequired()
                 .HasColumnName("Address");
 
-            builder.Property(c => c.Fone)
+            builder.Property(c => c.Phone)
                 .IsRequired()
-                .HasColumnName("Fone");
+                .HasColumnName("Phone");
 
             builder.Property(c => c.Value)
                 .IsRequired()
@@ -53,6 +53,16 @@ namespace GFut.Infra.Data.Mappings
             builder.Property(c => c.CityId)
                 .IsRequired()
                 .HasColumnName("CityId");
+
+            builder.Property(c => c.Active)
+                .IsRequired()
+                .HasColumnName("Active")
+                .HasColumnType("bit");
+
+            builder.Property(c => c.RegisterDate)
+                .IsRequired()
+                .HasColumnName("RegisterDate")
+                .HasColumnType("date");
         }
     }
 }

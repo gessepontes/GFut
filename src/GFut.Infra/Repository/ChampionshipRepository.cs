@@ -21,10 +21,10 @@ namespace GFut.Infra.Data.Repository
             // ICollection<int> listaInscricao = Db.Inscriptions.Where(p => p.IdTeam == id).Select(s => s.Id).ToList();
 
             //return Db.Championships.Include(p => p.Subscribed).Where(p => listaInscricao.Contains(p.Id));
-            return Db.Championships.ToList();
+            return Db.Championships;
         }
 
-        public IEnumerable<Championship> GetPreInscription() => Db.Championships.Where(p => p.ReleaseSubscription == true).ToList();
+        public IEnumerable<Championship> GetPreInscription() => Db.Championships.Where(p => p.ReleaseSubscription == true);
 
     }
 }

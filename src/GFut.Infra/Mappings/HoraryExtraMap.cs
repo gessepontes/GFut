@@ -22,9 +22,9 @@ namespace GFut.Infra.Data.Mappings
                 .IsRequired()
                 .HasColumnName("FieldItemId");
 
-            builder.Property(c => c.Description)
+            builder.Property(c => c.Hour)
                 .IsRequired()
-                .HasColumnName("Description");
+                .HasColumnName("Hour");
 
             builder.Property(c => c.Date)
                 .IsRequired()
