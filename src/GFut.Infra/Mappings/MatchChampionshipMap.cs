@@ -53,7 +53,6 @@ namespace GFut.Infra.Data.Mappings
                 .HasColumnType("varchar(10)");
 
             builder.Property(c => c.Observation)
-                .IsRequired()
                 .HasColumnName("Observation")
                 .HasColumnType("varchar(300)");
 
@@ -70,6 +69,11 @@ namespace GFut.Infra.Data.Mappings
             builder.Property(c => c.GuestPoints)
                 .IsRequired()
                 .HasColumnName("GuestPoints")
+                .HasColumnType("int");
+
+            builder.Property(c => c.Round)
+                .IsRequired()
+                .HasColumnName("Round")
                 .HasColumnType("int");
 
             builder.Property(c => c.Active)

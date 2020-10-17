@@ -89,9 +89,9 @@ namespace GFut.Application.Services
             return _mapper.Map<IEnumerable<PlayerViewModel>>(_playerRepository.GetPlayerTeam(id));
         }
 
-        public IEnumerable<PlayerViewModel> GetSearchPlayerTeam(int id, string search)
+        public IEnumerable<PlayerViewModel> GetPlayerTeamByIdSubscription(int id)
         {
-            return _mapper.Map<IEnumerable<PlayerViewModel>>(_playerRepository.GetPlayerTeam(id).Where(p => p.Name.ToUpper().Contains(search.ToUpper())));
+            return _mapper.Map<IEnumerable<PlayerViewModel>>(_playerRepository.GetPlayerTeamByIdSubscription(id));
         }
     }
 }

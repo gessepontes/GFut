@@ -23,7 +23,7 @@ namespace GFut.Application.ViewModels
         public HoraryType HoraryType { get; set; }
 
         [Display(Name = "State")]
-        public string State { get; set; }
+        public StatusP State { get; set; }
 
         [Display(Name = "PersonId")]
         public int? PersonId { get; set; }

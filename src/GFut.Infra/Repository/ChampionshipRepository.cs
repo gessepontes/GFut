@@ -21,7 +21,16 @@ namespace GFut.Infra.Data.Repository
             // ICollection<int> listaInscricao = Db.Inscriptions.Where(p => p.IdTeam == id).Select(s => s.Id).ToList();
 
             //return Db.Championships.Include(p => p.Subscribed).Where(p => listaInscricao.Contains(p.Id));
-            return Db.Championships;
+            return Db.Championships.Include(p => p.Person);
+        }
+
+        public override IQueryable<Championship> GetAll()
+        {
+            var listChampionship = from p in Db.Championships
+                                   select new Championship { Id = p.Id, Name = p.Name, PersonId = p.PersonId, Picture = p.Picture, PlayerRegistration = p.PlayerRegistration, RefereeType = p.RefereeType,
+                                   RegisterDate = p.RegisterDate, ReleaseSubscription = p.ReleaseSubscription, StartDate = p.StartDate, Active = p.Active, AmountTeam = p.AmountTeam, 
+                                   ChampionshipType = p.ChampionshipType,EndDate = p.EndDate, Type = p.Type, FieldId = p.FieldId, GoBack = p.GoBack};
+            return listChampionship;
         }
 
         public IEnumerable<Championship> GetPreInscription() => Db.Championships.Where(p => p.ReleaseSubscription == true);

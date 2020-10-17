@@ -50,6 +50,7 @@ namespace GFut.Domain.Others
 
         public enum ChampionshipType : int
         {
+            [Display(Name = "Grupo")]
             Grupos = 1,
             [Display(Name = "Mata-Mata")]
             MataMata = 2,
@@ -65,42 +66,42 @@ namespace GFut.Domain.Others
             [Display(Name = "Campo de 11")]
             Campo = 2,
             [Display(Name = "Quadra")]
-            Quadra = 1,
+            Quadra = 3,
         }
 
-        public enum DiaSemana : int
+        public enum WeekDay : int
         {
             [Display(Name = "Segunda-feira")]
-            Segunda = 1,
+            Monday = 1,
             [Display(Name = "Terça-feira")]
-            Terça = 2,
+            Tuesday = 2,
             [Display(Name = "Quarta-feira")]
-            Quarta = 3,
+            Wednesday = 3,
             [Display(Name = "Quinta-feira")]
-            Quinta = 4,
+            Thursday = 4,
             [Display(Name = "Sexta-feira")]
-            Sexta = 5,
+            Friday = 5,
             [Display(Name = "Sabado")]
-            Sabado = 6,
+            Saturday = 6,
             [Display(Name = "Domingo")]
-            Domingo = 0
+            Sunday = 0
         }
 
-        public enum TipoCartao : int
+        public enum CardType : int
         {
             [Display(Name = "Nenhum")]
-            Nenhum = 0,
+            Nothing = 0,
             [Display(Name = "Amarelo")]
-            Amarelo = 1,
+            Yellow = 1,
             [Display(Name = "Vermelho")]
-            Vermelho = 2,
+            Red = 2,
             [Display(Name = "Segundo amarelo seguido de vermelho")]
-            SegundoAmareloVermelho = 3,
+            YellowSecond = 3,
             [Display(Name = "Vermelho depois de um amarelo")]
-            VermelhoAmarelo = 4
+            RedYellow = 4
         }
 
-        public enum IDGrupo : int
+        public enum Group : int
         {
             A = 1,
             B = 2,
@@ -123,7 +124,7 @@ namespace GFut.Domain.Others
             [Display(Name = "Aprovado")]
             Aprovado = 1,
             [Display(Name = "Cancelado")]
-            Cancelado = 2
+            Cancelado = 2,
         }
 
         public enum ProfileType : int

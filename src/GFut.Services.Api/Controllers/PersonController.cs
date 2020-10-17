@@ -24,10 +24,22 @@ namespace GFut.Services.Api.Controllers
             return _personAppService.GetAll();
         }
 
-        [HttpGet("campeonato/", Name = "GetPersonCampeonato")]
-        public IEnumerable<PersonViewModel> GetPersonCampeonato()
+        [HttpGet("PersonChampionshipDrop/", Name = "GetPersonChampionshipDrop")]
+        public IEnumerable<PersonViewModel> GetPersonChampionshipDrop()
         {
-            return _personAppService.GetPersonCampeonato();
+            return _personAppService.GetPersonChampionshipDrop();
+        }
+
+        [HttpGet("PersonFieldDrop/", Name = "GetPersonFieldDrop")]
+        public IEnumerable<PersonViewModel> GetPersonFieldDrop()
+        {
+            return _personAppService.GetPersonFieldDrop();
+        }
+
+        [HttpGet("PersonAllDrop/", Name = "GetPersonAllDrop")]
+        public IEnumerable<PersonViewModel> GetPersonAllDrop()
+        {
+            return _personAppService.GetPersonAllDrop();
         }
 
         [AllowAnonymous]

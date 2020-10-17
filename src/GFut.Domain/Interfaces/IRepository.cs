@@ -11,6 +11,7 @@ namespace GFut.Domain.Interfaces
         IQueryable<TEntity> GetAll();
         void Update(TEntity obj);
         void UpdateRange(IEnumerable<TEntity> list);
+        void RemoveRange(IEnumerable<TEntity> list);
         void Remove(int id);
         int SaveChanges();
     }

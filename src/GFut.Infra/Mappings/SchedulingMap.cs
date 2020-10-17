@@ -40,8 +40,7 @@ namespace GFut.Infra.Data.Mappings
 
             builder.Property(c => c.State)
                 .IsRequired()
-                .HasColumnName("State")
-                .HasColumnType("char(1)");
+                .HasColumnName("State");
 
             builder.Property(c => c.PersonId)
                 .HasColumnName("PersonId")

@@ -18,7 +18,8 @@ namespace GFut.Domain.Models
         public string Observation { get; set; }
         public bool Calculate { get; set; }
 
-        
+        public int Round { get; set; }
+
         public virtual FieldItem FieldItem { get; set; }
         public virtual Subscription HomeSubscription { get; set; }
         public virtual Subscription GuestSubscription { get; set; }

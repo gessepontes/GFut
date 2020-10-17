@@ -52,6 +52,12 @@ namespace GFut.Infra.Data.Repository
             SaveChanges();
         }
 
+        public virtual void RemoveRange(IEnumerable<TEntity> obj)
+        {
+            DbSet.RemoveRange(obj);
+            SaveChanges();
+        }
+
         public int SaveChanges()
         {
             return Db.SaveChanges();

@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static GFut.Domain.Others.Enum;
 
 namespace GFut.Application.ViewModels
 {
@@ -25,6 +26,14 @@ namespace GFut.Application.ViewModels
         [Required(ErrorMessage = "{0} é um campo obrigatório.")]
         public DateTime EndDate { get; set; }
 
+        [Display(Name = "ChampionshipType")]
+        [Required(ErrorMessage = "{0} é um campo obrigatório.")]
+        public ChampionshipType ChampionshipType { get; set; }
+
+        [Display(Name = "RefereeType")]
+        [Required(ErrorMessage = "{0} é um campo obrigatório.")]
+        public RefereeType RefereeType { get; set; }
+
         [Display(Name = "Type")]
         [Required(ErrorMessage = "{0} é um campo obrigatório.")]
         public int Type { get; set; }
@@ -43,15 +52,16 @@ namespace GFut.Application.ViewModels
         [Display(Name = "GoBack")]
         public bool GoBack { get; set; }
 
+        [Display(Name = "PlayerRegistration")]
+        public bool PlayerRegistration { get; set; }
+
         [Display(Name = "Picture")]
         public string Picture { get; set; }
 
         [Display(Name = "PersonId")]
         public int PersonId { get; set; }
 
-        //public ICollection<PersonProfile> PessoaPerfis { get; set; }
-        //public virtual ICollection<Team> Teams { get; set; }
-        //public virtual ICollection<Field> Field { get; set; }
-
+        //public virtual PersonViewModel Person { get; set; }
+        //public virtual string PersonName { get; set; }
     }
 }

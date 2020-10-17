@@ -8,7 +8,10 @@ namespace GFut.Application.Interfaces
     {
         void Register(PersonViewModel personViewModel);
         IEnumerable<PersonViewModel> GetAll();
-        IEnumerable<PersonViewModel> GetPersonCampeonato();
+        IEnumerable<PersonViewModel> GetPersonChampionshipDrop();
+        IEnumerable<PersonViewModel> GetPersonFieldDrop();
+
+        IEnumerable<PersonViewModel> GetPersonAllDrop();
 
         PersonViewModel GetById(int id);
         void Update(PersonViewModel personViewModel);

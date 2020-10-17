@@ -8,17 +8,21 @@ namespace GFut.Application.AutoMapper
     {
         public ViewModelToDomainMappingProfile()
         {
-            CreateMap<PersonViewModel, Person>();
-            CreateMap<TeamViewModel, Team>();
-            CreateMap<PlayerViewModel, Player>();
-            CreateMap<ChampionshipViewModel, Championship>();
-            CreateMap<FieldViewModel, Field>();
-            CreateMap<FieldItemViewModel, FieldItem>();
-            CreateMap<HoraryPriceViewModel, HoraryPrice>();
-            CreateMap<HoraryViewModel, Horary>();
-            CreateMap<HoraryExtraViewModel, HoraryExtra>();
-            CreateMap<SchedulingViewModel,Scheduling>();
-            CreateMap<UserViewModel, User>();
+            CreateMap<PersonViewModel, Person>().MaxDepth(1);
+            CreateMap<TeamViewModel, Team>().MaxDepth(1);
+            CreateMap<PlayerViewModel, Player>().MaxDepth(1);
+            CreateMap<ChampionshipViewModel, Championship>().MaxDepth(1);
+            CreateMap<FieldViewModel, Field>().MaxDepth(1);
+            CreateMap<FieldItemViewModel, FieldItem>().MaxDepth(1);
+            CreateMap<HoraryPriceViewModel, HoraryPrice>().MaxDepth(1);
+            CreateMap<HoraryViewModel, Horary>().MaxDepth(1);
+            CreateMap<HoraryExtraViewModel, HoraryExtra>().MaxDepth(1);
+            CreateMap<SchedulingViewModel, Scheduling>().MaxDepth(1);
+            CreateMap<UserViewModel, User>().MaxDepth(1);
+            CreateMap<SubscriptionViewModel, Subscription>().MaxDepth(1);
+            CreateMap<PlayerRegistrationViewModel,PlayerRegistration>().MaxDepth(1);
+            CreateMap<GroupChampionshipViewModel, GroupChampionship>().MaxDepth(1);
+            CreateMap<MatchChampionshipViewModel, MatchChampionship>().MaxDepth(1);
 
 
             //CreateMap<PersonViewModel, RegisterNewPersonCommand>()

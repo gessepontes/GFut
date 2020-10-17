@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using GFut.Application.ViewModels;
+using GFut.Domain.Models;
 
 namespace GFut.Application.AutoMapper
 {

@@ -82,9 +82,9 @@ namespace GFut.Application.Services
             _fieldItemRepository.Add(_mapper.Map<FieldItem>(fieldViewModel));
         }
 
-        public IEnumerable<FieldItemViewModel> GetSearchFieldItem(string search)
+        public IEnumerable<FieldItemViewModel> GetFieldItemByFieldId(int FieldId)
         {
-            return _mapper.Map<IEnumerable<FieldItemViewModel>>(_fieldItemRepository.GetAll().Where(p => p.Name.Contains(search)));
+            return _mapper.Map<IEnumerable<FieldItemViewModel>>(_fieldItemRepository.GetFieldItemByFieldId(FieldId));
         }
     }
 }

@@ -61,6 +61,8 @@ namespace GFut.Infra.Data.Migrations
                         .HasColumnName("Picture")
                         .HasColumnType("varchar(500)");
 
+                    b.Property<bool>("PlayerRegistration");
+
                     b.Property<int>("RefereeType")
                         .HasColumnName("RefereeType")
                         .HasColumnType("int");
@@ -170,6 +172,27 @@ namespace GFut.Infra.Data.Migrations
                     b.HasIndex("FieldId");
 
                     b.ToTable("FieldItem");
+                });
+
+            modelBuilder.Entity("GFut.Domain.Models.GroupChampionship", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Active");
+
+                    b.Property<int>("GroupId");
+
+                    b.Property<DateTime>("RegisterDate");
+
+                    b.Property<int>("SubscriptionId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SubscriptionId");
+
+                    b.ToTable("GroupChampionships");
                 });
 
             modelBuilder.Entity("GFut.Domain.Models.Horary", b =>
@@ -354,13 +377,16 @@ namespace GFut.Infra.Data.Migrations
                         .HasColumnType("date");
 
                     b.Property<string>("Observation")
-                        .IsRequired()
                         .HasColumnName("Observation")
                         .HasColumnType("varchar(300)");
 
                     b.Property<DateTime>("RegisterDate")
                         .HasColumnName("RegisterDate")
                         .HasColumnType("date");
+
+                    b.Property<int>("Round")
+                        .HasColumnName("Round")
+                        .HasColumnType("int");
 
                     b.Property<string>("StartTime")
                         .IsRequired()
@@ -699,12 +725,12 @@ namespace GFut.Infra.Data.Migrations
                         .HasColumnName("SchedulingType")
                         .HasColumnType("int");
 
-                    b.Property<string>("State")
-                        .IsRequired()
-                        .HasColumnName("State")
-                        .HasColumnType("char(1)");
+                    b.Property<int>("State")
+                        .HasColumnName("State");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("HoraryId");
 
                     b.HasIndex("PersonId");
 
@@ -837,6 +863,14 @@ namespace GFut.Infra.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
+            modelBuilder.Entity("GFut.Domain.Models.GroupChampionship", b =>
+                {
+                    b.HasOne("GFut.Domain.Models.Subscription", "Subscription")
+                        .WithMany("GroupChampionships")
+                        .HasForeignKey("SubscriptionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("GFut.Domain.Models.Horary", b =>
                 {
                     b.HasOne("GFut.Domain.Models.FieldItem", "FieldItem")
@@ -949,6 +983,11 @@ namespace GFut.Infra.Data.Migrations
 
             modelBuilder.Entity("GFut.Domain.Models.Scheduling", b =>
                 {
+                    b.HasOne("GFut.Domain.Models.Horary", "Horary")
+                        .WithMany()
+                        .HasForeignKey("HoraryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("GFut.Domain.Models.Person", "Person")
                         .WithMany("Scheduling")
                         .HasForeignKey("PersonId")

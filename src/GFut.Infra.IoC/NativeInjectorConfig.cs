@@ -28,6 +28,11 @@ namespace GFut.Infra.IoC
             services.AddScoped<ISchedulingRepository, SchedulingRepository>();
             services.AddScoped<IChampionshipRepository, ChampionshipRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
+            services.AddScoped<IPlayerRegistrationRepository, PlayerRegistrationRepository>();
+            services.AddScoped<IGroupChampionshipRepository, GroupChampionshipRepository>();
+            services.AddScoped<IMatchChampionshipRepository, MatchChampionshipRepository>();
+            services.AddScoped<IMatchPlayerChampionshipRepository, MatchPlayerChampionshipRepository>();
 
             services.AddScoped<AppDbContext>();
 
@@ -43,6 +48,13 @@ namespace GFut.Infra.IoC
             services.AddScoped<IHoraryExtraAppService, HoraryExtraAppService>();
             services.AddScoped<ISchedulingAppService, SchedulingAppService>();
             services.AddScoped<IUserAppService, UserAppService>();
+            services.AddScoped<ISubscriptionAppService, SubscriptionAppService>();
+            services.AddScoped<IPlayerRegistrationAppService, PlayerRegistrationAppService>();
+            services.AddScoped<IGroupChampionshipAppService, GroupChampionshipAppService>();
+            services.AddScoped<IMatchChampionshipAppService, MatchChampionshipAppService>();
+            services.AddScoped<IStandingsAppService, StandingsAppService>();
+            services.AddScoped<ITopScorersAppService, TopScorersAppService>();
+            services.AddScoped<ISuspendedPlayersAppService, SuspendedPlayersAppService>();
         }
     }
 }

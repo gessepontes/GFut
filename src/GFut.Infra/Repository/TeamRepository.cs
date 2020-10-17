@@ -19,6 +19,11 @@ namespace GFut.Infra.Data.Repository
             return Db.Teams.Where(p => p.PersonId == id && p.State == true).OrderBy(p => p.Name);
         }
 
+        public override IQueryable<Team> GetAll()
+        {
+            return Db.Teams.Where(p => p.State == true).OrderBy(p => p.Name).AsQueryable();
+        }
+
         public override Team GetById(int id)
         {
             return Db.Teams.Where(p => p.Id == id).FirstOrDefault();

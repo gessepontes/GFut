@@ -7,7 +7,7 @@ namespace GFut.Application.Interfaces
     public interface IFieldItemAppService : IDisposable
     {
         IEnumerable<FieldItemViewModel> GetAll();
-        IEnumerable<FieldItemViewModel> GetSearchFieldItem(string search);
+        IEnumerable<FieldItemViewModel> GetFieldItemByFieldId(int FieldId);
         FieldItemViewModel GetById(int id);
         void Update(FieldItemViewModel fieldViewModel);
         void Add(FieldItemViewModel fieldViewModel);

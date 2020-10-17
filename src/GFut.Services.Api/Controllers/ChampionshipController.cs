@@ -17,11 +17,16 @@ namespace GFut.Services.Api.Controllers
             _championshipAppService = championshipAppService;
         }
 
-        [AllowAnonymous]
         [HttpGet(Name = "GetChampionship")]
         public IEnumerable<ChampionshipViewModel> Get()
         {
             return _championshipAppService.GetAll();
+        }
+
+        [HttpGet("Group/")]
+        public IEnumerable<ChampionshipViewModel> GetGroupChampionship()
+        {
+            return _championshipAppService.GetGroupChampionship();
         }
 
         [AllowAnonymous]
@@ -35,6 +40,13 @@ namespace GFut.Services.Api.Controllers
         public void Put([FromBody]ChampionshipViewModel championshipViewModel)
         {
             _championshipAppService.Update(championshipViewModel);
+        }
+
+        // POST: api/championship
+        [HttpPost]
+        public void Post([FromBody] ChampionshipViewModel championshipViewModel)
+        {
+            _championshipAppService.Add(championshipViewModel);
         }
 
         [HttpDelete("{id}", Name = "DeleteChampionship")]

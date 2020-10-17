@@ -9,7 +9,7 @@ namespace GFut.Domain.Models
 
         public int Number { get; set; }
         public int Points { get; set; }
-        public TipoCartao Card { get; set; }
+        public CardType Card { get; set; }
 
         public virtual MatchChampionship MatchChampionship { get; set; }
         public virtual PlayerRegistration PlayerRegistration { get; set; }

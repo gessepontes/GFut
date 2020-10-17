@@ -95,6 +95,9 @@ namespace GFut.Domain.Others
                 case "FIELDITEM":
                     path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\picture\\fieldItem", sFoto);
                     break;
+                case "CHAMPIONSHIP":
+                    path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\picture\\championship", sFoto);
+                    break;
             }
 
 
@@ -127,6 +130,12 @@ namespace GFut.Domain.Others
                 {".ods", "application/vnd.oasis.opendocument.spreadsheet"},
                 {".odp", "application/vnd.oasis.opendocument.presentation"}
             };
+        }
+
+        public static int CalculaFatorial(int num)
+        {
+            if (num == 1) return num;
+            else return CalculaFatorial(num - 1) * num;
         }
 
         public static string ReadSetting(string key)

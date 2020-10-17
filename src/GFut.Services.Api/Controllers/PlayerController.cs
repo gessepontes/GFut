@@ -57,10 +57,10 @@ namespace GFut.Services.Api.Controllers
             return _playerAppService.GetPlayerTeam(id);
         }
 
-        [HttpGet("idTeam/{idTeam}/{search}", Name = "GetSearchPlayerTeam")]
-        public IEnumerable<PlayerViewModel> GetSearchPlayerTeam(int idTeam, string search)
+        [HttpGet("Subscription/{IdSubscription}", Name = "GetPlayerTeamByIdSubscription")]
+        public IEnumerable<PlayerViewModel> GetPlayerTeamByIdSubscription(int IdSubscription)
         {
-            return _playerAppService.GetSearchPlayerTeam(idTeam, search);
+            return _playerAppService.GetPlayerTeamByIdSubscription(IdSubscription);
         }
     }
 }

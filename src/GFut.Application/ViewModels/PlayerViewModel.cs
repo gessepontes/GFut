@@ -42,10 +42,5 @@ namespace GFut.Application.ViewModels
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Dispense Date")]
         public DateTime? DispenseDate { get; set; }
-
-        public bool Active { get; set; }
-
-        public DateTime RegisterDate { get; set; }
-
     }
 }

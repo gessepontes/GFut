@@ -34,6 +34,8 @@
     <Compile Remove="Migrations\20200808124341_HoraryPrice.Designer.cs" />
     <Compile Remove="Migrations\20200823101850_Schedule.cs" />
     <Compile Remove="Migrations\20200823101850_Schedule.Designer.cs" />
+    <Compile Remove="Migrations\20200906184939_Enum-Scheduling.cs" />
+    <Compile Remove="Migrations\20200906184939_Enum-Scheduling.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

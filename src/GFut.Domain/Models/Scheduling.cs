@@ -8,7 +8,7 @@ namespace GFut.Domain.Models
         public Scheduling()
         {
             MarkedApp = true;
-            State = "A";
+            State = StatusP.Aprovado;
             SchedulingType = SchedulingType.Avulso;
         }
 
@@ -16,7 +16,7 @@ namespace GFut.Domain.Models
         public int HoraryId { get; set; }
         public SchedulingType SchedulingType { get; set; }
         public HoraryType HoraryType { get; set; }
-        public string State { get; set; }
+        public StatusP State { get; set; }
         public int? PersonId { get; set; }
         public string CustomerNotRegistered { get; set; }
         public string Phone { get; set; }

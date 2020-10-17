@@ -24,5 +24,13 @@ namespace GFut.Infra.Data.Repository
         {
             return Db.FieldItens.Include(p => p.Field).Where(p => p.Id == id).FirstOrDefault();
         }
+
+        public IQueryable<FieldItem> GetFieldItemByFieldId(int FieldId)
+        {
+            var listFieldItem = from p in Db.FieldItens where p.FieldId == FieldId
+                                select new FieldItem { Id = p.Id, Name = p.Name };
+
+            return listFieldItem;
+        }
     }
 }

@@ -5,5 +5,7 @@ namespace GFut.Domain.Interfaces
 {
     public interface IPlayerRepository : IRepository<Player> {
         IEnumerable<Player> GetPlayerTeam(int id);
+        IEnumerable<Player> GetPlayerTeamByIdSubscription(int id);
+
     }
 }

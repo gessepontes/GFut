@@ -20,6 +20,28 @@ namespace GFut.Infra.Data.Repository
 
         public override IQueryable<Scheduling> GetAll()
         {
+            //var listScheduling = from p in Db.Schedulings
+            //                     select new Scheduling
+            //                       {
+            //                           Id = p.Id,
+            //                           Name = p.Name,
+            //                           PersonId = p.PersonId,
+            //                           Picture = p.Picture,
+            //                           PlayerRegistration = p.PlayerRegistration,
+            //                           RefereeType = p.RefereeType,
+            //                           RegisterDate = p.RegisterDate,
+            //                           ReleaseSubscription = p.ReleaseSubscription,
+            //                           StartDate = p.StartDate,
+            //                           Active = p.Active,
+            //                           AmountTeam = p.AmountTeam,
+            //                           ChampionshipType = p.ChampionshipType,
+            //                           EndDate = p.EndDate,
+            //                           Type = p.Type,
+            //                           FieldId = p.FieldId,
+            //                           GoBack = p.GoBack
+            //                       };
+            //return listScheduling;
+
             return Db.Schedulings.Include(p => p.Person).Include(p => p.Horary).ThenInclude(p => p.FieldItem).OrderBy(p => p.Person.Name).AsQueryable();
         }
 

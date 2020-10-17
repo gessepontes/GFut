@@ -62,5 +62,10 @@ namespace GFut.Infra.Data.Context
         public DbSet<Championship> Championships { get; set; }
         public DbSet<Match> Matches { get; set; }
         public DbSet<HoraryPrice> HoraryPrices { get; set; }
+        public DbSet<Subscription> Subscriptions { get; set; }
+        public DbSet<PlayerRegistration> PlayerRegistrations { get; set; }
+        public DbSet<GroupChampionship> GroupChampionships { get; set; }
+        public DbSet<MatchChampionship> MatchChampionships { get; set; }
+        public DbSet<MatchPlayerChampionship> MatchPlayerChampionships { get; set; }        
     }
 }

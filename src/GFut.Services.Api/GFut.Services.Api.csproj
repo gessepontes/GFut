@@ -8,6 +8,7 @@
     <Folder Include="Logs\" />
     <Folder Include="wwwroot\picture\field\" />
     <Folder Include="wwwroot\picture\fieldItem\" />
+    <Folder Include="wwwroot\picture\championship\" />
     <Folder Include="wwwroot\picture\team\" />
     <Folder Include="wwwroot\picture\player\" />
     <Folder Include="wwwroot\picture\person\" />

@@ -23,6 +23,8 @@ namespace GFut.Domain.Models
         public int AmountTeam { get; set; }
         public bool ReleaseSubscription { get; set; }
         public bool GoBack { get; set; }
+        public bool PlayerRegistration { get; set; }
+
         public string Picture { get; set; }
         public int PersonId { get; set; }
 

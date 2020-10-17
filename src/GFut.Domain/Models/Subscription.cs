@@ -16,6 +16,9 @@ namespace GFut.Domain.Models
         public virtual ICollection<PlayerRegistration> PlayerRegistration { get; set; }
 
         public virtual ICollection<MatchChampionship> HomeChampionshipMatches { get; set; }
-        public virtual ICollection<MatchChampionship> AwayChampionshipMatches { get; set; }        
+        public virtual ICollection<MatchChampionship> AwayChampionshipMatches { get; set; }
+
+        public virtual ICollection<GroupChampionship> GroupChampionships { get; set; }
+
     }
 }

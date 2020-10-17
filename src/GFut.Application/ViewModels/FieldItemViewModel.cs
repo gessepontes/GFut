@@ -17,5 +17,7 @@ namespace GFut.Application.ViewModels
 
         [Display(Name = "Picture")]
         public string Picture { get; set; }
+
+        public virtual FieldViewModel Field { get; set; }
     }
 }

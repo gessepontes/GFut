@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static GFut.Domain.Others.Enum;
 
 namespace GFut.Application.ViewModels
 {
@@ -76,7 +77,7 @@ namespace GFut.Application.ViewModels
         [NotMapped]
         public string Token { get; set; }
 
-        //public ICollection<PersonProfile> PessoaPerfis { get; set; }
+        public ICollection<ProfileType> ProfileType { get; set; }
         public virtual TeamViewModel Team { get; set; }
         //public virtual ICollection<Field> Field { get; set; }
 
