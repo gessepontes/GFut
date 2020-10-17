@@ -143,3 +143,23 @@ export function updatePicturePlayerSuccess(data) {
     payload: { data }
   };
 }
+
+export function fetchPlayerByIdSubscriptionsRequest(data) {
+  return {
+    type: '@player/FETCH_PLAYER_ID_SUBSCRIPTION_REQUEST',
+    payload: { data },
+  };
+}
+
+export function fetchPlayerByIdSubscriptionsSuccess(data) {
+  return {
+    type: '@player/FETCH_PLAYER_ID_SUBSCRIPTION_SUCCESS',
+    payload: { data },
+  };
+}
+
+export function fetchPlayerByIdSubscriptionsFailure() {
+  return {
+    type: '@player/FETCH_PLAYER_ID_SUBSCRIPTION_FAILURE',
+  };
+}

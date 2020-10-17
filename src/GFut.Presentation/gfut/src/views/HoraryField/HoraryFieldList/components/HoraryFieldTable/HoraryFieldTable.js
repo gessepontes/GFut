@@ -42,7 +42,7 @@ const HoraryFieldTable = props => {
 
   var columns = [
     {title: "id", field: "id", hidden: true},
-    {title: "Campo", field: "picture", render: rowData =>
+    {title: "Campo", field: "fieldItem.name", render: rowData =>
         <Typography variant="body1">{rowData.fieldItem.name}</Typography> },
     {title: "Dia da semana", field: "dayWeek", render: rowData => 
         <Typography variant="body1">{Object.values(dayWeek[rowData.dayWeek - 1])[1]}</Typography>},

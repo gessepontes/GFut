@@ -11,6 +11,14 @@ import horaryField from './horaryField/sagas';
 import horaryExtraField from './horaryExtraField/sagas';
 import person from './person/sagas';
 import scheduling from './scheduling/sagas';
+import championship from './championship/sagas';
+import subscription from './subscription/sagas';
+import playerRegistration from './playerRegistration/sagas';
+import groupChampionship from './groupChampionship/sagas';
+import matchChampionship from './matchChampionship/sagas';
+import standings from './standings/sagas';
+import topScorers from './topScorers/sagas';
+import suspendedPlayers from './suspendedPlayers/sagas';
 
 export default function* rootSaga() {
   return yield all([
@@ -24,6 +32,14 @@ export default function* rootSaga() {
     horaryField,
     horaryExtraField,
     person,
-    scheduling
+    scheduling,
+    championship,
+    subscription,
+    playerRegistration,
+    groupChampionship,
+    matchChampionship,
+    standings,
+    topScorers,
+    suspendedPlayers
   ]);
 }

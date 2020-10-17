@@ -8,7 +8,8 @@ import {
   Dashboard as DashboardView,
   PlayerList as PlayerListView,
   Player as PlayerView,
-  UserList as UserListView,
+  PersonList as PersonListView,
+  Person as PersonView,
   TeamList as TeamListView,
   Team as TeamView,
   FieldList as FieldListView,
@@ -23,8 +24,29 @@ import {
   HoraryExtraFieldList as HoraryExtraFieldListView,  
   Scheduling as SchedulingView,   
   SchedulingList as SchedulingListView,     
+  Championship as ChampionshipView,   
+  ChampionshipList as ChampionshipListView,  
+  Subscription as SubscriptionView,   
+  SubscriptionList as SubscriptionListView,  
+  SubscriptionChampionship as SubscriptionChampionshipView, 
+  StandingsList as StandingsListView,  
+  StandingsListChampionship as StandingsListChampionshipView, 
+  TopScorersList as TopScorersListView,  
+  TopScorersListChampionship as TopScorersListChampionshipView,  
+  SuspendedPlayersList as SuspendedPlayersListView,  
+  SuspendedPlayersChampionship as SuspendedPlayersChampionshipView,   
+  PlayerRegistration as PlayerRegistrationView,   
+  PlayerRegistrationList as PlayerRegistrationListView,   
+  PlayerRegistrationChampionship as PlayerRegistrationChampionshipView,   
+  GroupChampionship as GroupChampionshipView,   
+  GroupChampionshipList as GroupChampionshipListView,   
+  GroupChampionshipChampionship as GroupChampionshipChampionshipView, 
+  MatchChampionship as MatchChampionshipView,   
+  MatchChampionshipList as MatchChampionshipListView,   
+  MatchChampionshipChampionship as MatchChampionshipChampionshipView, 
+  AutomaticGroup as AutomaticGroupView,  
+  AutomaticMatch as AutomaticMatchView,    
   Account as AccountView,
-  Settings as SettingsView,
   SignUp as SignUpView,
   SignIn as SignInView,
   NotFound as NotFoundView
@@ -46,10 +68,17 @@ const Routes = () => {
         isPrivate     
       />
       <RouteWithLayout
-        component={UserListView}
+        component={PersonListView}
         exact
         layout={MainLayout}
-        path="/users"
+        path="/people"
+        isPrivate
+      />
+      <RouteWithLayout
+        component={PersonView}
+        exact
+        layout={MainLayout}
+        path="/person"
         isPrivate
       />
       <RouteWithLayout
@@ -163,19 +192,166 @@ const Routes = () => {
         layout={MainLayout}
         path="/scheduling"
         isPrivate
-      />                                           
+      /> 
+      <RouteWithLayout
+        component={ChampionshipListView}
+        exact
+        layout={MainLayout}
+        path="/championships"
+        isPrivate
+      />
+      <RouteWithLayout
+        component={ChampionshipView}
+        exact
+        layout={MainLayout}
+        path="/championship"
+        isPrivate
+      />  
+      <RouteWithLayout
+        component={SubscriptionListView}
+        exact
+        layout={MainLayout}
+        path="/subscriptions"
+        isPrivate
+      />
+      <RouteWithLayout
+        component={SubscriptionView}
+        exact
+        layout={MainLayout}
+        path="/subscription"
+        isPrivate
+      /> 
+      <RouteWithLayout
+        component={SubscriptionChampionshipView}
+        exact
+        layout={MainLayout}
+        path="/subscriptionChampionship"
+        isPrivate
+      />
+      <RouteWithLayout
+        component={StandingsListView}
+        exact
+        layout={MainLayout}
+        path="/standingsList"
+        isPrivate
+      />
+      <RouteWithLayout
+        component={StandingsListChampionshipView}
+        exact
+        layout={MainLayout}
+        path="/standingsListChampionship"
+        isPrivate
+      /> 
+      <RouteWithLayout
+        component={TopScorersListView}
+        exact
+        layout={MainLayout}
+        path="/topScorersList"
+        isPrivate
+      />
+      <RouteWithLayout
+        component={TopScorersListChampionshipView}
+        exact
+        layout={MainLayout}
+        path="/topScorersListChampionship"
+        isPrivate
+      />       
+      <RouteWithLayout
+        component={PlayerRegistrationListView}
+        exact
+        layout={MainLayout}
+        path="/playerRegistrations"
+        isPrivate
+      />
+      <RouteWithLayout
+        component={PlayerRegistrationView}
+        exact
+        layout={MainLayout}
+        path="/playerRegistration"
+        isPrivate
+      />  
+      <RouteWithLayout
+        component={PlayerRegistrationChampionshipView}
+        exact
+        layout={MainLayout}
+        path="/playerRegistrationChampionship"
+        isPrivate
+      />     
+      <RouteWithLayout
+        component={GroupChampionshipListView}
+        exact
+        layout={MainLayout}
+        path="/groupChampionships"
+        isPrivate
+      />
+      <RouteWithLayout
+        component={GroupChampionshipView}
+        exact
+        layout={MainLayout}
+        path="/groupChampionship"
+        isPrivate
+      />  
+      <RouteWithLayout
+        component={GroupChampionshipChampionshipView}
+        exact
+        layout={MainLayout}
+        path="/groupChampionshipChampionship"
+        isPrivate
+      /> 
+      <RouteWithLayout
+        component={MatchChampionshipListView}
+        exact
+        layout={MainLayout}
+        path="/matchChampionships"
+        isPrivate
+      />
+      <RouteWithLayout
+        component={MatchChampionshipView}
+        exact
+        layout={MainLayout}
+        path="/matchChampionship"
+        isPrivate
+      />  
+      <RouteWithLayout
+        component={MatchChampionshipChampionshipView}
+        exact
+        layout={MainLayout}
+        path="/matchChampionshipChampionship"
+        isPrivate
+      />        
+      <RouteWithLayout
+        component={AutomaticGroupView}
+        exact
+        layout={MainLayout}
+        path="/automaticGroup"
+        isPrivate
+      /> 
+      <RouteWithLayout
+        component={AutomaticMatchView}
+        exact
+        layout={MainLayout}
+        path="/automaticMatch"
+        isPrivate
+      /> 
+      <RouteWithLayout
+        component={SuspendedPlayersListView}
+        exact
+        layout={MainLayout}
+        path="/suspendedPlayersList"
+        isPrivate
+      />
+      <RouteWithLayout
+        component={SuspendedPlayersChampionshipView}
+        exact
+        layout={MainLayout}
+        path="/suspendedPlayersChampionship"
+        isPrivate
+      />                                                                  
       <RouteWithLayout
         component={AccountView}
         exact
         layout={MainLayout}
         path="/account"
-        isPrivate
-      />
-      <RouteWithLayout
-        component={SettingsView}
-        exact
-        layout={MainLayout}
-        path="/settings"
         isPrivate
       />
       <RouteWithLayout

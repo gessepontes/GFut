@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { makeStyles, withStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 
 import { Input, MCheckbox, InputMaskPhone } from '~/components';
 import { position } from '~/data';
@@ -18,11 +18,9 @@ import {
   Button
 } from '@material-ui/core';
 
-import { red } from '@material-ui/core/colors';
-
 import history from '~/services/history';
 
-import { savePlayerRequest, deletePlayerRequest
+import { savePlayerRequest
 } from '~/store/modules/player/actions';
 
 const useStyles = makeStyles(() => ({
@@ -41,11 +39,7 @@ const PlayerDetails = props => {
     history.push('/players');
   };
 
-  const handleDelete = () => {
-    dispatch(deletePlayerRequest(player));
-  };
-
-  function handleSubmit(data) {
+ function handleSubmit(data) {
     data.teamId = team.id; 
     data.id = player.id; 
     data.picture = player.picture; 
@@ -61,13 +55,6 @@ const PlayerDetails = props => {
 
   const team = useSelector(state => state.user.profile.team);
   const player = useSelector(state => state.player.player);
-
-  const ColorButton = withStyles(theme => ({
-    root: {
-      color: theme.palette.getContrastText(red[500]),
-      backgroundColor: red[500]
-    },
-  }))(Button);
 
   return (
     <Card
@@ -163,15 +150,6 @@ const PlayerDetails = props => {
         </CardContent>
         <Divider />
         <CardActions>
-          { player.id !== 0 ? 
-                    <ColorButton onClick ={handleDelete}
-                    variant="contained" color="secondary"
-                  >
-                    Excluir
-                  </ColorButton>
-          : null }
-
-
           <Button
             color="primary"
             variant="contained"

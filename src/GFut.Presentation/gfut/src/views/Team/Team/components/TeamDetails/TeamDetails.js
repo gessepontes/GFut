@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { Form } from '@unform/web';
 import { Input } from '~/components';
 
-import { tipoCampo } from '~/data';
+import { fieldType } from '~/data';
 
 import { makeStyles } from '@material-ui/styles';
 
@@ -79,8 +79,6 @@ const TeamDetails = props => {
                 select
                 SelectProps={{ native: true }}
               >
-                <option>
-                  </option>
                 {people.map(option => (
                   <option
                     key={option.id}
@@ -115,7 +113,7 @@ const TeamDetails = props => {
                 select
                 SelectProps={{ native: true }}
               >
-                {tipoCampo.map(option => (
+                {fieldType.map(option => (
                   <option
                     key={option.value}
                     value={option.value}

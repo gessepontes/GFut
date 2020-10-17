@@ -18,7 +18,7 @@ export default function fieldItem(state = INITIAL_STATE, action) {
       case '@fieldItem/FETCH_FIELD_ITEM_SUCCESS': {
         return { ...state, fieldItens: action.payload.data };
       }
-      case '@fieldItem/FETCH_SEARCH_FIELD_ITEM_SUCCESS': {
+      case '@fieldItem/FETCH_FIELD_ITEM_ID_FIELD_SUCCESS': {
         return { ...state, fieldItens: action.payload.data };
       }
       case '@fieldItem/FETCH_FIELD_ITEM_ID_SUCCESS': {        

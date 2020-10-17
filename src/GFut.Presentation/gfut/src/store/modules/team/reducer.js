@@ -24,7 +24,7 @@ export default function team(state = INITIAL_STATE, action) {
       case '@team/FETCH_TEAM_SUCCESS': {
         return { ...state, teams: action.payload.data };
       }
-      case '@team/FETCH_SEARCH_TEAM_SUCCESS': {
+      case '@team/FETCH_TEAM_ALL_SUCCESS': {
         return { ...state, teams: action.payload.data };
       }
       case '@team/FETCH_TEAM_ID_SUCCESS': {        

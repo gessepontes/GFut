@@ -85,23 +85,22 @@ export function fetchTeamFailure() {
   };
 }
 
-export function fetchSearchTeamRequest(data) {
+export function fetchTeamAllRequest() {
   return {
-    type: '@team/FETCH_SEARCH_TEAM_REQUEST',
+    type: '@team/FETCH_TEAM_ALL_REQUEST',
+  };
+}
+
+export function fetchTeamAllSuccess(data) {
+  return {
+    type: '@team/FETCH_TEAM_ALL_SUCCESS',
     payload: { data },
   };
 }
 
-export function fetchSearchTeamSuccess(data) {
+export function fetchTeamAllFailure() {
   return {
-    type: '@team/FETCH_SEARCH_TEAM_SUCCESS',
-    payload: { data },
-  };
-}
-
-export function fetchSearchTeamFailure() {
-  return {
-    type: '@team/FETCH_SEARCH_TEAM_FAILURE',
+    type: '@team/FETCH_TEAM_ALL_FAILURE',
   };
 }
 

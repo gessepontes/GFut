@@ -7,9 +7,9 @@ import api from '~/services/api';
 
 import { savePlayerFailure, addPlayerSuccess,  
           updatePlayerSuccess, deletePlayerSuccess, deletePlayerFailure,
-          fetchPlayerSuccess,  fetchPlayerFailure, 
-          fetchPlayerByIdSuccess, fetchPlayerByIdFailure, 
-          fetchSearchPlayerFailure, fetchSearchPlayerSuccess} from './actions';
+          fetchPlayerSuccess,  fetchPlayerFailure, fetchPlayerByIdSubscriptionsSuccess,
+          fetchPlayerByIdSubscriptionsFailure,fetchPlayerByIdSuccess, fetchPlayerByIdFailure
+        } from './actions';
 
 import { loading } from '~/store/modules/auth/actions';          
 
@@ -51,7 +51,7 @@ export function* savePlayer({ payload }) {
   }
 }
 
-export function* deleteplayer({ payload }) {
+export function* deletePlayer({ payload }) {
   try {   
     const player = payload.data;
     
@@ -95,22 +95,22 @@ export function* fetchPlayer({ payload }) {
   }
 }
 
-export function* fetchSearchPlayer({ payload }) {
-  try {
-    const { idTeam, search } = payload.data;
-    
+export function* fetchPlayerSubscriptions({ payload }) {
+  try {    
    yield put(loading(true));
+   
+   const IdSubscription  = payload.data;
+   
+   const response = yield call(api.get, `player/Subscription/${IdSubscription}`);
 
-   const response = yield call(api.get, `player/idTeam/${idTeam}/${search}`);
-
-   yield put(fetchSearchPlayerSuccess(response.data));
+   yield put(fetchPlayerByIdSubscriptionsSuccess(response.data));
 
    yield put(loading(false));
  } catch (err) {
-  yield put(loading(false));
+   yield put(loading(false));
 
-  toast.error('Erro ao realizar a operação!');
-   yield put(fetchSearchPlayerFailure());
+   toast.error('Erro ao realizar a operação!');
+   yield put(fetchPlayerByIdSubscriptionsFailure());
  }
 }
 
@@ -153,8 +153,8 @@ export function playerInitialValues() {
 export default all([
   takeLatest('@player/PLAYER_INITIAL_VALUES', playerInitialValues), 
   takeLatest('@player/SAVE_PLAYER_REQUEST', savePlayer),
-  takeLatest('@player/DELETE_PLAYER_REQUEST', deleteplayer),
+  takeLatest('@player/DELETE_PLAYER_REQUEST', deletePlayer),
   takeLatest('@player/FETCH_PLAYER_REQUEST', fetchPlayer),
-  takeLatest('@player/FETCH_PLAYER_ID_REQUEST', fetchPlayerById),   
-  takeLatest('@player/FETCH_SEARCH_PLAYER_REQUEST', fetchSearchPlayer),  
+  takeLatest('@player/FETCH_PLAYER_ID_SUBSCRIPTION_REQUEST', fetchPlayerSubscriptions),
+  takeLatest('@player/FETCH_PLAYER_ID_REQUEST', fetchPlayerById),     
 ]);

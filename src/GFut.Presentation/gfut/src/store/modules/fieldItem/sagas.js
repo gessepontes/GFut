@@ -6,8 +6,8 @@ import api from '~/services/api';
 
 import { saveFieldItemFailure, addFieldItemSuccess,  
           updateFieldItemSuccess, deleteFieldItemSuccess, deleteFieldItemFailure,
-          fetchFieldItemSuccess,  fetchFieldItemFailure, 
-          fetchFieldItemByIdSuccess} from './actions';
+          fetchFieldItemSuccess,  fetchFieldItemFailure, fetchFieldItemByIdFieldSuccess,
+          fetchFieldItemByIdFieldFailure, fetchFieldItemByIdSuccess} from './actions';
 
 import { loading } from '~/store/modules/auth/actions';          
 
@@ -99,6 +99,25 @@ export function* fetchFieldItemById({ payload }) {
  }
 }
 
+export function* fetchFieldItemByIdField({ payload }) {
+  try {    
+   yield put(loading(true));
+   
+   const IdField  = payload.data;
+   
+   const response = yield call(api.get, `fieldItem/field/${IdField}`);
+
+   yield put(fetchFieldItemByIdFieldSuccess(response.data));
+
+   yield put(loading(false));
+ } catch (err) {
+   yield put(loading(false));
+
+   toast.error('Erro ao realizar a operação!');
+   yield put(fetchFieldItemByIdFieldFailure());
+ }
+}
+
 export function FieldItemInitialValues() {
   history.push('/fieldItem');
 }
@@ -108,5 +127,6 @@ export default all([
   takeLatest('@fieldItem/SAVE_FIELD_ITEM_REQUEST', saveFieldItem),
   takeLatest('@fieldItem/DELETE_FIELD_ITEM_REQUEST', deleteFieldItem),
   takeLatest('@fieldItem/FETCH_FIELD_ITEM_REQUEST', fetchFieldItem),
-  takeLatest('@fieldItem/FETCH_FIELD_ITEM_ID_REQUEST', fetchFieldItemById),   
+  takeLatest('@fieldItem/FETCH_FIELD_ITEM_ID_REQUEST', fetchFieldItemById), 
+  takeLatest('@fieldItem/FETCH_FIELD_ITEM_ID_FIELD_REQUEST', fetchFieldItemByIdField),  
 ]);

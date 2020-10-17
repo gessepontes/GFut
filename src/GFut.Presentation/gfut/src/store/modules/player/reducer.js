@@ -24,7 +24,7 @@ export default function player(state = INITIAL_STATE, action) {
       case '@player/FETCH_PLAYER_SUCCESS': {
         return { ...state, players: action.payload.data };
       }
-      case '@player/FETCH_SEARCH_PLAYER_SUCCESS': {
+      case '@player/FETCH_PLAYER_ID_SUBSCRIPTION_SUCCESS': {
         return { ...state, players: action.payload.data };
       }
       case '@player/FETCH_PLAYER_ID_SUCCESS': {        

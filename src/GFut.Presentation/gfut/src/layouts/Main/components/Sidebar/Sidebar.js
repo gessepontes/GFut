@@ -7,10 +7,10 @@ import { Divider, Drawer, Hidden } from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
 import PersonIcon from '@material-ui/icons/Person';
-import TextFieldsIcon from '@material-ui/icons/TextFields';
+import BuildIcon from '@material-ui/icons/Build';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import SettingsIcon from '@material-ui/icons/Settings';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
+import FlagIcon from '@material-ui/icons/Flag';
 
 import List from '@material-ui/core/List'
 
@@ -50,14 +50,14 @@ const Sidebar = props => {
       Icon: DashboardIcon 
     },
     {
-      title: 'Users',
-      href: '/users',
+      title: 'Usuário',
+      href: '/people',
       Icon: PeopleIcon 
     },
     {
       title: 'Time',
       href: '/teams',
-      Icon: PeopleIcon 
+      Icon: FlagIcon 
     },    
     {
       title: 'Atleta',
@@ -96,20 +96,61 @@ const Sidebar = props => {
       ],
     },  
     {
-      title: 'Typography',
-      href: '/typography',
-      Icon: TextFieldsIcon 
-    },
+      title: 'Campeonatos',
+      href: '',
+      Icon: BuildIcon ,
+      items: [
+        {
+          title: 'Campeonato',
+          href: '/championships',
+        },
+        {
+          title: 'Inscrição',
+          href: '/subscriptionChampionship',
+        },
+        {
+          title: 'Inscrição de jogador',
+          href: '/playerRegistrationChampionship',
+        },   
+        {
+          title: 'Grupos',
+          href: '/groupChampionshipChampionship',
+        }, 
+        {
+          title: 'Partidas',
+          href: '/matchChampionshipChampionship',
+        },   
+        {
+          title: 'Geração grupos automático',
+          href: '/automaticGroup',
+        },
+        {
+          title: 'Geração partidas automático',
+          href: '/automaticMatch',
+        },
+        {
+          title: 'Classificação',
+          href: '/standingsListChampionship',
+        },   
+        {
+          title: 'Artilharia',
+          href: '/topScorersListChampionship',
+        }, 
+        {
+          title: 'Suspensão',
+          href: '/suspendedPlayersChampionship',
+        }, 
+        {
+          title: 'Súmulas',
+          href: '/schedulings',
+        },                  
+      ],
+    },  
     {
-      title: 'Account',
+      title: 'Perfil',
       href: '/account',
       Icon: AccountBoxIcon 
     },
-    {
-      title: 'Settings',
-      href: '/settings',
-      Icon: SettingsIcon 
-    }
   ];
 
   return (

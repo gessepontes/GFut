@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import MaterialTable from 'material-table';
 import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
+import { schedulingState } from '~/data';
 
 import DialogComponent from '~/components/DialogComponent';
 
@@ -34,20 +35,20 @@ const SchedulingTable = props => {
     dispatch(fetchSchedulingByIdRequest(scheduling));
   };
 
-  const Schedulings = useSelector(state => state.scheduling.schedulings.map(o => ({...o, tableData: {}})));
+  const schedulings = useSelector(state => state.scheduling.schedulings.map(o => ({...o, tableData: {}})));
 
   var columns = [
     {title: "id", field: "id", hidden: true},
-    {title: "Campo", field: "name", render: rowData =>
+    {title: "Campo", field: "horary.fieldItem.name", render: rowData =>
         <Typography variant="body1">{rowData.horary.fieldItem.name}</Typography> },
     {title: "Data", field: "date", render: rowData => 
         <Typography variant="body1">{moment(rowData.date).format('DD/MM/YYYY')}</Typography>},
-    {title: "Hora", field: "hour", render: rowData => 
+    {title: "Hora", field: "horary.hour", render: rowData => 
         <Typography variant="body1">{rowData.horary.hour}</Typography>},
-    {title: "Cliente", field: "client", render: rowData => 
+    {title: "Cliente", field: "person.name", render: rowData => 
     <Typography variant="body1">{rowData.person.name}</Typography>}, 
     {title: "Status", field: "state", render: rowData => 
-        <Typography variant="body1">{rowData.state}</Typography>},                
+        <Typography variant="body1">{Object.values(schedulingState[rowData.state - 1])[1]}</Typography>},                
   ] 
 
   var actions=[    
@@ -75,7 +76,7 @@ const SchedulingTable = props => {
     <MaterialTable
                       title="Agendamentos"
                       columns={columns}
-                      data={Schedulings}
+                      data={schedulings}
                       actions={actions}
                       options={{
                         actionsColumnIndex: -1

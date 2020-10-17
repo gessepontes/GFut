@@ -9,7 +9,7 @@ import { BottomRightFAB } from 'components';
 import { fetchFieldRequest, fieldInitialValues
 } from '~/store/modules/field/actions';
 
-import { fetchPersonRequest
+import { fetchPersonFieldDropRequest
 } from '~/store/modules/person/actions';
 
 const useStyles = makeStyles(theme => ({
@@ -28,7 +28,7 @@ const FieldList = () => {
   useEffect(() => {
     const fetchData = async () => {
       dispatch(fetchFieldRequest());
-      dispatch(fetchPersonRequest());
+      dispatch(fetchPersonFieldDropRequest());
     }
 
     fetchData();

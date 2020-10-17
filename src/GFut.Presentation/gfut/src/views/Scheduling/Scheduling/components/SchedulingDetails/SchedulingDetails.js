@@ -125,7 +125,7 @@ const SchedulingDetails = props => {
               md={3}
               xs={12}
             >
-              <Input name="date" type='date' label="Data"
+              <Input name="date" type='date' label="Data de partida"
                 required                              
                 InputLabelProps={{
                   shrink: true,
@@ -137,7 +137,7 @@ const SchedulingDetails = props => {
               md={3}
               xs={12}
             >
-              <Input name="horaryType" label="Tipo Horário"
+              <Input name="horaryType" label="Tipo do horário"
                 required                              
                 select
                 SelectProps={{ native: true }}

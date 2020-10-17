@@ -8,8 +8,7 @@ import api from '~/services/api';
 import { saveSchedulingFailure, addSchedulingSuccess,  
           updateSchedulingSuccess, deleteSchedulingSuccess, deleteSchedulingFailure,
           fetchSchedulingSuccess,  fetchSchedulingFailure, 
-          fetchSchedulingByIdSuccess, fetchSearchSchedulingFailure,
-          fetchSearchSchedulingSuccess} from './actions';
+          fetchSchedulingByIdSuccess} from './actions';
 
 import { loading } from '~/store/modules/auth/actions';          
 
@@ -26,7 +25,7 @@ export function* saveScheduling({ payload }) {
         active,registerDate }
     );
 
-    scheduling.state = "A";
+    scheduling.state = 1;
 
     yield put(loading(true));
 
@@ -89,30 +88,6 @@ export function* fetchScheduling() {
   }
 }
 
-export function* fetchSearchScheduling({ payload }) {
-  try {
-    const { search } = payload.data;
-    
-   yield put(loading(true));
-
-   let response = "";
-
-  if(search === ''){
-    response = yield call(api.get, `scheduling`);
-  }else{
-    response = yield call(api.get, `scheduling/search/${search}`);
-  }
-   yield put(loading(false));
-
-   yield put(fetchSearchSchedulingSuccess(response.data));
- } catch (err) {
-  yield put(loading(false));
-
-   toast.error('Erro ao pesquisar o campo!');
-   yield put(fetchSearchSchedulingFailure());
- }
-}
-
 export function* fetchSchedulingById({ payload }) {
   try {
 
@@ -146,5 +121,4 @@ export default all([
   takeLatest('@scheduling/DELETE_SCHEDULING_REQUEST', deleteScheduling),
   takeLatest('@scheduling/FETCH_SCHEDULING_REQUEST', fetchScheduling),
   takeLatest('@scheduling/FETCH_SCHEDULING_ID_REQUEST', fetchSchedulingById),   
-  takeLatest('@scheduling/FETCH_SEARCH_SCHEDULING_REQUEST', fetchSearchScheduling),  
 ]);

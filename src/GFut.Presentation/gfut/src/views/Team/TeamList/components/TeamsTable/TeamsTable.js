@@ -4,7 +4,7 @@ import MaterialTable from 'material-table';
 
 import PropTypes from 'prop-types';
 
-import { Typography, Avatar } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
 import DialogComponent from '~/components/DialogComponent';
 
@@ -42,10 +42,6 @@ const TeamsTable = props => {
 
   var columns = [
     {title: "id", field: "id", hidden: true},
-    {title: "Nome", field: "symbol", render: rowData =>
-      <Avatar size={40} 
-        round={"true"} name={rowData === undefined ? " " : rowData.name}
-        src={`http://localhost:51933/picture/team/${rowData.symbol}`}  />  },
     {title: "Nome", field: "name", render: rowData =>
       <Typography variant="body1">{rowData.name}</Typography>}    
   ]

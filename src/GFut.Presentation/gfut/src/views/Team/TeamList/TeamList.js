@@ -12,7 +12,7 @@ from '~/store/modules/team/actions';
 import { fetchTeamRequest
 } from '~/store/modules/team/actions';
 
-import { fetchPersonRequest
+import { fetchPersonAllDropRequest
 } from '~/store/modules/person/actions';
 
 const useStyles = makeStyles(theme => ({
@@ -37,7 +37,7 @@ const TeamList = () => {
   useEffect(() => {
     const fetchData = async () => {
       dispatch(fetchTeamRequest(profile.id));
-      dispatch(fetchPersonRequest());
+      dispatch(fetchPersonAllDropRequest());
     }
 
     fetchData();

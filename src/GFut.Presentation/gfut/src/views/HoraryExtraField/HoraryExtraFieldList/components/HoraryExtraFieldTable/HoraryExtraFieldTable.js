@@ -40,7 +40,7 @@ const HoraryExtraFieldTable = props => {
 
   var columns = [
     {title: "id", field: "id", hidden: true},
-    {title: "Campo", field: "name", render: rowData =>
+    {title: "Campo", field: "fieldItem.name", render: rowData =>
         <Typography variant="body1">{rowData.fieldItem.name}</Typography> },
     {title: "Data", field: "date", render: rowData => 
         <Typography variant="body1">{moment(rowData.date).format('DD/MM/YYYY')}</Typography>},

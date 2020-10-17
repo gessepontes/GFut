@@ -7,3 +7,5 @@ export { default as InputMaskPhone } from './InputMaskPhone';
 export { default as NumberFormatCustom } from './NumberFormatCustom';
 export { default as MCheckbox } from './MCheckbox';
 export { default as MTextFieldCurrency } from './MTextFieldCurrency';
+export { default as ChampionshipComponents } from './ChampionshipComponents';
+export { default as MCheckboxList } from './MCheckboxList';

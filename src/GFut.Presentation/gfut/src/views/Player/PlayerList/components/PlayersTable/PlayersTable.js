@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import MaterialTable from 'material-table';
 import moment from 'moment';
 import { position } from '~/data';
-import { Typography, Avatar } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
 import DialogComponent from '~/components/DialogComponent';
 
@@ -37,9 +37,6 @@ const PlayersTable = () => {
 
   var columns = [
     {title: "id", field: "id", hidden: true},
-    {title: "Foto", field: "picture", render: rowData => <Avatar size={40} 
-        round={"true"} name={rowData === undefined ? " " : rowData.name}
-        src={`http://localhost:51933/picture/player/${rowData.picture}`}  />  },
     {title: "Nome", field: "name", render: rowData =>
         <Typography variant="body1">{rowData.name}</Typography>},
     {title: "Data de aniversário", field: "birthDate", render: rowData => 

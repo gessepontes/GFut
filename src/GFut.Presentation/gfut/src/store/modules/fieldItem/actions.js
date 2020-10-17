@@ -96,3 +96,23 @@ export function updatePictureFieldItemSuccess(data) {
     payload: { data }
   };
 }
+
+export function fetchFieldItemByIdFieldRequest(data) {
+  return {
+    type: '@fieldItem/FETCH_FIELD_ITEM_ID_FIELD_REQUEST',
+    payload: { data },
+  };
+}
+
+export function fetchFieldItemByIdFieldSuccess(data) {
+  return {
+    type: '@fieldItem/FETCH_FIELD_ITEM_ID_FIELD_SUCCESS',
+    payload: { data },
+  };
+}
+
+export function fetchFieldItemByIdFieldFailure() {
+  return {
+    type: '@fieldItem/FETCH_FIELD_ITEM_ID_FIELD_FAILURE',
+  };
+}

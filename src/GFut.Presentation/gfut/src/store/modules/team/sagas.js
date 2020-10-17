@@ -8,9 +8,9 @@ import api from '~/services/api';
 import { saveTeamFailure, addTeamSuccess,  
           updateTeamSuccess, deleteTeamSuccess, deleteTeamFailure,
           fetchTeamSuccess,  fetchTeamFailure, 
+          fetchTeamAllSuccess,  fetchTeamAllFailure, 
           fetchTeamByIdSuccess, updateStatusTeamSuccess, 
-          updateStatusTeamFailure, fetchSearchTeamFailure,
-          fetchSearchTeamSuccess} from './actions';        
+          updateStatusTeamFailure } from './actions';        
 
 import { loading } from '~/store/modules/auth/actions';  
 import { updateTeamActiveSuccess } from '~/store/modules/user/actions';          
@@ -63,7 +63,7 @@ export function* deleteTeam({ payload }) {
 
     yield put(loading(false));
 
-    toast.success('team excluido com sucesso!');
+    toast.success('Time excluido com sucesso!');
 
     yield put(deleteTeamSuccess(id));
   } catch (err) {
@@ -93,22 +93,20 @@ export function* fetchTeam({ payload }) {
   }
 }
 
-export function* fetchSearchTeam({ payload }) {
-  try {
-    const { idPerson, search } = payload.data;
-    
+export function* fetchTeamAll({ payload }) {
+  try {    
    yield put(loading(true));
-
-   const response = yield call(api.get, `team/idperson/${idPerson}/${search}`);
+   
+   const response = yield call(api.get, `team/`);
 
    yield put(loading(false));
 
-   yield put(fetchSearchTeamSuccess(response.data));
+   yield put(fetchTeamAllSuccess(response.data));
  } catch (err) {
-  yield put(loading(false));
+   yield put(loading(false));
 
-   toast.error('Erro ao pesquisar o team!');
-   yield put(fetchSearchTeamFailure());
+   toast.error('Erro ao atualizar Team, confira seus dados!');
+   yield put(fetchTeamAllFailure());
  }
 }
 
@@ -177,7 +175,7 @@ export default all([
   takeLatest('@team/SAVE_TEAM_REQUEST', saveTeam),
   takeLatest('@team/DELETE_TEAM_REQUEST', deleteTeam),
   takeLatest('@team/FETCH_TEAM_REQUEST', fetchTeam),
+  takeLatest('@team/FETCH_TEAM_ALL_REQUEST', fetchTeamAll),
   takeLatest('@team/FETCH_TEAM_ID_REQUEST', fetchTeamById),   
-  takeLatest('@team/UPDATE_STATUS_TEAM_REQUEST', updateStatusTeam), 
-  takeLatest('@team/FETCH_SEARCH_TEAM_REQUEST', fetchSearchTeam),  
+  takeLatest('@team/UPDATE_STATUS_TEAM_REQUEST', updateStatusTeam)  
 ]);

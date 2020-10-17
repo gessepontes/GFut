@@ -43,7 +43,7 @@ const HoraryPriceTable = props => {
 
   var columns = [
     {title: "id", field: "id", hidden: true},
-    {title: "Campo", field: "picture", render: rowData =>
+    {title: "Campo", field: "fieldItem.name", render: rowData =>
         <Typography variant="body1">{rowData.fieldItem.name}</Typography> },
     {title: "Data inicio", field: "startDate", render: rowData => 
         <Typography variant="body1">{rowData.startDate !== null ? 

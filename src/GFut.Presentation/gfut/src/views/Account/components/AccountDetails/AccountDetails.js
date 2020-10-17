@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
 import { Form } from '@unform/web';
-import { Input } from '~/components';
+import { Input, InputMaskPhone } from '~/components';
 
 import { makeStyles } from '@material-ui/styles';
 
@@ -33,6 +33,10 @@ const AccountDetails = props => {
   const classes = useStyles();
 
   function handleSubmit(data) {
+
+    data.id = profile.id; 
+    data.picture = profile.picture; 
+
     dispatch(updateProfileRequest(data));
   }
 
@@ -59,9 +63,6 @@ const AccountDetails = props => {
               md={6}
               xs={12}
             >
-              <Input name="id" type='hidden' />
-              <Input name="picture" type='hidden' />
-
               <Input required name="name" label="Nome"/>
             </Grid>
             <Grid
@@ -76,7 +77,7 @@ const AccountDetails = props => {
               md={6}
               xs={12}
             >
-              <Input name="phone" label="Celular"/>
+              <InputMaskPhone required name="phone" label="Celular"/>
             </Grid>
             <Grid
               item
