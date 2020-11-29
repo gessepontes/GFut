@@ -9,8 +9,7 @@ namespace GFut.Infra.Data.Repository
     public class MatchPlayerChampionshipRepository : Repository<MatchPlayerChampionship>, IMatchPlayerChampionshipRepository
     {
 
-        public MatchPlayerChampionshipRepository(AppDbContext context)
-: base(context)
+        public MatchPlayerChampionshipRepository(AppDbContext context): base(context)
         {
 
         }

@@ -7,29 +7,25 @@ namespace GFut.Domain.Others
         public enum Position : int
         {
             [Display(Name = "Goleiro")]
-            Goleiro = 0,
+            Goleiro = 1,
             [Display(Name = "Zagueiro")]
-            Zagueiro = 1,
+            Zagueiro = 2,
             [Display(Name = "Volante")]
-            Volante = 2,
+            Volante = 3,
             [Display(Name = "Meio-Campo")]
-            MeioCampo = 3,
+            MeioCampo = 4,
             [Display(Name = "Atacante")]
-            Atacante = 4,
-            [Display(Name = "Chupa-Sangue")]
-            ChupaSangue = 5,
-            [Display(Name = "Matador")]
-            Matador = 6,
+            Atacante = 5,
             [Display(Name = "Lateral")]
-            Lateral = 7
+            Lateral = 6
         }
 
-        public enum TipoTime : int
+        public enum TeamType : int
         {
             [Display(Name = "Society")]
-            Society = 0,
+            Society = 1,
             [Display(Name = "Campo de 11")]
-            Campo = 1
+            Campo = 2
         }
 
         public enum HoraryType : int
@@ -90,15 +86,15 @@ namespace GFut.Domain.Others
         public enum CardType : int
         {
             [Display(Name = "Nenhum")]
-            Nothing = 0,
+            Nothing = 1,
             [Display(Name = "Amarelo")]
-            Yellow = 1,
+            Yellow = 2,
             [Display(Name = "Vermelho")]
-            Red = 2,
+            Red = 3,
             [Display(Name = "Segundo amarelo seguido de vermelho")]
-            YellowSecond = 3,
+            YellowSecond = 4,
             [Display(Name = "Vermelho depois de um amarelo")]
-            RedYellow = 4
+            RedYellow = 5
         }
 
         public enum Group : int
@@ -120,27 +116,27 @@ namespace GFut.Domain.Others
         public enum StatusP : int
         {
             [Display(Name = "Pendente")]
-            Pendente = 0,
+            Pendente = 1,
             [Display(Name = "Aprovado")]
-            Aprovado = 1,
+            Aprovado = 2,
             [Display(Name = "Cancelado")]
-            Cancelado = 2,
+            Cancelado = 3,
         }
 
         public enum ProfileType : int
         {
             [Display(Name = "Administrador")]
-            Administrador = 0,
+            Administrador = 1,
             [Display(Name = "Usuário")]
-            Usuario = 1,
+            Usuario = 2,
             [Display(Name = "Administrador do campeonato")]
-            AdministradorCampeonato = 2,
+            AdministradorCampeonato = 3,
             [Display(Name = "Arbitro")]
-            Arbitro = 3,
+            Arbitro = 4,
             [Display(Name = "Jogador")]
-            Jogador = 4,
+            Jogador = 5,
             [Display(Name = "Administrador do campo")]
-            AdministradorCampo = 5
+            AdministradorCampo = 6
         }
     }
 }

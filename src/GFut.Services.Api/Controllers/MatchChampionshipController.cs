@@ -38,7 +38,6 @@ namespace GFut.Services.Api.Controllers
             return _matchChampionshipAppService.GetMatchChampionshipByChampionshipId(id);
         }
 
-        // POST: api/matchChampionship
         [HttpPost]
         public void Post([FromBody] MatchChampionshipViewModel matchChampionshipViewModel)
         {

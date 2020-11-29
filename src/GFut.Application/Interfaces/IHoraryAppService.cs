@@ -8,6 +8,7 @@ namespace GFut.Application.Interfaces
     {
         IEnumerable<HoraryViewModel> GetAll();
         IEnumerable<HoraryViewModel> GetSearchHorary(string search);
+        IEnumerable<HoraryViewModel> GetHoraryByFieldId(int FieldId);
         HoraryViewModel GetById(int id);
         void Update(HoraryViewModel fieldViewModel);
         void Add(HoraryViewModel fieldViewModel);

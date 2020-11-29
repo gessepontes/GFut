@@ -5,6 +5,7 @@ using AutoMapper;
 using GFut.Application.ViewModels;
 using GFut.Domain.Models;
 using System.Linq;
+using GFut.Domain.Others;
 
 namespace GFut.Application.Services
 {
@@ -26,6 +27,8 @@ namespace GFut.Application.Services
 
         public PersonViewModel SignIn(UserViewModel userViewModel)
         {
+            userViewModel.Password = Divers.GenerateMD5(userViewModel.Password);
+
             Person person = _userRepository.SignIn(_mapper.Map<User>(userViewModel));
             PersonViewModel personViewModel = _mapper.Map<PersonViewModel>(person);
 

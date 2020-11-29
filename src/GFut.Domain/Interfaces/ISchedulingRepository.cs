@@ -1,12 +1,9 @@
 ﻿using GFut.Domain.Models;
-using System;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace GFut.Domain.Interfaces
 {
     public interface ISchedulingRepository : IRepository<Scheduling> {
-        //IEnumerable<SchedulingAPI> GetHorary(int id, DateTime Data);
-        //IEnumerable<HoraryComplete> GetFieldScheduling(int idCampo, int idPessoa);
-        //HoraryComplete GetTicket(int id);
+        IQueryable<Scheduling> GetSchedulingByFieldId(int FieldId);
     }
 }

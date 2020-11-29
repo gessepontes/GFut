@@ -23,6 +23,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GFut.Infra.IoC", "src\GFut.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GFut.Infra.Data", "src\GFut.Infra\GFut.Infra.Data.csproj", "{18EB8A35-C98B-4F75-897D-23CFB027F1A5}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GFut.Services.MigrationsSocietyProToGFut", "src\GFut.Services.MigrationsSocietyProToGFut\GFut.Services.MigrationsSocietyProToGFut.csproj", "{255D542A-9194-4D36-BF92-702D6CA943E3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GFut.Infra.Data.SocietyPro", "src\GFut.Infra.Data.SocietyPro\GFut.Infra.Data.SocietyPro.csproj", "{F5333FFE-11E6-4ECA-86C3-86F49A369077}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +53,14 @@ Global
 		{18EB8A35-C98B-4F75-897D-23CFB027F1A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18EB8A35-C98B-4F75-897D-23CFB027F1A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18EB8A35-C98B-4F75-897D-23CFB027F1A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{255D542A-9194-4D36-BF92-702D6CA943E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{255D542A-9194-4D36-BF92-702D6CA943E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{255D542A-9194-4D36-BF92-702D6CA943E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{255D542A-9194-4D36-BF92-702D6CA943E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5333FFE-11E6-4ECA-86C3-86F49A369077}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5333FFE-11E6-4ECA-86C3-86F49A369077}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5333FFE-11E6-4ECA-86C3-86F49A369077}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5333FFE-11E6-4ECA-86C3-86F49A369077}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +71,8 @@ Global
 		{93F842F4-44AC-4404-9634-D2145AF4DBE5} = {9385DD12-9C4B-4999-8EC2-0306594BBB4D}
 		{8E368221-DF4B-4ADC-8A83-5D8CB50BF2FF} = {797A2D07-A098-44F0-A49B-844FA218955B}
 		{18EB8A35-C98B-4F75-897D-23CFB027F1A5} = {797A2D07-A098-44F0-A49B-844FA218955B}
+		{255D542A-9194-4D36-BF92-702D6CA943E3} = {5F981CDE-3B04-41AB-8242-ECE6E19B0463}
+		{F5333FFE-11E6-4ECA-86C3-86F49A369077} = {797A2D07-A098-44F0-A49B-844FA218955B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {81B3B617-4E3D-402C-949B-E3B596A39A3F}

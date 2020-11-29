@@ -61,6 +61,7 @@ namespace GFut.Application.Services
                 .AddJsonFile("appsettings.json")
                 .Build();
 
+            personViewModel.Password = Divers.GenerateMD5(personViewModel.Password);
 
             if (personViewModel.Picture == "")
             {
@@ -101,6 +102,10 @@ namespace GFut.Application.Services
             {
                 personViewModel.Picture = Divers.Base64ToImage(personViewModel.Picture, "PERSON");
             }
+
+            if (personViewModel.Password != "")
+                personViewModel.Password = Divers.GenerateMD5(personViewModel.Password);
+
 
             Person _person = _mapper.Map<Person>(personViewModel);
             _personRepository.Update(_person);

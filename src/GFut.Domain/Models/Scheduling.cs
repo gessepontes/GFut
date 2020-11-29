@@ -13,7 +13,9 @@ namespace GFut.Domain.Models
         }
 
         public DateTime Date { get; set; }
-        public int HoraryId { get; set; }
+        public int? HoraryId { get; set; }
+        public int? HoraryExtraId { get; set; }
+
         public SchedulingType SchedulingType { get; set; }
         public HoraryType HoraryType { get; set; }
         public StatusP State { get; set; }
@@ -27,5 +29,7 @@ namespace GFut.Domain.Models
 
         public virtual Person Person { get; set; }
         public virtual Horary Horary { get; set; }
+        public virtual HoraryExtra HoraryExtra { get; set; }
+
     }
 }

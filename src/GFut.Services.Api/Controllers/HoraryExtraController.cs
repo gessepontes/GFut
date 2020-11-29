@@ -17,7 +17,6 @@ namespace GFut.Services.Api.Controllers
             _horaryAppService = horaryPriceAppService;
         }
 
-        [AllowAnonymous]
         [HttpGet(Name = "GetHoraryExtra")]
         public IEnumerable<HoraryExtraViewModel> Get()
         {
@@ -30,14 +29,18 @@ namespace GFut.Services.Api.Controllers
             return _horaryAppService.GetSearchHoraryExtra(search);
         }
 
-        [AllowAnonymous]
         [HttpGet("{id}", Name = "GetHoraryExtraById")]
         public HoraryExtraViewModel Get(int id)
         {
             return _horaryAppService.GetById(id);
         }
 
-        // POST: api/horaryPrice
+        [HttpGet("field/{FieldId}", Name = "GetHoraryExtraByFieldId")]
+        public IEnumerable<HoraryExtraViewModel> GetHoraryExtraByFieldId(int FieldId)
+        {
+            return _horaryAppService.GetHoraryExtraByFieldId(FieldId);
+        }
+
         [HttpPost]
         public void Post([FromBody] HoraryExtraViewModel horaryPriceViewModel)
         {

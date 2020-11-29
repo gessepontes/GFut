@@ -17,7 +17,6 @@ namespace GFut.Services.Api.Controllers
             _schedulingAppService = schedulingPriceAppService;
         }
 
-        [AllowAnonymous]
         [HttpGet(Name = "GetScheduling")]
         public IEnumerable<SchedulingViewModel> Get()
         {
@@ -30,14 +29,18 @@ namespace GFut.Services.Api.Controllers
             return _schedulingAppService.GetSearchScheduling(search);
         }
 
-        [AllowAnonymous]
         [HttpGet("{id}", Name = "GetSchedulingById")]
         public SchedulingViewModel Get(int id)
         {
             return _schedulingAppService.GetById(id);
         }
 
-        // POST: api/schedulingPrice
+        [HttpGet("field/{FieldId}", Name = "GetSchedulingByFieldId")]
+        public IEnumerable<SchedulingViewModel> GetSchedulingByFieldId(int FieldId)
+        {
+            return _schedulingAppService.GetSchedulingByFieldId(FieldId);
+        }
+
         [HttpPost]
         public void Post([FromBody] SchedulingViewModel schedulingPriceViewModel)
         {

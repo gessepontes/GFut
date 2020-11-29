@@ -8,9 +8,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-
-using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.OpenApi.Models;
+using System;
 using System.IO;
 
 namespace GFut.Services.Api
@@ -44,15 +45,14 @@ namespace GFut.Services.Api
 
             services.AddAutoMapperSetup();
 
-            services.AddSwaggerGen(s =>
+            services.AddSwaggerGen(c =>
             {
-                s.SwaggerDoc("v1", new Info
+                c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
                     Title = "GFut Project",
-                    Description = " GFut API Swagger surface",
-                    Contact = new Contact { Name = "Gessé Pontes", Email = "gessepp@gmail.com", Url = "http://www.gfut.com.br" },
-                    License = new License { Name = "MIT", Url = "https://github.com/gessepontes" }
+                    Description = "GFut API Swagger surface",
+                    TermsOfService = new Uri("http://www.gfut.com.br")
                 });
             });
 
@@ -61,23 +61,44 @@ namespace GFut.Services.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            /*  if (env.IsDevelopment())
+              {
+                  app.UseDeveloperExceptionPage();
+              }
+
+              app.UseStaticFiles(new StaticFileOptions
+              {
+                  FileProvider = new PhysicalFileProvider(
+                      Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "picture")),
+                  RequestPath = "/picture"
+              });
+
+              loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+              loggerFactory.AddFile($"Logs/Api.Log.txt");
+              loggerFactory.AddDebug();
+
+              app.UseCors(c =>
+              {
+                  c.AllowAnyHeader();
+                  c.AllowAnyMethod();
+                  c.AllowAnyOrigin();
+              });
+
+              app.UseMvc();
+
+              app.UseSwagger();
+              app.UseSwaggerUI(s =>
+              {
+                  s.SwaggerEndpoint("/swagger/v1/swagger.json", "GFut API v1.1");
+              });
+            */
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "picture")),
-                RequestPath = "/picture"
-            });
-
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddFile($"Logs/Api.Log.txt");
-            loggerFactory.AddDebug();
 
             app.UseCors(c =>
             {
@@ -86,12 +107,21 @@ namespace GFut.Services.Api
                 c.AllowAnyOrigin();
             });
 
-            app.UseMvc();
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
 
             app.UseSwagger();
             app.UseSwaggerUI(s =>
             {
-                s.SwaggerEndpoint("/swagger/v1/swagger.json", "Equinox Project API v1.1");
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "GFut API v1.1");
             });
 
         }

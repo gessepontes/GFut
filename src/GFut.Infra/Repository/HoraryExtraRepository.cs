@@ -24,5 +24,10 @@ namespace GFut.Infra.Data.Repository
         {
             return Db.HoraryExtras.Where(p => p.Id == id).FirstOrDefault();
         }
+
+        public IQueryable<HoraryExtra> GetHoraryExtraByFieldId(int FieldId)
+        {
+            return Db.HoraryExtras.Include(p => p.FieldItem).Where(p => p.FieldItem.FieldId == FieldId);
+        }
     }
 }

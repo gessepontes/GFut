@@ -17,7 +17,7 @@ namespace GFut.Infra.Data.Repository
 
         public override IQueryable<FieldItem> GetAll()
         {
-            return Db.FieldItens.Include(p => p.Field).OrderBy(p => p.Name).AsQueryable();
+            return Db.FieldItens.Include(p => p.Field).OrderBy(p => p.Name);
         }
 
         public override FieldItem GetById(int id)
@@ -26,6 +26,11 @@ namespace GFut.Infra.Data.Repository
         }
 
         public IQueryable<FieldItem> GetFieldItemByFieldId(int FieldId)
+        {
+            return Db.FieldItens.Include(p => p.Field).Where(p => p.FieldId == FieldId) ;
+        }
+
+        public IQueryable<FieldItem> GetFieldItemByFieldIDrop(int FieldId)
         {
             var listFieldItem = from p in Db.FieldItens where p.FieldId == FieldId
                                 select new FieldItem { Id = p.Id, Name = p.Name };

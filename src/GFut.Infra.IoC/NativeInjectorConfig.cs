@@ -3,6 +3,7 @@ using GFut.Application.Services;
 using GFut.Domain.Interfaces;
 using GFut.Infra.Data.Context;
 using GFut.Infra.Data.Repository;
+using GFut.Infra.Data.SocietyPro.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -34,6 +35,8 @@ namespace GFut.Infra.IoC
             services.AddScoped<IMatchChampionshipRepository, MatchChampionshipRepository>();
             services.AddScoped<IMatchPlayerChampionshipRepository, MatchPlayerChampionshipRepository>();
 
+            services.AddScoped<IMigrationsSocietyProToGFutRepository, MigrationsSocietyProToGFutRepository>();
+
             services.AddScoped<AppDbContext>();
 
             // Application
@@ -55,6 +58,10 @@ namespace GFut.Infra.IoC
             services.AddScoped<IStandingsAppService, StandingsAppService>();
             services.AddScoped<ITopScorersAppService, TopScorersAppService>();
             services.AddScoped<ISuspendedPlayersAppService, SuspendedPlayersAppService>();
+            services.AddScoped<IMatchSummaryAppService, MatchSummaryAppService>();
+
+
+            services.AddScoped<IMigrationsSocietyProToGFutAppService, MigrationsSocietyProToGFutAppService>();
         }
     }
 }

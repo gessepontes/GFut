@@ -7,8 +7,6 @@ using AutoMapper.QueryableExtensions;
 using GFut.Application.ViewModels;
 using GFut.Domain.Models;
 using System.Linq;
-using GFut.Domain.Others;
-using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Hosting;
 
 namespace GFut.Application.Services
@@ -59,6 +57,11 @@ namespace GFut.Application.Services
         public IEnumerable<SchedulingViewModel> GetSearchScheduling(string search)
         {
             return _mapper.Map<IEnumerable<SchedulingViewModel>>(_schedulingRepository.GetAll().Where(p => p.Person.Name.Contains(search)));
+        }
+
+        public IEnumerable<SchedulingViewModel> GetSchedulingByFieldId(int FieldId)
+        {
+            return _mapper.Map<IEnumerable<SchedulingViewModel>>(_schedulingRepository.GetSchedulingByFieldId(FieldId));
         }
     }
 }

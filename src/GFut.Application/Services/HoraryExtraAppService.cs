@@ -60,5 +60,10 @@ namespace GFut.Application.Services
         {
             return _mapper.Map<IEnumerable<HoraryExtraViewModel>>(_horaryExtraRepository.GetAll().Where(p => p.FieldItem.Name.Contains(search)));
         }
+
+        public IEnumerable<HoraryExtraViewModel> GetHoraryExtraByFieldId(int FieldId)
+        {
+            return _mapper.Map<IEnumerable<HoraryExtraViewModel>>(_horaryExtraRepository.GetHoraryExtraByFieldId(FieldId));
+        }
     }
 }

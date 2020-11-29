@@ -1,12 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\GFut.Application\GFut.Application.csproj" />
     <ProjectReference Include="..\GFut.Domain\GFut.Domain.csproj" />
+    <ProjectReference Include="..\GFut.Infra.Data.SocietyPro\GFut.Infra.Data.SocietyPro.csproj" />
     <ProjectReference Include="..\GFut.Infra\GFut.Infra.Data.csproj" />
   </ItemGroup>
 

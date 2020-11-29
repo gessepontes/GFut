@@ -17,7 +17,7 @@ namespace GFut.Infra.Data.Repository
 
         public override IQueryable<GroupChampionship> GetAll()
         {
-            return Db.GroupChampionships.Include(p => p.Subscription).ThenInclude(p => p.Team).OrderBy(p => p.GroupId).AsQueryable();
+            return Db.GroupChampionships.Include(p => p.Subscription).ThenInclude(p => p.Team).OrderBy(p => p.GroupId);
         }
 
         public override GroupChampionship GetById(int id)

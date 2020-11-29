@@ -37,7 +37,6 @@ namespace GFut.Services.Api.Controllers
             return _fieldAppService.GetById(id);
         }
 
-        // POST: api/field
         [HttpPost]
         public void Post([FromBody] FieldItemViewModel fieldViewModel)
         {

@@ -24,8 +24,11 @@ namespace GFut.Infra.Data.Mappings
                 .HasColumnType("date");
 
             builder.Property(c => c.HoraryId)
-                .IsRequired()
                 .HasColumnName("HoraryId")
+                .HasColumnType("int");
+
+            builder.Property(c => c.HoraryExtraId)
+                .HasColumnName("HoraryExtraId")
                 .HasColumnType("int");
 
             builder.Property(c => c.SchedulingType)

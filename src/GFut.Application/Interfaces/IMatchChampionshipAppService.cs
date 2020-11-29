@@ -8,7 +8,6 @@ namespace GFut.Application.Interfaces
     {
         IEnumerable<MatchChampionshipViewModel> GetAll();
         IEnumerable<MatchChampionshipViewModel> GetMatchChampionshipByChampionshipId(int id);
-
         MatchChampionshipViewModel GetById(int id);
         void Update(MatchChampionshipViewModel subscriptionViewModel);
         void Add(MatchChampionshipViewModel subscriptionViewModel);

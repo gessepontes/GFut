@@ -8,6 +8,7 @@ namespace GFut.Application.Interfaces
     {
         IEnumerable<HoraryPriceViewModel> GetAll();
         IEnumerable<HoraryPriceViewModel> GetSearchHoraryPrice(string search);
+        IEnumerable<HoraryPriceViewModel> GetHoraryPriceByFieldId(int FieldId);
         HoraryPriceViewModel GetById(int id);
         void Update(HoraryPriceViewModel fieldViewModel);
         void Add(HoraryPriceViewModel fieldViewModel);

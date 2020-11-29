@@ -8,6 +8,7 @@ namespace GFut.Application.Interfaces
     {
         IEnumerable<SchedulingViewModel> GetAll();
         IEnumerable<SchedulingViewModel> GetSearchScheduling(string search);
+        IEnumerable<SchedulingViewModel> GetSchedulingByFieldId(int FieldId);
         SchedulingViewModel GetById(int id);
         void Update(SchedulingViewModel fieldViewModel);
         void Add(SchedulingViewModel fieldViewModel);
