@@ -122,8 +122,13 @@ export function FieldItemInitialValues() {
   history.push('/fieldItem');
 }
 
+export function fieldItemBack() {
+  history.push('/fieldItensField');
+}
+
 export default all([
-  takeLatest('@fieldItem/FIELD_ITEM_INITIAL_VALUES', FieldItemInitialValues), 
+  takeLatest('@fieldItem/FIELD_ITEM_INITIAL_VALUES', FieldItemInitialValues),
+  takeLatest('@fieldItem/FIELD_ITEM_BACK', fieldItemBack),  
   takeLatest('@fieldItem/SAVE_FIELD_ITEM_REQUEST', saveFieldItem),
   takeLatest('@fieldItem/DELETE_FIELD_ITEM_REQUEST', deleteFieldItem),
   takeLatest('@fieldItem/FETCH_FIELD_ITEM_REQUEST', fetchFieldItem),

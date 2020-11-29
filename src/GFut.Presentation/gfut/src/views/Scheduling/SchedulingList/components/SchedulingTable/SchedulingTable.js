@@ -46,7 +46,7 @@ const SchedulingTable = props => {
     {title: "Hora", field: "horary.hour", render: rowData => 
         <Typography variant="body1">{rowData.horary.hour}</Typography>},
     {title: "Cliente", field: "person.name", render: rowData => 
-    <Typography variant="body1">{rowData.person.name}</Typography>}, 
+    <Typography variant="body1">{rowData.person ? rowData.person.name : rowData.customerNotRegistered}</Typography>}, 
     {title: "Status", field: "state", render: rowData => 
         <Typography variant="body1">{Object.values(schedulingState[rowData.state - 1])[1]}</Typography>},                
   ] 

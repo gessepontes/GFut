@@ -109,3 +109,29 @@ export function horaryExtraFieldInitialValues() {
     type: '@horaryExtraField/HORARY_EXTRA_FIELD_INITIAL_VALUES',
   };
 }
+
+export function fetchHoraryExtraFieldByIdFieldRequest(data) {
+  return {
+    type: '@horaryExtraField/FETCH_HORARY_EXTRA_ID_FIELD_REQUEST',
+    payload: { data },
+  };
+}
+
+export function fetchHoraryExtraFieldByIdFieldSuccess(data) {
+  return {
+    type: '@horaryExtraField/FETCH_HORARY_EXTRA_ID_FIELD_SUCCESS',
+    payload: { data },
+  };
+}
+
+export function fetchHoraryExtraFieldByIdFieldFailure() {
+  return {
+    type: '@horaryExtraField/FETCH_HORARY_EXTRA_ID_FIELD_FAILURE',
+  };
+}
+
+export function horaryExtraFieldBack() {
+  return {
+    type: '@horaryExtraField/HORARY_EXTRA_FIELD_BACK',
+  };
+}

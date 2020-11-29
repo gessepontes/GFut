@@ -19,6 +19,7 @@ import matchChampionship from './matchChampionship/sagas';
 import standings from './standings/sagas';
 import topScorers from './topScorers/sagas';
 import suspendedPlayers from './suspendedPlayers/sagas';
+import matchSummary from './matchSummary/sagas';
 
 export default function* rootSaga() {
   return yield all([
@@ -40,6 +41,7 @@ export default function* rootSaga() {
     matchChampionship,
     standings,
     topScorers,
-    suspendedPlayers
+    suspendedPlayers,
+    matchSummary
   ]);
 }

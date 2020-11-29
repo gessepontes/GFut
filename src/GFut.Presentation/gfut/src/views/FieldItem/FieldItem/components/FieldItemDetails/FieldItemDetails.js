@@ -41,12 +41,13 @@ const FieldItemDetails = props => {
   function handleSubmit(data) {
     data.personId = profile.id; 
     data.id = fieldItem.id; 
+    data.fieldId = field.id;
     data.picture = fieldItem.picture; 
     data.registerDate = fieldItem.registerDate; 
     dispatch(saveFieldItemRequest(data));
   }
 
-  const fields = useSelector(state => state.field.fields);
+  const field = useSelector(state => state.field.field);
   const profile = useSelector(state => state.user.profile);
   const fieldItem = useSelector(state => state.fieldItem.fieldItem);
 
@@ -71,22 +72,7 @@ const FieldItemDetails = props => {
               md={12}
               xs={12}
             >
-              <Input name="fieldId" label="Campo"
-                required                              
-                select
-                SelectProps={{ native: true }}
-              >
-                <option>
-                  </option>
-                {fields.map(option => (
-                  <option
-                    key={option.id}
-                    value={option.id}
-                  >
-                    {option.name}
-                  </option>
-                ))}
-              </Input>
+               <Input name="fieldName" disabled defaultValue={field.name} label="Campo"/>
             </Grid> 
             <Grid
               item

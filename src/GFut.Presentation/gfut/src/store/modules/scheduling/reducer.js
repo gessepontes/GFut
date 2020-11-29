@@ -28,7 +28,7 @@ export default function scheduling(state = INITIAL_STATE, action) {
       case '@scheduling/FETCH_SCHEDULING_SUCCESS': {
         return { ...state, schedulings: action.payload.data };
       }
-      case '@scheduling/FETCH_SEARCH_SCHEDULING_SUCCESS': {
+      case '@scheduling/FETCH_SCHEDULING_ID_FIELD_SUCCESS': {
         return { ...state, schedulings: action.payload.data };
       }
       case '@scheduling/FETCH_SCHEDULING_ID_SUCCESS': {        

@@ -116,3 +116,29 @@ export function updatePictureHoraryPriceSuccess(data) {
     payload: { data }
   };
 }
+
+export function fetchHoraryPriceByIdFieldRequest(data) {
+  return {
+    type: '@horaryPrice/FETCH_HORARY_PRICE_ID_FIELD_REQUEST',
+    payload: { data },
+  };
+}
+
+export function fetchHoraryPriceByIdFieldSuccess(data) {
+  return {
+    type: '@horaryPrice/FETCH_HORARY_PRICE_ID_FIELD_SUCCESS',
+    payload: { data },
+  };
+}
+
+export function fetchHoraryPriceByIdFieldFailure() {
+  return {
+    type: '@horaryPrice/FETCH_HORARY_PRICE_ID_FIELD_FAILURE',
+  };
+}
+
+export function horaryPriceBack() {
+  return {
+    type: '@horaryPrice/HORARY_PRICE_BACK',
+  };
+}

@@ -8,7 +8,8 @@ import api from '~/services/api';
 import { saveHoraryPriceFailure, addHoraryPriceSuccess,  
           updateHoraryPriceSuccess, deleteHoraryPriceSuccess, deleteHoraryPriceFailure,
           fetchHoraryPriceSuccess,  fetchHoraryPriceFailure, 
-          fetchHoraryPriceByIdSuccess} from './actions';
+          fetchHoraryPriceByIdSuccess,fetchHoraryPriceByIdFieldSuccess,
+          fetchHoraryPriceByIdFieldFailure} from './actions';
 
 import { loading } from '~/store/modules/auth/actions';          
 
@@ -107,14 +108,39 @@ export function* fetchHoraryPriceById({ payload }) {
  }
 }
 
+export function* fetchHoraryPriceByIdField({ payload }) {
+  try {    
+   yield put(loading(true));
+   
+   const IdField  = payload.data;
+   
+   const response = yield call(api.get, `horary/field/${IdField}`);
+
+   yield put(fetchHoraryPriceByIdFieldSuccess(response.data));
+
+   yield put(loading(false));
+ } catch (err) {
+   yield put(loading(false));
+
+   toast.error('Erro ao realizar a operação!');
+   yield put(fetchHoraryPriceByIdFieldFailure());
+ }
+}
+
 export function HoraryPriceInitialValues() {
   history.push('/horaryPrice');
 }
 
+export function horaryPricesFieldBack() {
+  history.push('/horaryPricesField');
+}
+
 export default all([
   takeLatest('@horaryPrice/HORARY_PRICE_INITIAL_VALUES', HoraryPriceInitialValues), 
+  takeLatest('@horaryPrice/HORARY_PRICE_BACK', horaryPricesFieldBack),  
   takeLatest('@horaryPrice/SAVE_HORARY_PRICE_REQUEST', saveHoraryPrice),
   takeLatest('@horaryPrice/DELETE_HORARY_PRICE_REQUEST', deleteHoraryPrice),
   takeLatest('@horaryPrice/FETCH_HORARY_PRICE_REQUEST', fetchHoraryPrice),
-  takeLatest('@horaryPrice/FETCH_HORARY_PRICE_ID_REQUEST', fetchHoraryPriceById),    
+  takeLatest('@horaryPrice/FETCH_HORARY_PRICE_ID_REQUEST', fetchHoraryPriceById),
+  takeLatest('@horaryPrice/FETCH_HORARY_PRICE_ID_FIELD_REQUEST', fetchHoraryPriceByIdField),      
 ]);

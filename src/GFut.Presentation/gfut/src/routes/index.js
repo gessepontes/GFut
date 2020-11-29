@@ -15,14 +15,19 @@ import {
   FieldList as FieldListView,
   Field as FieldView, 
   FieldItemList as FieldItemListView,
+  FieldItemField as FieldItemFieldListView,
   FieldItem as FieldItemView,  
-  HoraryPrice as HoraryPriceView,   
+  HoraryPrice as HoraryPriceView, 
+  HoraryPriceFieldList as HoraryPriceFieldListView,  
   HoraryPriceList as HoraryPriceListView,
   HoraryField as HoraryFieldView,   
+  HoraryFieldFieldList as HoraryFieldFieldListView,
   HoraryFieldList as HoraryFieldListView, 
-  HoraryExtraField as HoraryExtraFieldView,   
+  HoraryExtraField as HoraryExtraFieldView, 
+  HoraryExtraFieldFieldList as HoraryExtraFieldFieldListView,  
   HoraryExtraFieldList as HoraryExtraFieldListView,  
-  Scheduling as SchedulingView,   
+  Scheduling as SchedulingView, 
+  SchedulingFieldList as SchedulingFieldListView,  
   SchedulingList as SchedulingListView,     
   Championship as ChampionshipView,   
   ChampionshipList as ChampionshipListView,  
@@ -44,6 +49,9 @@ import {
   MatchChampionship as MatchChampionshipView,   
   MatchChampionshipList as MatchChampionshipListView,   
   MatchChampionshipChampionship as MatchChampionshipChampionshipView, 
+  MatchSummary as MatchSummaryView,   
+  MatchSummaryList as MatchSummaryListView,   
+  MatchSummaryChampionship as MatchSummaryChampionshipView, 
   AutomaticGroup as AutomaticGroupView,  
   AutomaticMatch as AutomaticMatchView,    
   Account as AccountView,
@@ -124,6 +132,13 @@ const Routes = () => {
         isPrivate
       />  
       <RouteWithLayout
+        component={FieldItemFieldListView}
+        exact
+        layout={MainLayout}
+        path="/fieldItensField"
+        isPrivate
+      />
+      <RouteWithLayout
         component={FieldItemListView}
         exact
         layout={MainLayout}
@@ -145,6 +160,13 @@ const Routes = () => {
         isPrivate
       />
       <RouteWithLayout
+        component={HoraryPriceFieldListView}
+        exact
+        layout={MainLayout}
+        path="/horaryPricesField"
+        isPrivate
+      />
+      <RouteWithLayout
         component={HoraryPriceView}
         exact
         layout={MainLayout}
@@ -158,6 +180,13 @@ const Routes = () => {
         path="/horaryFields"
         isPrivate
       />
+      <RouteWithLayout
+        component={HoraryFieldFieldListView}
+        exact
+        layout={MainLayout}
+        path="/horaryFieldsField"
+        isPrivate
+      />      
       <RouteWithLayout
         component={HoraryFieldView}
         exact
@@ -173,6 +202,13 @@ const Routes = () => {
         isPrivate
       />
       <RouteWithLayout
+        component={HoraryExtraFieldFieldListView}
+        exact
+        layout={MainLayout}
+        path="/horaryExtraFieldsField"
+        isPrivate
+      />      
+      <RouteWithLayout
         component={HoraryExtraFieldView}
         exact
         layout={MainLayout}
@@ -186,6 +222,13 @@ const Routes = () => {
         path="/schedulings"
         isPrivate
       />
+      <RouteWithLayout
+        component={SchedulingFieldListView}
+        exact
+        layout={MainLayout}
+        path="/schedulingField"
+        isPrivate
+      />      
       <RouteWithLayout
         component={SchedulingView}
         exact
@@ -317,6 +360,27 @@ const Routes = () => {
         exact
         layout={MainLayout}
         path="/matchChampionshipChampionship"
+        isPrivate
+      /> 
+      <RouteWithLayout
+        component={MatchSummaryListView}
+        exact
+        layout={MainLayout}
+        path="/matchSummarys"
+        isPrivate
+      />
+      <RouteWithLayout
+        component={MatchSummaryView}
+        exact
+        layout={MainLayout}
+        path="/matchSummary"
+        isPrivate
+      />  
+      <RouteWithLayout
+        component={MatchSummaryChampionshipView}
+        exact
+        layout={MainLayout}
+        path="/matchSummaryChampionship"
         isPrivate
       />        
       <RouteWithLayout

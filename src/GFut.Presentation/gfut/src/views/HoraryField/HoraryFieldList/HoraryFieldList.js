@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { makeStyles } from '@material-ui/styles';
 
 import { HoraryFieldTable } from './components';
 import { BottomRightFAB } from 'components';
 
-import { fetchHoraryFieldRequest, horaryFieldInitialValues
+import { fetchHoraryFieldByIdFieldRequest, horaryFieldInitialValues,
+  horaryFieldBack
 } from '~/store/modules/horaryField/actions';
 
-import { fetchFieldItemRequest
+import { fetchFieldItemByIdFieldRequest
 } from '~/store/modules/fieldItem/actions';
 
 const useStyles = makeStyles(theme => ({
@@ -27,20 +28,28 @@ const HoraryFieldList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      dispatch(fetchHoraryFieldRequest());
-      dispatch(fetchFieldItemRequest());
+      dispatch(fetchHoraryFieldByIdFieldRequest(field.id));
+      dispatch(fetchFieldItemByIdFieldRequest(field.id));
     }
 
     fetchData();
   });
 
+  
+  const field = useSelector(state => state.field.field);
+
   const handleClick = () => {
     dispatch(horaryFieldInitialValues());
   };
 
+  const handleClickBack = () => {
+    dispatch(horaryFieldBack());
+  };
+
   return (
     <div className={classes.root}>
-      <BottomRightFAB size='small' color='primary' onClick={() => handleClick()} />
+        <BottomRightFAB size='small' color='primary' back='false' onClick={() => handleClick()} />
+        <BottomRightFAB size='small' color='secondary' back='true' onClick={() => handleClickBack()} />
       <div className={classes.content}>
         <HoraryFieldTable />
       </div>

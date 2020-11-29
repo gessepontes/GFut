@@ -19,6 +19,7 @@ import matchChampionship from './matchChampionship/reducer';
 import standings from './standings/reducer';
 import topScorers from './topScorers/reducer';
 import suspendedPlayers from './suspendedPlayers/reducer';
+import matchSummary from './matchSummary/reducer';
 
 export default combineReducers({
   auth,
@@ -39,5 +40,6 @@ export default combineReducers({
   matchChampionship,
   standings,
   topScorers,
-  suspendedPlayers
+  suspendedPlayers,
+  matchSummary
 });

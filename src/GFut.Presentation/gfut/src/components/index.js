@@ -9,3 +9,4 @@ export { default as MCheckbox } from './MCheckbox';
 export { default as MTextFieldCurrency } from './MTextFieldCurrency';
 export { default as ChampionshipComponents } from './ChampionshipComponents';
 export { default as MCheckboxList } from './MCheckboxList';
+export { default as FieldComponents } from './FieldComponents';

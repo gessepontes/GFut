@@ -8,7 +8,8 @@ import api from '~/services/api';
 import { saveSchedulingFailure, addSchedulingSuccess,  
           updateSchedulingSuccess, deleteSchedulingSuccess, deleteSchedulingFailure,
           fetchSchedulingSuccess,  fetchSchedulingFailure, 
-          fetchSchedulingByIdSuccess} from './actions';
+          fetchSchedulingByIdSuccess, fetchSchedulingByIdFieldSuccess,
+          fetchSchedulingByIdFieldFailure} from './actions';
 
 import { loading } from '~/store/modules/auth/actions';          
 
@@ -111,14 +112,40 @@ export function* fetchSchedulingById({ payload }) {
  }
 }
 
+export function* fetchSchedulingByIdField({ payload }) {
+  try {    
+   yield put(loading(true));
+   
+   const IdField  = payload.data;
+   
+   const response = yield call(api.get, `scheduling/field/${IdField}`);
+
+   yield put(fetchSchedulingByIdFieldSuccess(response.data));
+
+   yield put(loading(false));
+ } catch (err) {
+   yield put(loading(false));
+
+   toast.error('Erro ao realizar a operação!');
+   yield put(fetchSchedulingByIdFieldFailure());
+ }
+}
+
+
 export function schedulingInitialValues() {
   history.push('/scheduling');
 }
 
+export function schedulingFieldBack() {
+  history.push('/schedulingField');
+}
+
 export default all([
   takeLatest('@scheduling/SCHEDULING_INITIAL_VALUES', schedulingInitialValues), 
+  takeLatest('@scheduling/SCHEDULING_BACK', schedulingFieldBack),  
   takeLatest('@scheduling/SAVE_SCHEDULING_REQUEST', saveScheduling),
   takeLatest('@scheduling/DELETE_SCHEDULING_REQUEST', deleteScheduling),
   takeLatest('@scheduling/FETCH_SCHEDULING_REQUEST', fetchScheduling),
-  takeLatest('@scheduling/FETCH_SCHEDULING_ID_REQUEST', fetchSchedulingById),   
+  takeLatest('@scheduling/FETCH_SCHEDULING_ID_REQUEST', fetchSchedulingById),
+  takeLatest('@scheduling/FETCH_SCHEDULING_ID_FIELD_REQUEST', fetchSchedulingByIdField),     
 ]);

@@ -75,23 +75,23 @@ const Sidebar = props => {
         },
         {
           title: 'Campo Item',
-          href: '/fieldItens',
+          href: '/fieldItensField',
         },
         {
           title: 'Valor',
-          href: '/horaryPrices',
+          href: '/horaryPricesField',
         },   
         {
           title: 'Horários',
-          href: '/horaryFields',
+          href: '/horaryFieldsField',
         }, 
         {
           title: 'Horário Extra',
-          href: '/horaryExtraFields',
+          href: '/horaryExtraFieldsField',
         }, 
         {
           title: 'Agendar Horário',
-          href: '/schedulings',
+          href: '/schedulingField',
         },     
       ],
     },  
@@ -142,7 +142,7 @@ const Sidebar = props => {
         }, 
         {
           title: 'Súmulas',
-          href: '/schedulings',
+          href: '/matchSummaryChampionship',
         },                  
       ],
     },  

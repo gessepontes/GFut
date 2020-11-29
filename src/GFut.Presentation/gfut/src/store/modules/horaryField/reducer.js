@@ -19,7 +19,7 @@ export default function horaryField(state = INITIAL_STATE, action) {
       case '@horaryField/FETCH_HORARY_FIELD_SUCCESS': {
         return { ...state, horaryFields: action.payload.data };
       }
-      case '@horaryField/FETCH_SEARCH_HORARY_FIELD_SUCCESS': {
+      case '@horaryField/FETCH_HORARY_FIELD_ID_FIELD_SUCCESS': {
         return { ...state, horaryFields: action.payload.data };
       }
       case '@horaryField/FETCH_HORARY_FIELD_ID_SUCCESS': {        

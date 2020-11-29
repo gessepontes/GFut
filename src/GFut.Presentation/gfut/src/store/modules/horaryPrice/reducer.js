@@ -20,7 +20,7 @@ export default function horaryPrice(state = INITIAL_STATE, action) {
       case '@horaryPrice/FETCH_HORARY_PRICE_SUCCESS': {
         return { ...state, horaryPrices: action.payload.data };
       }
-      case '@horaryPrice/FETCH_SEARCH_HORARY_PRICE_SUCCESS': {
+      case '@horaryPrice/FETCH_HORARY_PRICE_ID_FIELD_SUCCESS': {
         return { ...state, horaryPrices: action.payload.data };
       }
       case '@horaryPrice/FETCH_HORARY_PRICE_ID_SUCCESS': {        

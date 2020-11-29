@@ -7,8 +7,8 @@ import api from '~/services/api';
 import { saveHoraryFieldFailure, addHoraryFieldSuccess,  
           updateHoraryFieldSuccess, deleteHoraryFieldSuccess, deleteHoraryFieldFailure,
           fetchHoraryFieldSuccess,  fetchHoraryFieldFailure, 
-          fetchHoraryFieldByIdSuccess, fetchSearchHoraryFieldFailure,
-          fetchSearchHoraryFieldSuccess} from './actions';
+          fetchHoraryFieldByIdSuccess, fetchHoraryFieldByIdFieldSuccess,
+          fetchHoraryFieldByIdFieldFailure} from './actions';
 
 import { loading } from '~/store/modules/auth/actions';          
 
@@ -85,27 +85,22 @@ export function* fetchHoraryField() {
   }
 }
 
-export function* fetchSearchHoraryField({ payload }) {
-  try {
-    const { search } = payload.data;
-    
+export function* fetchHoraryFieldByIdField({ payload }) {
+  try {    
    yield put(loading(true));
+   
+   const IdField  = payload.data;
+   
+   const response = yield call(api.get, `horary/field/${IdField}`);
 
-   let response = "";
+   yield put(fetchHoraryFieldByIdFieldSuccess(response.data));
 
-  if(search === ''){
-    response = yield call(api.get, `horary`);
-  }else{
-    response = yield call(api.get, `horary/search/${search}`);
-  }
+   yield put(loading(false));
+ } catch (err) {
    yield put(loading(false));
 
-   yield put(fetchSearchHoraryFieldSuccess(response.data));
- } catch (err) {
-  yield put(loading(false));
-
-   toast.error('Erro ao pesquisar o campo!');
-   yield put(fetchSearchHoraryFieldFailure());
+   toast.error('Erro ao realizar a operação!');
+   yield put(fetchHoraryFieldByIdFieldFailure());
  }
 }
 
@@ -130,11 +125,16 @@ export function HoraryFieldInitialValues() {
   history.push('/horaryField');
 }
 
+export function horaryFieldsFieldBack() {
+  history.push('/horaryFieldsField');
+}
+
 export default all([
   takeLatest('@horaryField/HORARY_FIELD_INITIAL_VALUES', HoraryFieldInitialValues), 
+  takeLatest('@horaryField/HORARY_FIELD_BACK', horaryFieldsFieldBack),  
   takeLatest('@horaryField/SAVE_HORARY_FIELD_REQUEST', saveHoraryField),
   takeLatest('@horaryField/DELETE_HORARY_FIELD_REQUEST', deleteHoraryField),
   takeLatest('@horaryField/FETCH_HORARY_FIELD_REQUEST', fetchHoraryField),
   takeLatest('@horaryField/FETCH_HORARY_FIELD_ID_REQUEST', fetchHoraryFieldById),   
-  takeLatest('@horaryField/FETCH_SEARCH_HORARY_FIELD_REQUEST', fetchSearchHoraryField),  
+  takeLatest('@horaryField/FETCH_HORARY_FIELD_ID_FIELD_REQUEST', fetchHoraryFieldByIdField),   
 ]);

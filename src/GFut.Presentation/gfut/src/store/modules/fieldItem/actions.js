@@ -116,3 +116,9 @@ export function fetchFieldItemByIdFieldFailure() {
     type: '@fieldItem/FETCH_FIELD_ITEM_ID_FIELD_FAILURE',
   };
 }
+
+export function fieldItemBack() {
+  return {
+    type: '@fieldItem/FIELD_ITEM_BACK',
+  };
+}

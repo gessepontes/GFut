@@ -116,3 +116,29 @@ export function updatePictureSchedulingSuccess(data) {
     payload: { data }
   };
 }
+
+export function fetchSchedulingByIdFieldRequest(data) {
+  return {
+    type: '@scheduling/FETCH_SCHEDULING_ID_FIELD_REQUEST',
+    payload: { data },
+  };
+}
+
+export function fetchSchedulingByIdFieldSuccess(data) {
+  return {
+    type: '@scheduling/FETCH_SCHEDULING_ID_FIELD_SUCCESS',
+    payload: { data },
+  };
+}
+
+export function fetchSchedulingByIdFieldFailure() {
+  return {
+    type: '@scheduling/FETCH_SCHEDULING_ID_FIELD_FAILURE',
+  };
+}
+
+export function schedulingBack() {
+  return {
+    type: '@scheduling/SCHEDULING_BACK',
+  };
+}
