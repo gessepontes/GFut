@@ -101,7 +101,7 @@ const TeamDetails = props => {
               md={6}
               xs={12}
             >             
-              <Input required name="observation" label="Observação"/>
+              <Input name="observation" label="Observação"/>
             </Grid>
             <Grid
               item

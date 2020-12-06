@@ -1,9 +1,10 @@
 ﻿using GFut.Domain.Models;
-using System.Linq;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GFut.Domain.Interfaces
 {
     public interface IHoraryPriceRepository : IRepository<HoraryPrice> {
-        IQueryable<HoraryPrice> GetHoraryPriceByFieldId(int FieldId);
+         Task<IEnumerable<HoraryPrice>> GetHoraryPriceByFieldId(int FieldId);
     }
 }

@@ -3,46 +3,44 @@ using GFut.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using GFut.Application.ViewModels;
 using GFut.Domain.Models;
 using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Hosting;
 using GFut.Domain.Others;
 using System.Linq;
 using static GFut.Domain.Others.Enum;
+using System.Threading.Tasks;
 
 namespace GFut.Application.Services
 {
     public class ChampionshipAppService : IChampionshipAppService
     {
         private readonly IChampionshipRepository _championshipRepository;
-        private readonly IPersonRepository _personRepository;
         private readonly IMapper _mapper;
-        private readonly IHostingEnvironment _env;
+        private readonly IConfiguration _configuration;
 
-
-        public ChampionshipAppService(IMapper mapper, IChampionshipRepository championshipRepository, IPersonRepository personRepository, IHostingEnvironment env)
+        public ChampionshipAppService(IMapper mapper, IChampionshipRepository championshipRepository, IConfiguration configuration)
         {
             _championshipRepository = championshipRepository;
-            _personRepository = personRepository;
             _mapper = mapper;
-            _env = env;
+            _configuration = configuration;
         }
 
-        public IEnumerable<ChampionshipViewModel> GetAll()
+        public async Task<IEnumerable<ChampionshipViewModel>> GetAll()
         {
-            return _championshipRepository.GetAll().ProjectTo<ChampionshipViewModel>(_mapper.ConfigurationProvider);
+            var result = await _championshipRepository.GetAll();
+            return result.Select(_mapper.Map<ChampionshipViewModel>);
         }
 
-        public IEnumerable<ChampionshipViewModel> GetGroupChampionship()
+        public async Task<IEnumerable<ChampionshipViewModel>> GetGroupChampionship()
         {
-            return _championshipRepository.GetAll().Where(p => p.ChampionshipType == ChampionshipType.Grupos).ProjectTo<ChampionshipViewModel>(_mapper.ConfigurationProvider);
+            var result = await _championshipRepository.GetAll();
+            return result.Where(p => p.ChampionshipType == ChampionshipType.Grupos).Select(_mapper.Map<ChampionshipViewModel>);
         }
 
-        public ChampionshipViewModel GetById(int id)
+        public async Task<ChampionshipViewModel> GetById(int id)
         {
-            return _mapper.Map<ChampionshipViewModel>(_championshipRepository.GetById(id));
+            return _mapper.Map<ChampionshipViewModel>(await _championshipRepository.GetById(id));
         }
 
         public void Update(ChampionshipViewModel championshipViewModel)
@@ -63,15 +61,11 @@ namespace GFut.Application.Services
 
         public void Add(ChampionshipViewModel championshipViewModel)
         {
-            var config = new ConfigurationBuilder()
-                .SetBasePath(_env.ContentRootPath)
-                .AddJsonFile("appsettings.json")
-                .Build();
-
+            var config = _configuration.GetValue<string>("Config:AtletaBase64");
 
             if (championshipViewModel.Picture == "")
             {
-                championshipViewModel.Picture = Divers.Base64ToImage(config.GetSection(key: "Config")["AtletaBase64"], "CHAMPIONSHIP");
+                championshipViewModel.Picture = Divers.Base64ToImage(config, "CHAMPIONSHIP");
             }
             else
             {

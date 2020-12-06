@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using GFut.Application.Interfaces;
 using GFut.Application.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -19,32 +21,32 @@ namespace GFut.Services.Api.Controllers
 
         [AllowAnonymous]
         [HttpGet(Name = "GetPerson")]
-        public IEnumerable<PersonViewModel> Get()
+        public Task<IEnumerable<PersonViewModel>> Get()
         {
             return _personAppService.GetAll();
         }
 
         [HttpGet("PersonChampionshipDrop/", Name = "GetPersonChampionshipDrop")]
-        public IEnumerable<PersonViewModel> GetPersonChampionshipDrop()
+        public Task<IEnumerable<PersonViewModel>> GetPersonChampionshipDrop()
         {
             return _personAppService.GetPersonChampionshipDrop();
         }
 
         [HttpGet("PersonFieldDrop/", Name = "GetPersonFieldDrop")]
-        public IEnumerable<PersonViewModel> GetPersonFieldDrop()
+        public Task<IEnumerable<PersonViewModel>> GetPersonFieldDrop()
         {
             return _personAppService.GetPersonFieldDrop();
         }
 
         [HttpGet("PersonAllDrop/", Name = "GetPersonAllDrop")]
-        public IEnumerable<PersonViewModel> GetPersonAllDrop()
+        public Task<IEnumerable<PersonViewModel>> GetPersonAllDrop()
         {
             return _personAppService.GetPersonAllDrop();
         }
 
         [AllowAnonymous]
         [HttpGet("{id}", Name = "GetPersonById")]
-        public PersonViewModel Get(int id)
+        public Task<PersonViewModel> Get(int id)
         {
             return _personAppService.GetById(id);
         }

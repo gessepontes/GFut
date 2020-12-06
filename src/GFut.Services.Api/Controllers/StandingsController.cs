@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using GFut.Application.Interfaces;
 using GFut.Application.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -17,11 +18,10 @@ namespace GFut.Services.Api.Controllers
             _standingsAppService = standingsAppService;
         }
 
-        [AllowAnonymous]
         [HttpGet("championship/{id}", Name = "GetStandingsByChampionshipId")]
-        public IEnumerable<List<StandingsViewModel>> GetStandingsByChampionshipId(int id)
+        public async Task<IEnumerable<List<StandingsViewModel>>> GetStandingsByChampionshipId(int id)
         {
-            return _standingsAppService.GetStandingsByChampionshipId(id);
+            return await _standingsAppService.GetStandingsByChampionshipId(id);
         }
     }
 }

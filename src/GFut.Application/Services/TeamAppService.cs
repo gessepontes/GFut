@@ -3,13 +3,12 @@ using GFut.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using GFut.Application.ViewModels;
 using GFut.Domain.Models;
 using System.Linq;
 using GFut.Domain.Others;
 using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Hosting;
+using System.Threading.Tasks;
 
 namespace GFut.Application.Services
 {
@@ -17,38 +16,35 @@ namespace GFut.Application.Services
     {
         private readonly ITeamRepository _teamRepository;
         private readonly IMapper _mapper;
-        private readonly IHostingEnvironment _env;
+        private readonly IConfiguration _configuration;
 
-
-        public TeamAppService(IMapper mapper, ITeamRepository teamRepository, IHostingEnvironment env)
+        public TeamAppService(IMapper mapper, ITeamRepository teamRepository, IConfiguration configuration)
         {
             _teamRepository = teamRepository;
             _mapper = mapper;
-            _env = env;
+            _configuration = configuration;
         }
 
-        public IEnumerable<TeamViewModel> GetAll()
+        public async Task<IEnumerable<TeamViewModel>> GetAll()
         {
-            return _teamRepository.GetAll().ProjectTo<TeamViewModel>(_mapper.ConfigurationProvider);
+            var result = await _teamRepository.GetAll();
+            return result.Select(_mapper.Map<TeamViewModel>);
         }
 
-        public IEnumerable<TeamViewModel> GetTeamPerson(int id)
+        public async Task<IEnumerable<TeamViewModel>> GetTeamPerson(int id)
         {
-            return _mapper.Map<IEnumerable<TeamViewModel>>(_teamRepository.GetTeamPerson(id));
+            return _mapper.Map<IEnumerable<TeamViewModel>>(await _teamRepository.GetTeamPerson(id));
         }
 
-        public IEnumerable<TeamViewModel> GetSearchTeamPerson(int id, string search)
+        public async Task<TeamViewModel> GetById(int id)
         {
-            return _mapper.Map<IEnumerable<TeamViewModel>>(_teamRepository.GetTeamPerson(id).Where(p => p.Name.Contains(search)));
-        }
-
-        public TeamViewModel GetById(int id)
-        {
-            return _mapper.Map<TeamViewModel>(_teamRepository.GetById(id));
+            return _mapper.Map<TeamViewModel>(await _teamRepository.GetById(id));
         }
 
         public void Update(TeamViewModel teamViewModel)
         {
+
+            var result = _teamRepository.GetTeamPerson(teamViewModel.PersonId).Result;
 
             string[] symbol = teamViewModel.Symbol.Split('/');
 
@@ -67,7 +63,7 @@ namespace GFut.Application.Services
 
             if (teamViewModel.Active)
             {
-                foreach (var item in _teamRepository.GetTeamPerson(teamViewModel.PersonId).Where(p => p.Active == true && p.Id != teamViewModel.Id))
+                foreach (var item in result.Where(p => p.Active == true && p.Id != teamViewModel.Id))
                 {
                     item.Active = false;
                     _teamRepository.Update(item);
@@ -77,13 +73,15 @@ namespace GFut.Application.Services
 
         public void Status(int id)
         {
-            Team team = _teamRepository.GetById(id);
+            Team team = _teamRepository.GetById(id).Result;
 
             team.Active = true;
 
             _teamRepository.Update(team);
 
-            List<Team> list = _teamRepository.GetTeamPerson(team.PersonId).Where(p => p.Id != team.Id).ToList();
+            var result =  _teamRepository.GetTeamPerson(team.PersonId).Result;
+
+            List<Team> list = result.Where(p => p.Id != team.Id).ToList();
 
             list.ForEach(m => m.Active = false);
 
@@ -93,20 +91,16 @@ namespace GFut.Application.Services
 
         public void Add(TeamViewModel teamViewModel)
         {
-            List<Team> list = _teamRepository.GetTeamPerson(teamViewModel.PersonId).ToList();
+            List<Team> list = _teamRepository.GetTeamPerson(teamViewModel.PersonId).Result.ToList();
 
             list.ForEach(m => m.Active = false);
             _teamRepository.UpdateRange(list);
 
-            var config = new ConfigurationBuilder()
-                .SetBasePath(_env.ContentRootPath)
-                .AddJsonFile("appsettings.json")
-                .Build();
-
+            var config = _configuration.GetValue<string>("Config:AtletaBase64");
 
             if (teamViewModel.Symbol == "")
             {
-                teamViewModel.Symbol = Divers.Base64ToImage(config.GetSection(key: "Config")["AtletaBase64"], "TEAM");
+                teamViewModel.Symbol = Divers.Base64ToImage(config, "TEAM");
             }
             else
             {
@@ -121,7 +115,7 @@ namespace GFut.Application.Services
 
         public void Remove(int id)
         {
-            Team team = _teamRepository.GetById(id);
+            Team team = _teamRepository.GetById(id).Result;
             team.State = false;
 
             _teamRepository.Update(team);

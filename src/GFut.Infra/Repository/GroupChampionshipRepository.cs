@@ -3,6 +3,8 @@ using GFut.Domain.Models;
 using GFut.Domain.Interfaces;
 using System.Linq;
 using GFut.Infra.Data.Context;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace GFut.Infra.Data.Repository
 {
@@ -15,14 +17,9 @@ namespace GFut.Infra.Data.Repository
 
         }
 
-        public override IQueryable<GroupChampionship> GetAll()
+        public override async Task<IEnumerable<GroupChampionship>> GetAll()
         {
-            return Db.GroupChampionships.Include(p => p.Subscription).ThenInclude(p => p.Team).OrderBy(p => p.GroupId);
-        }
-
-        public override GroupChampionship GetById(int id)
-        {
-            return Db.GroupChampionships.Where(p => p.Id == id).FirstOrDefault();
+            return await Db.GroupChampionships.Include(p => p.Subscription).ThenInclude(p => p.Team).OrderBy(p => p.GroupId).ToListAsync();
         }
     }
 }

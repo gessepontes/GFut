@@ -1,13 +1,13 @@
 ﻿using GFut.Application.ViewModels;
 using System;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GFut.Application.Interfaces
 {
     public interface IUserAppService : IDisposable
     {
         void SignUp(UserViewModel userViewModel);
-        PersonViewModel SignIn(UserViewModel userViewModel);
+        Task<PersonViewModel> SignIn(UserViewModel userViewModel);
         void UpdateUser(UserViewModel userViewModel);
     }
 }

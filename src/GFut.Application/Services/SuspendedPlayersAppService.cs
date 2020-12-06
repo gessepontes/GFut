@@ -3,10 +3,10 @@ using GFut.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using GFut.Application.ViewModels;
-using Microsoft.AspNetCore.Hosting;
 using System.Linq;
 using GFut.Domain.Models;
 using static GFut.Domain.Others.Enum;
+using System.Threading.Tasks;
 
 namespace GFut.Application.Services
 {
@@ -14,29 +14,27 @@ namespace GFut.Application.Services
     {
         private readonly IMatchPlayerChampionshipRepository _matchPlayerChampionshipsRepository;
         private readonly IChampionshipRepository _championshipRepository;
-        private readonly IHostingEnvironment _env;
 
 
         public SuspendedPlayersAppService(IMatchPlayerChampionshipRepository matchPlayerChampionshipsRepository,
-            IChampionshipRepository championshipRepository,
-            IHostingEnvironment env)
+            IChampionshipRepository championshipRepository)
         {
             _matchPlayerChampionshipsRepository = matchPlayerChampionshipsRepository;
             _championshipRepository = championshipRepository;
-
-            _env = env;
         }
 
-        public IEnumerable<SuspendedPlayersViewModel> GetSuspendedPlayersByChampionshipId(int id, int rodada)
+        public async Task<IEnumerable<SuspendedPlayersViewModel>> GetSuspendedPlayersByChampionshipId(int id, int rodada)
         {
 
             List<SuspendedPlayersViewModel> suspendedPlayersList = new List<SuspendedPlayersViewModel>();
 
-            var championship = _championshipRepository.GetById(id);
+            var championship = await _championshipRepository.GetById(id);
 
             rodada -= 1;
 
             List<MatchPlayerChampionship> partidasCartaoAmarelo, partidasCartaoVermelho;
+
+            var matchPlayerChampionships = await _matchPlayerChampionshipsRepository.GetAll();
 
             if (championship.RefereeType == RefereeType.Campo)
             {
@@ -44,7 +42,7 @@ namespace GFut.Application.Services
 
                 for (int i = 1; i <= rodada; i++)
                 {
-                    partidasCartaoAmarelo = _matchPlayerChampionshipsRepository.GetAll()
+                    partidasCartaoAmarelo = matchPlayerChampionships
                                         .Where(p => p.Card == CardType.Yellow || p.Card == CardType.YellowSecond || p.Card == CardType.RedYellow)
                                         .Where(s => s.MatchChampionship.Round == i && s.PlayerRegistration.Subscription.ChampionshipId == id).ToList();
 
@@ -82,7 +80,7 @@ namespace GFut.Application.Services
                         }
                     }
 
-                    partidasCartaoVermelho = _matchPlayerChampionshipsRepository.GetAll()
+                    partidasCartaoVermelho = matchPlayerChampionships
                                         .Where(p => p.Card == CardType.Red || p.Card == CardType.YellowSecond || p.Card == CardType.RedYellow)
                                         .Where(s => s.MatchChampionship.Round == i && s.PlayerRegistration.Subscription.ChampionshipId == id).ToList();
 
@@ -102,7 +100,7 @@ namespace GFut.Application.Services
             }
             else
             {
-                partidasCartaoVermelho = _matchPlayerChampionshipsRepository.GetAll()
+                partidasCartaoVermelho = matchPlayerChampionships
                                     .Where(p => p.Card == CardType.Red || p.Card == CardType.YellowSecond || p.Card == CardType.RedYellow)
                                     .Where(s => s.MatchChampionship.Round == rodada && s.PlayerRegistration.Subscription.ChampionshipId == id).ToList();
 

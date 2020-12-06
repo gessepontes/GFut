@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace GFut.Infra.Data.Repository
 {
@@ -24,14 +25,14 @@ namespace GFut.Infra.Data.Repository
             SaveChanges();
         }
 
-        public virtual TEntity GetById(int id)
+        public virtual async Task<TEntity> GetById(int id)
         {
-            return DbSet.Find(id);
+            return await DbSet.FindAsync(id);
         }
 
-        public virtual IQueryable<TEntity> GetAll()
+        public virtual async Task<IEnumerable<TEntity>> GetAll()
         {
-            return DbSet;
+            return await DbSet.ToListAsync();
         }
 
         public virtual void Update(TEntity obj)

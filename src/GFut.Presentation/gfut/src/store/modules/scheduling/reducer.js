@@ -1,9 +1,10 @@
 import produce from 'immer';
+import { format } from 'date-fns';
 
 const INITIAL_STATE = {
   scheduling: {
     id: 0,
-    date: new Date(),
+    date: format(new Date(),"yyyy-MM-dd"),
     horary: '',
     horaryId: '',
     fieldItemId: 0,

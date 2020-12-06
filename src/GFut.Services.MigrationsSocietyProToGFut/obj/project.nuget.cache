@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dgnBiRPdMpn30KZ2SsT2HWhayFVQfoGLxDftBdUTTm+EBydivRycwal16XvMjj45sjdiZfwV3sKF1st3rGHnxw==",
+  "dgSpecHash": "UyywXN7ypQPVwRKOXzo75VLAqK6GVlR7MMBdetZG0urfWH5PgzRFwO6q8hHCd4R3mAoOA2rGrvf4xjD0TKvlKw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Services.MigrationsSocietyProToGFut\\GFut.Services.MigrationsSocietyProToGFut.csproj",
+  "projectFilePath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Services.MigrationsSocietyProToGFut\\GFut.Services.MigrationsSocietyProToGFut.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gessepontes\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\gessepontes\\.nuget\\packages\\fluentvalidation\\9.3.0\\fluentvalidation.9.3.0.nupkg.sha512",

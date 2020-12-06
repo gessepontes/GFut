@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "a6tCHvyJaJfQq3+x3BsGwmlnI6Om9IM1iRYOFFlq1zNgOgowKOuz76wYFgLMPl27oJk/nJYZaAkGqJ4LlMIsOw==",
+  "dgSpecHash": "PMO+fKOKtmSKw9/YuC9oGNUUPdQf7oFO5YRewYMZKp0EXy99MDiT7RKxraP3OaBrjwhfKppu9ys96543c7+Zdw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Infra.Data.SocietyPro\\GFut.Infra.Data.SocietyPro.csproj",
+  "projectFilePath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Infra.Data.SocietyPro\\GFut.Infra.Data.SocietyPro.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gessepontes\\.nuget\\packages\\fluentvalidation\\9.3.0\\fluentvalidation.9.3.0.nupkg.sha512",
     "C:\\Users\\gessepontes\\.nuget\\packages\\fluentvalidation.aspnetcore\\9.3.0\\fluentvalidation.aspnetcore.9.3.0.nupkg.sha512",

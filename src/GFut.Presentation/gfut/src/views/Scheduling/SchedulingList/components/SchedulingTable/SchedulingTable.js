@@ -4,11 +4,15 @@ import MaterialTable from 'material-table';
 import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
 import { schedulingState } from '~/data';
+import { format } from 'date-fns';
 
 import DialogComponent from '~/components/DialogComponent';
 
 import { deleteSchedulingRequest, fetchSchedulingByIdRequest
 } from '~/store/modules/scheduling/actions';
+
+import { fetchHoraryFieldByTypeIdFieldItemRequest
+} from '~/store/modules/horaryField/actions';
 
 import moment from 'moment';
 
@@ -32,7 +36,18 @@ const SchedulingTable = props => {
   };
 
   const handleOnClickUpdate = (scheduling) => {
-    dispatch(fetchSchedulingByIdRequest(scheduling));
+    let data = {
+      type: scheduling.horaryType,
+      fieldItem: scheduling.horary.fieldItemId,
+      date: format(new Date(scheduling.date),"yyyy-MM-dd"),
+      horaryId: scheduling.horaryId
+    }
+
+    dispatch(fetchHoraryFieldByTypeIdFieldItemRequest(data));
+    
+    setTimeout(() => {
+      dispatch(fetchSchedulingByIdRequest(scheduling.id));  
+    }, 2000);
   };
 
   const schedulings = useSelector(state => state.scheduling.schedulings.map(o => ({...o, tableData: {}})));

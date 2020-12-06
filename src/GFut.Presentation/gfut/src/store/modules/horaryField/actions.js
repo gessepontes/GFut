@@ -130,6 +130,27 @@ export function fetchHoraryFieldByIdFieldFailure() {
   };
 }
 
+export function fetchHoraryFieldByTypeIdFieldItemRequest(data) {
+  return {
+    type: '@horaryField/FETCH_HORARY_FIELD_TYPE_ID_FIELD_ITEM_REQUEST',
+    payload: { data },
+  };
+}
+
+export function fetchHoraryFieldByTypeIdFieldItemSuccess(data) {
+  return {
+    type: '@horaryField/FETCH_HORARY_FIELD_TYPE_ID_FIELD_ITEM_SUCCESS',
+    payload: { data },
+  };
+}
+
+export function fetchHoraryFieldByTypeIdFieldItemFailure() {
+  return {
+    type: '@horaryField/FETCH_HORARY_FIELD_TYPE_ID_FIELD_ITEM_FAILURE',
+  };
+}
+
+
 export function horaryFieldBack() {
   return {
     type: '@horaryField/HORARY_FIELD_BACK',

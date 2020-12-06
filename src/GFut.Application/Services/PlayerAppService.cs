@@ -3,13 +3,13 @@ using GFut.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using GFut.Application.ViewModels;
 using GFut.Domain.Models;
 using System.Linq;
-using Microsoft.AspNetCore.Hosting;
 using GFut.Domain.Others;
 using Microsoft.Extensions.Configuration;
+using System.Threading.Tasks;
+
 
 namespace GFut.Application.Services
 {
@@ -17,24 +17,24 @@ namespace GFut.Application.Services
     {
         private readonly IPlayerRepository _playerRepository;
         private readonly IMapper _mapper;
-        private readonly IHostingEnvironment _env;
+        private readonly IConfiguration _configuration;
 
-
-        public PlayerAppService(IMapper mapper, IPlayerRepository playerRepository, IHostingEnvironment env)
+        public PlayerAppService(IMapper mapper, IPlayerRepository playerRepository, IConfiguration configuration)
         {
             _playerRepository = playerRepository;
             _mapper = mapper;
-            _env = env;
+            _configuration = configuration;
         }
 
-        public IEnumerable<PlayerViewModel> GetAll()
+        public async Task<IEnumerable<PlayerViewModel>> GetAll()
         {
-            return _playerRepository.GetAll().ProjectTo<PlayerViewModel>(_mapper.ConfigurationProvider);
+            var result = await _playerRepository.GetAll();
+            return result.Select(_mapper.Map<PlayerViewModel>);
         }
 
-        public PlayerViewModel GetById(int id)
+        public async Task<PlayerViewModel> GetById(int id)
         {
-            return _mapper.Map<PlayerViewModel>(_playerRepository.GetById(id));
+            return _mapper.Map<PlayerViewModel>(await _playerRepository.GetById(id));
         }
 
         public void Update(PlayerViewModel playerViewModel)
@@ -56,15 +56,11 @@ namespace GFut.Application.Services
         public void Add(PlayerViewModel playerViewModel)
         {
 
-            var config = new ConfigurationBuilder()
-                .SetBasePath(_env.ContentRootPath)
-                .AddJsonFile("appsettings.json")
-                .Build();
-
+            var config = _configuration.GetValue<string>("Config:AtletaBase64");
 
             if (playerViewModel.Picture == "")
             {
-                playerViewModel.Picture = Divers.Base64ToImage(config.GetSection(key: "Config")["AtletaBase64"], "PLAYER");
+                playerViewModel.Picture = Divers.Base64ToImage(config, "PLAYER");
             }
             else
             {
@@ -84,14 +80,14 @@ namespace GFut.Application.Services
             GC.SuppressFinalize(this);
         }
 
-        public IEnumerable<PlayerViewModel> GetPlayerTeam(int id)
+        public async Task<IEnumerable<PlayerViewModel>> GetPlayerTeam(int id)
         {
-            return _mapper.Map<IEnumerable<PlayerViewModel>>(_playerRepository.GetPlayerTeam(id));
+            return _mapper.Map<IEnumerable<PlayerViewModel>>(await _playerRepository.GetPlayerTeam(id));
         }
 
-        public IEnumerable<PlayerViewModel> GetPlayerTeamByIdSubscription(int id)
+        public async Task<IEnumerable<PlayerViewModel>> GetPlayerTeamByIdSubscription(int id)
         {
-            return _mapper.Map<IEnumerable<PlayerViewModel>>(_playerRepository.GetPlayerTeamByIdSubscription(id));
+            return _mapper.Map<IEnumerable<PlayerViewModel>>(await _playerRepository.GetPlayerTeamByIdSubscription(id));
         }
     }
 }

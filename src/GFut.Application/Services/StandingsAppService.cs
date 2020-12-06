@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using System.Linq;
 using GFut.Domain.Models;
 using static GFut.Domain.Others.Enum;
+using System.Threading.Tasks;
 
 namespace GFut.Application.Services
 {
@@ -17,41 +18,42 @@ namespace GFut.Application.Services
         private readonly ISubscriptionRepository _subscriptionRepository;
         private readonly IGroupChampionshipRepository _groupChampionshipRepository;
         private readonly IChampionshipRepository _championshipRepository;
-        private readonly IHostingEnvironment _env;
 
 
-        public StandingsAppService(IMatchChampionshipRepository matchChampionshipRepository, 
-            ISubscriptionRepository subscriptionRepository, 
+        public StandingsAppService(IMatchChampionshipRepository matchChampionshipRepository,
+            ISubscriptionRepository subscriptionRepository,
             IGroupChampionshipRepository groupChampionshipRepository,
-            IChampionshipRepository championshipRepository,
-            IHostingEnvironment env)
+            IChampionshipRepository championshipRepository)
         {
             _matchChampionshipRepository = matchChampionshipRepository;
             _subscriptionRepository = subscriptionRepository;
             _groupChampionshipRepository = groupChampionshipRepository;
             _championshipRepository = championshipRepository;
-            _env = env;
         }
 
-        public IEnumerable<List<StandingsViewModel>> GetStandingsByChampionshipId(int id)
+        public async Task<IEnumerable<List<StandingsViewModel>>> GetStandingsByChampionshipId(int id)
         {
 
             List<List<StandingsViewModel>> standingsList = new List<List<StandingsViewModel>>();
             List<Subscription> subscriptionList = new List<Subscription>();
 
-            var championship = _championshipRepository.GetById(id);
+            var championship = await _championshipRepository.GetById(id);
 
             if (championship.ChampionshipType == ChampionshipType.PontosCorridos)
             {
-                subscriptionList = _subscriptionRepository.GetAll().Where(p => p.ChampionshipId == id).OrderBy(p => p.Team.Name).ToList();
+                var result = await _subscriptionRepository.GetAll();
 
-                standingsList.Add(GetStandingsBySubscriptions(subscriptionList));
+                subscriptionList = result.Where(p => p.ChampionshipId == id).OrderBy(p => p.Team.Name).ToList();
+
+                standingsList.Add(await GetStandingsBySubscriptions(subscriptionList));
             }
             else
             {
+                var result = await _groupChampionshipRepository.GetAll();
+
                 foreach (Group group in (Group[])Enum.GetValues(typeof(Group)))
                 {
-                    var groupChampionship = _groupChampionshipRepository.GetAll().Where(p => p.Subscription.ChampionshipId == id && p.GroupId == group);
+                    var groupChampionship = result.Where(p => p.Subscription.ChampionshipId == id && p.GroupId == group);
 
                     foreach (var item in groupChampionship)
                     {
@@ -61,7 +63,7 @@ namespace GFut.Application.Services
                     if (subscriptionList.Count() == 0)
                         break;
 
-                    standingsList.Add(GetStandingsBySubscriptions(subscriptionList));
+                    standingsList.Add(await GetStandingsBySubscriptions(subscriptionList));
 
                     subscriptionList.Clear();
                 }
@@ -70,11 +72,14 @@ namespace GFut.Application.Services
             return standingsList;
         }
 
-        private List<StandingsViewModel> GetStandingsBySubscriptions(List<Subscription> subscriptionList) {
+        private async Task<List<StandingsViewModel>> GetStandingsBySubscriptions(List<Subscription> subscriptionList)
+        {
 
             List<StandingsViewModel> standingsList = new List<StandingsViewModel>();
 
             int points, played, won, drawn, lost, goalsFor, goalsAgainst, goalsDifference, percentage;
+
+            var result = await _matchChampionshipRepository.GetAll();
 
             foreach (var item in subscriptionList)
             {
@@ -88,7 +93,7 @@ namespace GFut.Application.Services
                 goalsDifference = 0;
                 percentage = 0;
 
-                List<MatchChampionship> _matchChampionshipList = _matchChampionshipRepository.GetAll().Where(p => p.Calculate == true && (p.HomeSubscriptionId == item.Id || p.GuestSubscriptionId == item.Id)).ToList();
+                List<MatchChampionship> _matchChampionshipList = result.Where(p => p.Calculate == true && (p.HomeSubscriptionId == item.Id || p.GuestSubscriptionId == item.Id)).ToList();
 
                 foreach (var item2 in _matchChampionshipList)
                 {

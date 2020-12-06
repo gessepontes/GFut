@@ -3,6 +3,8 @@ using GFut.Domain.Models;
 using GFut.Domain.Interfaces;
 using System.Linq;
 using GFut.Infra.Data.Context;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace GFut.Infra.Data.Repository
 {
@@ -15,27 +17,22 @@ namespace GFut.Infra.Data.Repository
 
         }
 
-        public override IQueryable<FieldItem> GetAll()
+        public override async Task<IEnumerable<FieldItem>> GetAll()
         {
-            return Db.FieldItens.Include(p => p.Field).OrderBy(p => p.Name);
+            return await Db.FieldItens.Include(p => p.Field).OrderBy(p => p.Name).ToListAsync();
         }
 
-        public override FieldItem GetById(int id)
+        public async Task<IEnumerable<FieldItem>> GetFieldItemByFieldId(int FieldId)
         {
-            return Db.FieldItens.Include(p => p.Field).Where(p => p.Id == id).FirstOrDefault();
+            return await Db.FieldItens.Include(p => p.Field).Where(p => p.FieldId == FieldId).ToListAsync() ;
         }
 
-        public IQueryable<FieldItem> GetFieldItemByFieldId(int FieldId)
+        public async Task<IEnumerable<FieldItem>> GetFieldItemByFieldIDrop(int FieldId)
         {
-            return Db.FieldItens.Include(p => p.Field).Where(p => p.FieldId == FieldId) ;
-        }
+            var listFieldItem = (from p in Db.FieldItens where p.FieldId == FieldId
+                                select new FieldItem { Id = p.Id, Name = p.Name }).ToListAsync();
 
-        public IQueryable<FieldItem> GetFieldItemByFieldIDrop(int FieldId)
-        {
-            var listFieldItem = from p in Db.FieldItens where p.FieldId == FieldId
-                                select new FieldItem { Id = p.Id, Name = p.Name };
-
-            return listFieldItem;
+            return await listFieldItem;
         }
     }
 }

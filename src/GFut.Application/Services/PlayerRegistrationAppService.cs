@@ -3,11 +3,11 @@ using GFut.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using GFut.Application.ViewModels;
 using GFut.Domain.Models;
-using Microsoft.AspNetCore.Hosting;
 using System.Linq;
+using System.Threading.Tasks;
+
 
 namespace GFut.Application.Services
 {
@@ -15,28 +15,28 @@ namespace GFut.Application.Services
     {
         private readonly IPlayerRegistrationRepository _playerRegistrationRepository;
         private readonly IMapper _mapper;
-        private readonly IHostingEnvironment _env;
 
-        public PlayerRegistrationAppService(IMapper mapper, IPlayerRegistrationRepository playerRegistrationRepository, IHostingEnvironment env)
+        public PlayerRegistrationAppService(IMapper mapper, IPlayerRegistrationRepository playerRegistrationRepository)
         {
             _playerRegistrationRepository = playerRegistrationRepository;
             _mapper = mapper;
-            _env = env;
         }
 
-        public IEnumerable<PlayerRegistrationViewModel> GetAll()
+        public async Task<IEnumerable<PlayerRegistrationViewModel>> GetAll()
         {
-            return _playerRegistrationRepository.GetAll().ProjectTo<PlayerRegistrationViewModel>(_mapper.ConfigurationProvider);
+            var result = await _playerRegistrationRepository.GetAll();
+            return result.Select(_mapper.Map<PlayerRegistrationViewModel>);
         }
 
-        public IEnumerable<PlayerRegistrationViewModel> GetPlayerRegistrationByChampionshipId(int id)
+        public async Task<IEnumerable<PlayerRegistrationViewModel>> GetPlayerRegistrationByChampionshipId(int id)
         {
-            return _playerRegistrationRepository.GetAll().Where(p => p.Subscription.ChampionshipId == id).ProjectTo<PlayerRegistrationViewModel>(_mapper.ConfigurationProvider);
+            var result = await _playerRegistrationRepository.GetAll();
+            return result.Where(p => p.Subscription.ChampionshipId == id).Select(_mapper.Map<PlayerRegistrationViewModel>);
         }
 
-        public PlayerRegistrationViewModel GetById(int id)
+        public async Task<PlayerRegistrationViewModel> GetById(int id)
         {
-            return _mapper.Map<PlayerRegistrationViewModel>(_playerRegistrationRepository.GetById(id));
+            return _mapper.Map<PlayerRegistrationViewModel>(await _playerRegistrationRepository.GetById(id));
         }
 
         public void Update(PlayerRegistrationViewModel playerRegistrationViewModel)

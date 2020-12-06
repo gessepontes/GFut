@@ -1,11 +1,12 @@
 ﻿using GFut.Application.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GFut.Application.Interfaces
 {
     public interface IStandingsAppService : IDisposable
     {
-        IEnumerable<List<StandingsViewModel>> GetStandingsByChampionshipId(int id);
+        Task<IEnumerable<List<StandingsViewModel>>> GetStandingsByChampionshipId(int id);
     }
 }

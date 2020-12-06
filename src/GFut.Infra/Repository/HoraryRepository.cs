@@ -3,6 +3,8 @@ using GFut.Domain.Models;
 using GFut.Domain.Interfaces;
 using System.Linq;
 using GFut.Infra.Data.Context;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace GFut.Infra.Data.Repository
 {
@@ -15,19 +17,21 @@ namespace GFut.Infra.Data.Repository
 
         }
 
-        public override IQueryable<Horary> GetAll()
+        public override async Task<IEnumerable<Horary>> GetAll()
         {
-            return Db.Horarys.Include(p => p.FieldItem).OrderBy(p => p.FieldItem.Name).AsQueryable();
+            return await Db.Horarys.Include(p => p.FieldItem).OrderBy(p => p.FieldItem.Name).ToListAsync();
         }
 
-        public override Horary GetById(int id)
+        public async Task<IEnumerable<Horary>> GetAllHorary()
         {
-            return Db.Horarys.Where(p => p.Id == id).FirstOrDefault();
+            var _data = await Db.Horarys.Include(p => p.FieldItem).OrderBy(p => p.FieldItem.Name).ToListAsync();
+            return _data;
         }
 
-        public IQueryable<Horary> GetHoraryByFieldId(int FieldId)
+        public async Task<IEnumerable<Horary>> GetHoraryByFieldId(int fieldId)
         {
-            return Db.Horarys.Include(p => p.FieldItem).Where(p => p.FieldItem.FieldId == FieldId);
+            var _data = await Db.Horarys.Include(p => p.FieldItem).Where(p => p.FieldItem.FieldId == fieldId).ToListAsync();
+            return _data;
         }
     }
 }

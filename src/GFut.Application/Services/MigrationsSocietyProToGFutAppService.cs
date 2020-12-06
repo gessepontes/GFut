@@ -9,18 +9,14 @@ namespace GFut.Application.Services
     public class MigrationsSocietyProToGFutAppService : IMigrationsSocietyProToGFutAppService
     {
         private readonly IMigrationsSocietyProToGFutRepository  _migrationsSocietyProToGFutRepository;
-        private readonly IPersonRepository _personRepository;
         private readonly IMapper _mapper;
-        private readonly IHostingEnvironment _env;
 
         public MigrationsSocietyProToGFutAppService(
             IMapper mapper,
-            IMigrationsSocietyProToGFutRepository migrationsSocietyProToGFutRepository,
-            IHostingEnvironment env)
+            IMigrationsSocietyProToGFutRepository migrationsSocietyProToGFutRepository)
         {
             _migrationsSocietyProToGFutRepository = migrationsSocietyProToGFutRepository;
             _mapper = mapper;
-            _env = env;
         }
 
         public void Dispose()
@@ -28,29 +24,10 @@ namespace GFut.Application.Services
             GC.SuppressFinalize(this);
         }
 
-        public void GetCampeonato()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void GetCampo()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void GetJogador()
-        {
-            throw new NotImplementedException();
-        }
 
         public void GetPessoa()
         {
             _migrationsSocietyProToGFutRepository.GetPessoa();
-        }
-
-        public void GetTime()
-        {
-            throw new NotImplementedException();
         }
     }
 }

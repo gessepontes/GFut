@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using GFut.Application.Interfaces;
 using GFut.Application.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -18,26 +19,26 @@ namespace GFut.Services.Api.Controllers
         }
 
         [HttpGet(Name = "GetChampionship")]
-        public IEnumerable<ChampionshipViewModel> Get()
+        public async Task<IEnumerable<ChampionshipViewModel>> Get()
         {
-            return _championshipAppService.GetAll();
+            return await _championshipAppService.GetAll();
         }
 
         [HttpGet("Group/")]
-        public IEnumerable<ChampionshipViewModel> GetGroupChampionship()
+        public async Task<IEnumerable<ChampionshipViewModel>> GetGroupChampionship()
         {
-            return _championshipAppService.GetGroupChampionship();
+            return await _championshipAppService.GetGroupChampionship();
         }
 
         [AllowAnonymous]
         [HttpGet("{id}", Name = "GetChampionshipById")]
-        public ChampionshipViewModel Get(int id)
+        public async Task<ChampionshipViewModel> Get(int id)
         {
-            return _championshipAppService.GetById(id);
+            return await _championshipAppService.GetById(id);
         }
 
         [HttpPut(Name = "PutChampionship")]
-        public void Put([FromBody]ChampionshipViewModel championshipViewModel)
+        public void Put([FromBody] ChampionshipViewModel championshipViewModel)
         {
             _championshipAppService.Update(championshipViewModel);
         }

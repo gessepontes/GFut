@@ -6,28 +6,27 @@ using GFut.Application.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using System.Linq;
 using GFut.Domain.Models;
+using System.Threading.Tasks;
 
 namespace GFut.Application.Services
 {
     public class TopScorersAppService : ITopScorersAppService
     {
         private readonly IMatchPlayerChampionshipRepository _matchPlayerChampionshipsRepository;
-        private readonly IHostingEnvironment _env;
 
 
-        public TopScorersAppService(IMatchPlayerChampionshipRepository matchPlayerChampionshipsRepository,
-            IHostingEnvironment env)
+        public TopScorersAppService(IMatchPlayerChampionshipRepository matchPlayerChampionshipsRepository)
         {
             _matchPlayerChampionshipsRepository = matchPlayerChampionshipsRepository;
-            _env = env;
         }
 
-        public IEnumerable<TopScorersViewModel> GetTopScorersByChampionshipId(int id)
+        public async Task<IEnumerable<TopScorersViewModel>> GetTopScorersByChampionshipId(int id)
         {
 
             List<TopScorersViewModel> topScorersList = new List<TopScorersViewModel>();
+            var resultMatch = await _matchPlayerChampionshipsRepository.GetAll();
 
-            var result = from o in _matchPlayerChampionshipsRepository.GetAll()
+            var result = from o in resultMatch
                          where o.PlayerRegistration.Subscription.ChampionshipId  == id
                          let k = new
                          {

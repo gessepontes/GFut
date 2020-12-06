@@ -3,35 +3,43 @@ using GFut.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using GFut.Application.ViewModels;
 using GFut.Domain.Models;
 using System.Linq;
 using Microsoft.AspNetCore.Hosting;
+using System.Threading.Tasks;
+using static GFut.Domain.Others.Enum;
 
 namespace GFut.Application.Services
 {
     public class HoraryAppService : IHoraryAppService
     {
         private readonly IHoraryRepository _horaryRepository;
+        private readonly IHoraryExtraRepository _horaryExtraRepository;
+        private readonly ISchedulingRepository _schedulingRepository;
+
         private readonly IMapper _mapper;
-        private readonly IHostingEnvironment _env;
 
-        public HoraryAppService(IMapper mapper, IHoraryRepository fieldRepository, IHostingEnvironment env)
+        public HoraryAppService(IMapper mapper,
+            IHoraryRepository horaryRepository,
+            IHoraryExtraRepository horaryExtraRepository,
+            ISchedulingRepository schedulingRepository)
         {
-            _horaryRepository = fieldRepository;
+            _horaryRepository = horaryRepository;
+            _horaryExtraRepository = horaryExtraRepository;
+            _schedulingRepository = schedulingRepository;
             _mapper = mapper;
-            _env = env;
         }
 
-        public IEnumerable<HoraryViewModel> GetAll()
+        public async Task<IEnumerable<HoraryViewModel>> GetAll()
         {
-            return _horaryRepository.GetAll().ProjectTo<HoraryViewModel>(_mapper.ConfigurationProvider);
+            var result = await _horaryRepository.GetAllHorary();
+            return result.Select(_mapper.Map<HoraryViewModel>);
         }
 
-        public HoraryViewModel GetById(int id)
+        public async Task<HoraryViewModel> GetById(int id)
         {
-            return _mapper.Map<HoraryViewModel>(_horaryRepository.GetById(id));
+            return _mapper.Map<HoraryViewModel>(await _horaryRepository.GetById(id));
         }
 
         public void Update(HoraryViewModel fieldViewModel)
@@ -54,14 +62,68 @@ namespace GFut.Application.Services
             _horaryRepository.Add(_mapper.Map<Horary>(fieldViewModel));
         }
 
-        public IEnumerable<HoraryViewModel> GetSearchHorary(string search)
+        public async Task<IEnumerable<HoraryViewModel>> GetHoraryByFieldId(int fieldId)
         {
-            return _mapper.Map<IEnumerable<HoraryViewModel>>(_horaryRepository.GetAll().Where(p => p.FieldItem.Name.Contains(search)));
+            var result = await _horaryRepository.GetHoraryByFieldId(fieldId);
+            return result.Select(_mapper.Map<HoraryViewModel>);
         }
 
-        public IEnumerable<HoraryViewModel> GetHoraryByFieldId(int FieldId)
+        public async Task<IEnumerable<HoraryViewModel>> GetHoraryDrop(int type, int fieldItem, DateTime date, int horaryId)
         {
-            return _mapper.Map<IEnumerable<HoraryViewModel>>(_horaryRepository.GetHoraryByFieldId(FieldId));
+            List<HoraryViewModel> list = new List<HoraryViewModel>();
+            var result = await _schedulingRepository.GetAll();
+
+
+            if (type == 1)
+            {
+                int dayOfWeek = (int)date.DayOfWeek;
+
+                var horary = await _horaryRepository.GetAllHorary();
+
+                foreach (var item in horary.Where(p => p.FieldItemId == fieldItem && p.DayWeek == dayOfWeek))
+                {
+                    Scheduling scheduling = result.Where(p => p.Date == date && p.HoraryType == HoraryType.Default && p.HoraryId == item.Id).FirstOrDefault();
+
+                    if (scheduling == null)
+                    {
+                        var newItem = new HoraryViewModel { Hour = item.Hour, Id = item.Id };
+                        list.Add(newItem);
+                    }
+                    else
+                    {
+                        if (horaryId == scheduling.HoraryId)
+                        {
+                            var newItem = new HoraryViewModel { Hour = item.Hour, Id = item.Id };
+                            list.Add(newItem);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                var horaryExtra = await _horaryExtraRepository.GetAll();
+
+                foreach (var item in horaryExtra.Where(p => p.FieldItemId == fieldItem && p.Date == date))
+                {
+                    Scheduling scheduling = result.Where(p => p.Date == date && p.HoraryType == HoraryType.Extra && p.HoraryId == item.Id).FirstOrDefault();
+
+                    if (scheduling == null)
+                    {
+                        var newItem = new HoraryViewModel { Hour = item.Hour, Id = item.Id };
+                        list.Add(newItem);
+                    }
+                    else
+                    {
+                        if (horaryId == scheduling.HoraryId)
+                        {
+                            var newItem = new HoraryViewModel { Hour = item.Hour, Id = item.Id };
+                            list.Add(newItem);
+                        }
+                    }
+                }
+            }
+
+            return list.OrderBy(p => p.Hour).Select(_mapper.Map<HoraryViewModel>);
         }
     }
 }

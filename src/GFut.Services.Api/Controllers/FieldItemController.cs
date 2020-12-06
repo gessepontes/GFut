@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using GFut.Application.Interfaces;
 using GFut.Application.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -17,24 +18,22 @@ namespace GFut.Services.Api.Controllers
             _fieldAppService = fieldAppService;
         }
 
-        [AllowAnonymous]
         [HttpGet(Name = "GetFieldItem")]
-        public IEnumerable<FieldItemViewModel> Get()
+        public async Task<IEnumerable<FieldItemViewModel>> Get()
         {
-            return _fieldAppService.GetAll();
+            return await _fieldAppService.GetAll();
         }
 
         [HttpGet("field/{FieldId}", Name = "GetSearchFieldItem")]
-        public IEnumerable<FieldItemViewModel> GetFieldItemByFieldId(int FieldId)
+        public async Task<IEnumerable<FieldItemViewModel>> GetFieldItemByFieldId(int FieldId)
         {
-            return _fieldAppService.GetFieldItemByFieldId(FieldId);
+            return await _fieldAppService.GetFieldItemByFieldId(FieldId);
         }
 
-        [AllowAnonymous]
         [HttpGet("{id}", Name = "GetFieldItemById")]
-        public FieldItemViewModel Get(int id)
+        public async Task<FieldItemViewModel> Get(int id)
         {
-            return _fieldAppService.GetById(id);
+            return await _fieldAppService.GetById(id);
         }
 
         [HttpPost]

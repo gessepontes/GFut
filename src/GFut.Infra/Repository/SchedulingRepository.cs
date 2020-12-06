@@ -3,6 +3,8 @@ using GFut.Domain.Models;
 using GFut.Domain.Interfaces;
 using System.Linq;
 using GFut.Infra.Data.Context;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace GFut.Infra.Data.Repository
 {
@@ -15,21 +17,21 @@ namespace GFut.Infra.Data.Repository
 
         }
 
-        public override IQueryable<Scheduling> GetAll()
+        public override async Task<IEnumerable<Scheduling>> GetAll()
         {
-            return Db.Schedulings.Include(p => p.Person)
+            return await Db.Schedulings.Include(p => p.Person)
                 .Include(p => p.Horary).ThenInclude(p => p.FieldItem)
                 .Include(p => p.HoraryExtra).ThenInclude(p => p.FieldItem)
-                .OrderBy(p => p.Person.Name);
+                .OrderBy(p => p.Person.Name).ToListAsync();
         }
 
-        public IQueryable<Scheduling> GetSchedulingByFieldId(int FieldId)
+    public async Task<IEnumerable<Scheduling>> GetSchedulingByFieldId(int FieldId)
         {
-            return Db.Schedulings
+            return await Db.Schedulings
                 .Include(p => p.Horary).ThenInclude(p => p.FieldItem)
                 .Include(p => p.HoraryExtra).ThenInclude(p => p.FieldItem)
                 .Where(p => p.Horary.FieldItem.FieldId == FieldId || p.HoraryExtra.FieldItem.FieldId == FieldId)
-                .OrderBy(p => p.Person.Name);
+                .OrderBy(p => p.Person.Name).ToListAsync();
         }
     }
 }

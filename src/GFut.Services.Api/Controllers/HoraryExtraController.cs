@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using GFut.Application.Interfaces;
 using GFut.Application.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -18,27 +19,21 @@ namespace GFut.Services.Api.Controllers
         }
 
         [HttpGet(Name = "GetHoraryExtra")]
-        public IEnumerable<HoraryExtraViewModel> Get()
+        public async Task<IEnumerable<HoraryExtraViewModel>> Get()
         {
-            return _horaryAppService.GetAll();
-        }
-
-        [HttpGet("search/{search}", Name = "GetSearchHoraryExtra")]
-        public IEnumerable<HoraryExtraViewModel> GetSearchHoraryExtra(string search)
-        {
-            return _horaryAppService.GetSearchHoraryExtra(search);
+            return await _horaryAppService.GetAll();
         }
 
         [HttpGet("{id}", Name = "GetHoraryExtraById")]
-        public HoraryExtraViewModel Get(int id)
+        public async Task<HoraryExtraViewModel> Get(int id)
         {
-            return _horaryAppService.GetById(id);
+            return await _horaryAppService.GetById(id);
         }
 
         [HttpGet("field/{FieldId}", Name = "GetHoraryExtraByFieldId")]
-        public IEnumerable<HoraryExtraViewModel> GetHoraryExtraByFieldId(int FieldId)
+        public async Task<IEnumerable<HoraryExtraViewModel>> GetHoraryExtraByFieldId(int FieldId)
         {
-            return _horaryAppService.GetHoraryExtraByFieldId(FieldId);
+            return await _horaryAppService.GetHoraryExtraByFieldId(FieldId);
         }
 
         [HttpPost]

@@ -23,12 +23,6 @@ namespace GFut.Application.AutoMapper
             CreateMap<PlayerRegistrationViewModel,PlayerRegistration>().MaxDepth(1);
             CreateMap<GroupChampionshipViewModel, GroupChampionship>().MaxDepth(1);
             CreateMap<MatchChampionshipViewModel, MatchChampionship>().MaxDepth(1);
-
-
-            //CreateMap<PersonViewModel, RegisterNewPersonCommand>()
-            //    .ConstructUsing(c => new RegisterNewPersonCommand(c.Name, c.Email, c.BirthDate));
-            //CreateMap<PersonViewModel, UpdateCustomerCommand>()
-            //    .ConstructUsing(c => new UpdateCustomerCommand(c.Id, c.Name, c.Email, c.BirthDate));
         }
     }
 }

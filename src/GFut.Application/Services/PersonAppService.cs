@@ -3,13 +3,13 @@ using GFut.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using GFut.Application.ViewModels;
 using GFut.Domain.Models;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using GFut.Domain.Others;
 using System.Linq;
+using System.Threading.Tasks;
+using static GFut.Domain.Others.Enum;
 
 namespace GFut.Application.Services
 {
@@ -18,54 +18,59 @@ namespace GFut.Application.Services
         private readonly IPersonRepository _personRepository;
         private readonly IPersonProfileRepository _personProfileRepository;
         private readonly IMapper _mapper;
-        private readonly IHostingEnvironment _env;
+        private readonly IConfiguration _configuration;
 
 
-        public PersonAppService(IMapper mapper, IPersonRepository personRepository, IPersonProfileRepository personProfileRepository, IHostingEnvironment env)
+        public PersonAppService(IMapper mapper, IPersonRepository personRepository, IPersonProfileRepository personProfileRepository, IConfiguration configuration)
         {
             _personRepository = personRepository;
             _personProfileRepository = personProfileRepository;
             _mapper = mapper;
-            _env = env;
+            _configuration = configuration;
         }
 
-        public IEnumerable<PersonViewModel> GetAll()
+        public async Task<IEnumerable<PersonViewModel>> GetAll()
         {
-            return _personRepository.GetAll().ProjectTo<PersonViewModel>(_mapper.ConfigurationProvider);
+            var result = await _personRepository.GetAll();
+
+            result.ToList().ForEach(p => p.Password = "");
+
+            return result.Select(_mapper.Map<PersonViewModel>);
         }
 
-        public IEnumerable<PersonViewModel> GetPersonChampionshipDrop()
+        public async Task<IEnumerable<PersonViewModel>> GetPersonChampionshipDrop()
         {
-            return _personRepository.GetPersonChampionshipDrop().ProjectTo<PersonViewModel>(_mapper.ConfigurationProvider);
+            var result = await _personRepository.GetPersonChampionshipDrop();
+            return result.Select(_mapper.Map<PersonViewModel>); 
         }
 
-        public IEnumerable<PersonViewModel> GetPersonFieldDrop()
+        public async Task<IEnumerable<PersonViewModel>> GetPersonFieldDrop()
         {
-            return _personRepository.GetPersonFieldDrop().ProjectTo<PersonViewModel>(_mapper.ConfigurationProvider);
+            var result = await _personRepository.GetPersonFieldDrop();
+            return result.Select(_mapper.Map<PersonViewModel>);
         }
 
-        public IEnumerable<PersonViewModel> GetPersonAllDrop()
+        public async Task<IEnumerable<PersonViewModel>> GetPersonAllDrop()
         {
-            return _personRepository.GetPersonAllDrop().ProjectTo<PersonViewModel>(_mapper.ConfigurationProvider);
+            var result = await _personRepository.GetPersonAllDrop();
+            return result.Select(_mapper.Map<PersonViewModel>);
         }
 
-        public PersonViewModel GetById(int id)
+        public async Task<PersonViewModel> GetById(int id)
         {
-            return _mapper.Map<PersonViewModel>(_personRepository.GetById(id));
+            return _mapper.Map<PersonViewModel>(await _personRepository.GetById(id));
         }
 
         public void Register(PersonViewModel personViewModel)
         {
-            var config = new ConfigurationBuilder()
-                .SetBasePath(_env.ContentRootPath)
-                .AddJsonFile("appsettings.json")
-                .Build();
+            var config = _configuration.GetValue<string>("Config:AtletaBase64");
+
 
             personViewModel.Password = Divers.GenerateMD5(personViewModel.Password);
 
             if (personViewModel.Picture == "")
             {
-                personViewModel.Picture = Divers.Base64ToImage(config.GetSection(key: "Config")["AtletaBase64"], "PERSON");
+                personViewModel.Picture = Divers.Base64ToImage(config, "PERSON");
             }
             else
             {
@@ -80,7 +85,7 @@ namespace GFut.Application.Services
                 PersonProfile _personProfile = new PersonProfile
                 {
                     PersonId = _person.Id,
-                    ProfileType = item
+                    ProfileType = (ProfileType)item
                 };
 
                 _personProfileRepository.Add(_personProfile);
@@ -92,6 +97,8 @@ namespace GFut.Application.Services
 
         public void Update(PersonViewModel personViewModel)
         {
+            var result = _personProfileRepository.GetAll().Result;
+
             string[] picture = personViewModel.Picture.Split('/');
 
             if (picture[0] != "data:image")
@@ -110,7 +117,7 @@ namespace GFut.Application.Services
             Person _person = _mapper.Map<Person>(personViewModel);
             _personRepository.Update(_person);
 
-            List<PersonProfile> personProfilesList = _personProfileRepository.GetAll().Where(p => p.PersonId == personViewModel.Id).ToList();
+            List<PersonProfile> personProfilesList = result.Where(p => p.PersonId == personViewModel.Id).ToList();
             _personProfileRepository.RemoveRange(personProfilesList);
 
             foreach (var item in personViewModel.ProfileType)
@@ -118,7 +125,7 @@ namespace GFut.Application.Services
                 PersonProfile _personProfile = new PersonProfile
                 {
                     PersonId = _person.Id,
-                    ProfileType = item
+                    ProfileType = (ProfileType)item
                 };
 
                 _personProfileRepository.Add(_personProfile);
@@ -130,11 +137,12 @@ namespace GFut.Application.Services
 
         public void Remove(int id)
         {
-            Person _person = _personRepository.GetById(id);
+            Person _person = _personRepository.GetById(id).Result;
+            var result = _personProfileRepository.GetAll().Result;
 
-            List<PersonProfile> personProfilesList = _personProfileRepository.GetAll().Where(p => p.PersonId == _person.Id).ToList();
+            List<PersonProfile> personProfilesList = result.Where(p => p.PersonId == _person.Id).ToList();
             _personProfileRepository.RemoveRange(personProfilesList);
-            
+
             _personRepository.Remove(id);
 
             //var removeCommand = new RemoveCustomerCommand(id);

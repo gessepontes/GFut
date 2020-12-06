@@ -1,6 +1,7 @@
 ﻿using GFut.Application.Interfaces;
 using GFut.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace GFut.Services.Api.Controllers
 {
@@ -22,9 +23,9 @@ namespace GFut.Services.Api.Controllers
         }
 
         [HttpPost("signin")]
-        public PersonViewModel SignIn([FromBody]UserViewModel userViewModel)
+        public async Task<PersonViewModel> SignIn([FromBody]UserViewModel userViewModel)
         {
-            return _userAppService.SignIn(userViewModel);
+            return await _userAppService.SignIn(userViewModel);
         }
 
         [HttpPut(Name = "PutUser")]

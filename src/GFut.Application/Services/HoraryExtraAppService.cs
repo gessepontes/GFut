@@ -1,15 +1,13 @@
-﻿using GFut.Application.Interfaces;
+﻿using AutoMapper;
+using GFut.Application.Interfaces;
+using GFut.Application.ViewModels;
 using GFut.Domain.Interfaces;
+using GFut.Domain.Models;
+using Microsoft.AspNetCore.Hosting;
 using System;
 using System.Collections.Generic;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using GFut.Application.ViewModels;
-using GFut.Domain.Models;
 using System.Linq;
-using GFut.Domain.Others;
-using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Hosting;
+using System.Threading.Tasks;
 
 namespace GFut.Application.Services
 {
@@ -17,23 +15,22 @@ namespace GFut.Application.Services
     {
         private readonly IHoraryExtraRepository _horaryExtraRepository;
         private readonly IMapper _mapper;
-        private readonly IHostingEnvironment _env;
 
-        public HoraryExtraAppService(IMapper mapper, IHoraryExtraRepository fieldRepository, IHostingEnvironment env)
+        public HoraryExtraAppService(IMapper mapper, IHoraryExtraRepository horaryExtraRepository)
         {
-            _horaryExtraRepository = fieldRepository;
+            _horaryExtraRepository = horaryExtraRepository;
             _mapper = mapper;
-            _env = env;
         }
 
-        public IEnumerable<HoraryExtraViewModel> GetAll()
+        public async Task<IEnumerable<HoraryExtraViewModel>> GetAll()
         {
-            return _horaryExtraRepository.GetAll().ProjectTo<HoraryExtraViewModel>(_mapper.ConfigurationProvider);
+            var result = await _horaryExtraRepository.GetAll();
+            return result.Select(_mapper.Map<HoraryExtraViewModel>);
         }
 
-        public HoraryExtraViewModel GetById(int id)
+        public async Task<HoraryExtraViewModel> GetById(int id)
         {
-            return _mapper.Map<HoraryExtraViewModel>(_horaryExtraRepository.GetById(id));
+            return _mapper.Map<HoraryExtraViewModel>(await _horaryExtraRepository.GetById(id));
         }
 
         public void Update(HoraryExtraViewModel fieldViewModel)
@@ -56,14 +53,10 @@ namespace GFut.Application.Services
             _horaryExtraRepository.Add(_mapper.Map<HoraryExtra>(fieldViewModel));
         }
 
-        public IEnumerable<HoraryExtraViewModel> GetSearchHoraryExtra(string search)
+        public async Task<IEnumerable<HoraryExtraViewModel>> GetHoraryExtraByFieldId(int FieldId)
         {
-            return _mapper.Map<IEnumerable<HoraryExtraViewModel>>(_horaryExtraRepository.GetAll().Where(p => p.FieldItem.Name.Contains(search)));
-        }
-
-        public IEnumerable<HoraryExtraViewModel> GetHoraryExtraByFieldId(int FieldId)
-        {
-            return _mapper.Map<IEnumerable<HoraryExtraViewModel>>(_horaryExtraRepository.GetHoraryExtraByFieldId(FieldId));
+            var result = await _horaryExtraRepository.GetAll();
+            return _mapper.Map<IEnumerable<HoraryExtraViewModel>>(await _horaryExtraRepository.GetHoraryExtraByFieldId(FieldId));
         }
     }
 }

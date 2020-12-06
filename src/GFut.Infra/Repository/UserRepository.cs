@@ -6,6 +6,7 @@ using GFut.Infra.Data.Context;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace GFut.Infra.Data.Repository
 {
@@ -36,9 +37,9 @@ namespace GFut.Infra.Data.Repository
             Db.SaveChanges();
         }
 
-        public Person SignIn(User user)
+        public async Task<Person> SignIn(User user)
         {
-            var person = Db.People.Include(t => t.Teams).Include(p => p.PersonProfiles).FirstOrDefault(x => x.Email == user.Email && x.Password == user.Password);
+            var person = await Db.People.Include(t => t.Teams).Include(p => p.PersonProfiles).FirstOrDefaultAsync(x => x.Email == user.Email && x.Password == user.Password);
 
             if (person == null)
                 return null;

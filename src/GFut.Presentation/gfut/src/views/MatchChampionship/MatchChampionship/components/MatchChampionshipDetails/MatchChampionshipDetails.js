@@ -149,7 +149,8 @@ const MatchChampionshipDetails = props => {
               md={3}
               xs={12}
             >
-               <Input name="fieldId" label="Local" onChange={e => handleChange(e)}
+               <Input name="fieldId" label="Local" 
+                onChange={e => handleChange(e)}
                 required                              
                 select
                 SelectProps={{ native: true }}

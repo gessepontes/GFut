@@ -76,7 +76,7 @@ const PersonDetails = props => {
               md={6}
               xs={12}
             >             
-              <InputMaskPhone required name="phone" label="Celular"/>
+              <InputMaskPhone name="phone" label="Celular"/>
             </Grid>
             <Grid
               item

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using GFut.Application.Interfaces;
 using GFut.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -16,35 +17,30 @@ namespace GFut.Services.Api.Controllers
             _playerAppService = playerAppService;
         }
 
-        // GET: api/Player
         [HttpGet(Name = "GetPlayerAll")]
-        public IEnumerable<PlayerViewModel> Get()
+        public async Task<IEnumerable<PlayerViewModel>> Get()
         {
-            return _playerAppService.GetAll();
+            return await _playerAppService.GetAll();
         }
 
-        // GET: api/Player/5
         [HttpGet("{id}", Name = "GetPlayer")]
-        public PlayerViewModel Get(int id)
+        public async Task<PlayerViewModel> Get(int id)
         {
-            return _playerAppService.GetById(id);
+            return await _playerAppService.GetById(id);
         }
 
-        // POST: api/Player
         [HttpPost]
         public void Post([FromBody] PlayerViewModel playerViewModel)
         {
             _playerAppService.Add(playerViewModel);
         }
 
-        // PUT: api/Player/5
         [HttpPut]
         public void Put([FromBody] PlayerViewModel playerViewModel)
         {
             _playerAppService.Update(playerViewModel);
         }
 
-        // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
@@ -52,15 +48,15 @@ namespace GFut.Services.Api.Controllers
         }
 
         [HttpGet("idTeam/{id}", Name = "GetPlayerTeam")]
-        public IEnumerable<PlayerViewModel> GetPlayerTeam(int id)
+        public async Task<IEnumerable<PlayerViewModel>> GetPlayerTeam(int id)
         {
-            return _playerAppService.GetPlayerTeam(id);
+            return await _playerAppService.GetPlayerTeam(id);
         }
 
         [HttpGet("Subscription/{IdSubscription}", Name = "GetPlayerTeamByIdSubscription")]
-        public IEnumerable<PlayerViewModel> GetPlayerTeamByIdSubscription(int IdSubscription)
+        public async Task<IEnumerable<PlayerViewModel>> GetPlayerTeamByIdSubscription(int IdSubscription)
         {
-            return _playerAppService.GetPlayerTeamByIdSubscription(IdSubscription);
+            return await _playerAppService.GetPlayerTeamByIdSubscription(IdSubscription);
         }
     }
 }

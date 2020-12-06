@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using GFut.Application.Interfaces;
 using GFut.Application.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -18,27 +19,21 @@ namespace GFut.Services.Api.Controllers
         }
 
         [HttpGet(Name = "GetScheduling")]
-        public IEnumerable<SchedulingViewModel> Get()
+        public async Task<IEnumerable<SchedulingViewModel>> Get()
         {
-            return _schedulingAppService.GetAll();
-        }
-
-        [HttpGet("search/{search}", Name = "GetSearchScheduling")]
-        public IEnumerable<SchedulingViewModel> GetSearchScheduling(string search)
-        {
-            return _schedulingAppService.GetSearchScheduling(search);
+            return await _schedulingAppService.GetAll();
         }
 
         [HttpGet("{id}", Name = "GetSchedulingById")]
-        public SchedulingViewModel Get(int id)
+        public async Task<SchedulingViewModel> Get(int id)
         {
-            return _schedulingAppService.GetById(id);
+            return await _schedulingAppService.GetById(id);
         }
 
         [HttpGet("field/{FieldId}", Name = "GetSchedulingByFieldId")]
-        public IEnumerable<SchedulingViewModel> GetSchedulingByFieldId(int FieldId)
+        public async Task<IEnumerable<SchedulingViewModel>> GetSchedulingByFieldId(int FieldId)
         {
-            return _schedulingAppService.GetSchedulingByFieldId(FieldId);
+            return await _schedulingAppService.GetSchedulingByFieldId(FieldId);
         }
 
         [HttpPost]

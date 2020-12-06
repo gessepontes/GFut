@@ -1,9 +1,10 @@
 ﻿using GFut.Domain.Models;
-using System.Linq;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GFut.Domain.Interfaces
 {
     public interface ISchedulingRepository : IRepository<Scheduling> {
-        IQueryable<Scheduling> GetSchedulingByFieldId(int FieldId);
+         Task<IEnumerable<Scheduling>> GetSchedulingByFieldId(int FieldId);
     }
 }

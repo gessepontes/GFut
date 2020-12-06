@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 using System.Linq;
 using static GFut.Domain.Others.Enum;
 using GFut.Domain.Others;
+using System.Threading.Tasks;
 
 namespace GFut.Application.Services
 {
@@ -20,39 +21,40 @@ namespace GFut.Application.Services
         private readonly ISubscriptionRepository _subscriptionRepository;
         private readonly IGroupChampionshipRepository _groupChampionshipRepository;
         private readonly IMapper _mapper;
-        private readonly IHostingEnvironment _env;
 
-        public MatchChampionshipAppService(IMapper mapper, IMatchChampionshipRepository matchChampionshipRepository, 
-            ISubscriptionRepository subscriptionRepository, 
+        public MatchChampionshipAppService(IMapper mapper, IMatchChampionshipRepository matchChampionshipRepository,
+            ISubscriptionRepository subscriptionRepository,
             IChampionshipRepository championshipRepository,
-            IGroupChampionshipRepository groupChampionshipRepository,
-            IHostingEnvironment env)
+            IGroupChampionshipRepository groupChampionshipRepository)
         {
             _matchChampionshipRepository = matchChampionshipRepository;
             _championshipRepository = championshipRepository;
             _subscriptionRepository = subscriptionRepository;
             _groupChampionshipRepository = groupChampionshipRepository;
             _mapper = mapper;
-            _env = env;
         }
 
-        public IEnumerable<MatchChampionshipViewModel> GetAll()
+        public async Task<IEnumerable<MatchChampionshipViewModel>> GetAll()
         {
-            return _matchChampionshipRepository.GetAll().ProjectTo<MatchChampionshipViewModel>(_mapper.ConfigurationProvider);
+            var result = await _matchChampionshipRepository.GetAll();
+            return result.Select(_mapper.Map<MatchChampionshipViewModel>);
         }
 
-        public IEnumerable<MatchChampionshipViewModel> GetMatchChampionshipByChampionshipId(int id)
+        public async Task<IEnumerable<MatchChampionshipViewModel>> GetMatchChampionshipByChampionshipId(int id)
         {
-            var _dados = _matchChampionshipRepository.GetAll().Where(p => p.HomeSubscription.ChampionshipId == id || p.GuestSubscription.ChampionshipId == id).ProjectTo<MatchChampionshipViewModel>(_mapper.ConfigurationProvider).ToList();
+            var result = await _matchChampionshipRepository.GetAll();
+            return result.Select(_mapper.Map<MatchChampionshipViewModel>);
 
-            _dados.ForEach(p => p.HomeSubscription = _subscriptionRepository.GetAll().Where(x => x.Id == p.HomeSubscriptionId).ProjectTo<SubscriptionViewModel>(_mapper.ConfigurationProvider).FirstOrDefault());
+            //var _dados = result.Where(p => p.HomeSubscription.ChampionshipId == id || p.GuestSubscription.ChampionshipId == id).ProjectTo<MatchChampionshipViewModel>(_mapper.ConfigurationProvider).ToList();
 
-            return _dados.OrderBy(p => p.Round);
+            //_dados.ForEach(p => p.HomeSubscription = _subscriptionRepository.GetAll().Where(x => x.Id == p.HomeSubscriptionId).ProjectTo<SubscriptionViewModel>(_mapper.ConfigurationProvider).FirstOrDefault());
+
+            //return result.OrderBy(p => p.Round);
         }
 
-        public MatchChampionshipViewModel GetById(int id)
+        public async Task<MatchChampionshipViewModel> GetById(int id)
         {
-            return _mapper.Map<MatchChampionshipViewModel>(_matchChampionshipRepository.GetById(id));
+            return _mapper.Map<MatchChampionshipViewModel>(await _matchChampionshipRepository.GetById(id));
         }
 
         public void Update(MatchChampionshipViewModel matchChampionshipViewModel)
@@ -77,9 +79,9 @@ namespace GFut.Application.Services
             List<int> teamSubscription = new List<int>();
 
             string[] matchs;
-          
 
-            var championship = _championshipRepository.GetById(championshipId);
+
+            var championship = _championshipRepository.GetById(championshipId).Result;
 
             switch (championship.ChampionshipType)
             {
@@ -90,7 +92,8 @@ namespace GFut.Application.Services
                     }
                     else
                     {
-                        var groupChampionship = _groupChampionshipRepository.GetAll().Where(p => p.GroupId == (Group)groupId && p.Subscription.ChampionshipId == championshipId).ToList();
+                        var resultGroupChampionship = _groupChampionshipRepository.GetAll().Result;
+                        var groupChampionship = resultGroupChampionship.Where(p => p.GroupId == (Group)groupId && p.Subscription.ChampionshipId == championshipId).ToList();
 
                         foreach (var e in groupChampionship)
                         {
@@ -102,7 +105,8 @@ namespace GFut.Application.Services
                 case ChampionshipType.MataMata:
                     break;
                 case ChampionshipType.PontosCorridos:
-                    var subscriptions = _subscriptionRepository.GetAll().Where(p => p.ChampionshipId == championshipId);
+                    var result = _subscriptionRepository.GetAll().Result;
+                    var subscriptions = result.Where(p => p.ChampionshipId == championshipId);
 
                     foreach (var e in subscriptions)
                     {
@@ -161,9 +165,9 @@ namespace GFut.Application.Services
                             //db.Sumula.Add(sumula);
                             //db.SaveChanges();
                         }
-                        }
                     }
                 }
+            }
 
             if (quantityTeam % 2 == 0)
             {
@@ -192,14 +196,16 @@ namespace GFut.Application.Services
             int exitWhile = 0;
             bool save = true;
             bool saveA = true;
-            
+
             List<int> teamSubscriptionNew = new List<int>();
 
-            for (int i = 0; i < teamSubscription.Count() - 1; i++)
+            var result = _matchChampionshipRepository.GetAll().Result;
+
+            for (int i = 0; i < teamSubscription.Count - 1; i++)
             {
                 teamId = teamSubscription[i];
 
-                var matchChampionship = _matchChampionshipRepository.GetAll().Where(p => p.HomeSubscriptionId == teamId || p.GuestSubscriptionId == teamId);
+                var matchChampionship = result.Where(p => p.HomeSubscriptionId == teamId || p.GuestSubscriptionId == teamId);
 
                 foreach (var e in matchChampionship)
                 {
@@ -208,12 +214,11 @@ namespace GFut.Application.Services
 
                 round = 1;
 
-                for (int j = 0; j < teamSubscriptionNew.Count(); j++)
+                for (int j = 0; j < teamSubscriptionNew.Count; j++)
                 {
-                    var matchChampionshipAdd = _matchChampionshipRepository.GetById(teamSubscriptionNew[j]);
+                    var matchChampionshipAdd = _matchChampionshipRepository.GetById(teamSubscriptionNew[j]).Result;
 
-
-                    if (round > teamSubscriptionNew.Count())
+                    if (round > teamSubscriptionNew.Count)
                     {
                         round = 1;
                     }
@@ -227,7 +232,7 @@ namespace GFut.Application.Services
 
                             while (save)
                             {
-                                List<MatchChampionship> lpc = _matchChampionshipRepository.GetAll().Where(p =>p.Round == round && (p.HomeSubscriptionId == teamId || p.GuestSubscriptionId == teamId)).ToList();
+                                List<MatchChampionship> lpc = result.Where(p => p.Round == round && (p.HomeSubscriptionId == teamId || p.GuestSubscriptionId == teamId)).ToList();
 
                                 if (lpc.Count() == 0)
                                 {
@@ -239,11 +244,11 @@ namespace GFut.Application.Services
 
                                         if (teamId == matchChampionshipAdd.HomeSubscriptionId)
                                         {
-                                            lpcA = _matchChampionshipRepository.GetAll().Where(p => p.Round == round && (p.HomeSubscriptionId == matchChampionshipAdd.GuestSubscriptionId || p.GuestSubscriptionId == matchChampionshipAdd.GuestSubscriptionId)).ToList();
+                                            lpcA = result.Where(p => p.Round == round && (p.HomeSubscriptionId == matchChampionshipAdd.GuestSubscriptionId || p.GuestSubscriptionId == matchChampionshipAdd.GuestSubscriptionId)).ToList();
                                         }
                                         else
                                         {
-                                            lpcA = _matchChampionshipRepository.GetAll().Where(p => p.Round == round && (p.HomeSubscriptionId == matchChampionshipAdd.HomeSubscriptionId || p.GuestSubscriptionId == matchChampionshipAdd.HomeSubscriptionId)).ToList();
+                                            lpcA = result.Where(p => p.Round == round && (p.HomeSubscriptionId == matchChampionshipAdd.HomeSubscriptionId || p.GuestSubscriptionId == matchChampionshipAdd.HomeSubscriptionId)).ToList();
                                         }
 
 

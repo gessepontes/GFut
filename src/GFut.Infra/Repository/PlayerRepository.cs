@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using GFut.Domain.Models;
 using GFut.Domain.Interfaces;
 using GFut.Infra.Data.Context;
+using System.Threading.Tasks;
 
 namespace GFut.Infra.Data.Repository
 {
@@ -17,24 +18,24 @@ namespace GFut.Infra.Data.Repository
 
         }
 
-        public IEnumerable<Player> GetPlayerTeam(int id)
+        public async Task<IEnumerable<Player>> GetPlayerTeam(int id)
         {
-            return Db.Players.Where(p => p.TeamId == id && p.Active == true).OrderBy(p=>p.Name).ToList();
+            return await Db.Players.Where(p => p.TeamId == id && p.Active == true).OrderBy(p => p.Name).ToListAsync();
         }
 
-        public IEnumerable<Player> GetPlayerTeamByIdSubscription(int id)
+        public async Task<IEnumerable<Player>> GetPlayerTeamByIdSubscription(int id)
         {
-            var _teamId = Db.Subscriptions.Find(id).TeamId;
+            var _teamId = Db.Subscriptions.FindAsync(id).Result.TeamId;
 
-            var listPlayer = from p in Db.Players
-                             where p.TeamId == _teamId && p.Dispensed == false 
-                             && !(from pr in Db.PlayerRegistrations 
-                                  select pr.PlayerId).Contains(p.Id)
-                             select new Player
-                             {
-                                 Id = p.Id,
-                                 Name = p.Name,
-                             };
+            var listPlayer = await (from p in Db.Players
+                                    where p.TeamId == _teamId && p.Dispensed == false
+                                    && !(from pr in Db.PlayerRegistrations
+                                         select pr.PlayerId).Contains(p.Id)
+                                    select new Player
+                                    {
+                                        Id = p.Id,
+                                        Name = p.Name,
+                                    }).ToListAsync();
 
             return listPlayer;
         }

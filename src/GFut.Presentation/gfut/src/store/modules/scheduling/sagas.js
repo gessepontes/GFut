@@ -92,20 +92,13 @@ export function* fetchScheduling() {
 export function* fetchSchedulingById({ payload }) {
   try {
 
-    const { id,date,horary,horaryId,fieldItemId,schedulingType,horaryType,state,personId,
-      customerNotRegistered,phone,cancelDate,personCancelId,markedApp,
-      active,registerDate } = payload.data;
+   const id  = payload.data;
 
-    const scheduling = Object.assign(
-      { id,date,horary,horaryId,fieldItemId,schedulingType,horaryType,state,personId,
-        customerNotRegistered,phone,cancelDate,personCancelId,markedApp,
-        active,registerDate }
-    );
+    const response = yield call(api.get, `scheduling/${id}`);
 
-    scheduling.date = format(new Date(scheduling.date),"yyyy-MM-dd");
-    scheduling.fieldItemId = horary.fieldItemId;
+    response.data.date = format(new Date(response.data.date),"yyyy-MM-dd");
 
-    yield put(fetchSchedulingByIdSuccess(scheduling));
+    yield put(fetchSchedulingByIdSuccess(response.data));
     history.push('/scheduling');
  } catch (err) {
    toast.error('Erro ao realizar a operação!');

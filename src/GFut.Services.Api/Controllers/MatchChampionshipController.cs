@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using GFut.Application.Interfaces;
 using GFut.Application.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -17,25 +18,22 @@ namespace GFut.Services.Api.Controllers
             _matchChampionshipAppService = matchChampionshipAppService;
         }
 
-        [AllowAnonymous]
         [HttpGet(Name = "GetMatchChampionship")]
-        public IEnumerable<MatchChampionshipViewModel> Get()
+        public async Task<IEnumerable<MatchChampionshipViewModel>> Get()
         {
-            return _matchChampionshipAppService.GetAll();
+            return await _matchChampionshipAppService.GetAll();
         }
 
-         [AllowAnonymous]
         [HttpGet("{id}", Name = "GetMatchChampionshipById")]
-        public MatchChampionshipViewModel Get(int id)
+        public async Task<MatchChampionshipViewModel> GetById(int id)
         {
-            return _matchChampionshipAppService.GetById(id);
+            return await _matchChampionshipAppService.GetById(id);
         }
 
-        [AllowAnonymous]
         [HttpGet("championship/{id}", Name = "GetMatchChampionshipByChampionshipId")]
-        public IEnumerable<MatchChampionshipViewModel> GetMatchChampionshipByChampionshipId(int id)
+        public async Task<IEnumerable<MatchChampionshipViewModel>> GetMatchChampionshipByChampionshipId(int id)
         {
-            return _matchChampionshipAppService.GetMatchChampionshipByChampionshipId(id);
+            return await _matchChampionshipAppService.GetMatchChampionshipByChampionshipId(id);
         }
 
         [HttpPost]
@@ -51,7 +49,7 @@ namespace GFut.Services.Api.Controllers
         }
 
         [HttpPut(Name = "PutMatchChampionship")]
-        public void Put([FromBody]MatchChampionshipViewModel matchChampionshipViewModel)
+        public void Put([FromBody] MatchChampionshipViewModel matchChampionshipViewModel)
         {
             _matchChampionshipAppService.Update(matchChampionshipViewModel);
         }

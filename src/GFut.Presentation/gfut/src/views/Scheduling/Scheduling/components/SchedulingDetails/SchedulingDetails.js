@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -26,6 +26,9 @@ import history from '~/services/history';
 import { saveSchedulingRequest
 } from '~/store/modules/scheduling/actions';
 
+import { fetchHoraryFieldByTypeIdFieldItemRequest
+} from '~/store/modules/horaryField/actions';
+
 const useStyles = makeStyles(() => ({
   root: {}
 }));
@@ -42,23 +45,41 @@ const SchedulingDetails = props => {
   };
 
   function handleSubmit(data) {
-    data.id = scheduling.id; 
+    data.horaryId = scheduling.horaryId; 
     data.horary = scheduling.horary; 
     data.active = scheduling.active; 
     data.registerDate = scheduling.registerDate;
     dispatch(saveSchedulingRequest(data));
   }
 
+  const formRef = useRef(null);
   const fieldItens = useSelector(state => state.fieldItem.fieldItens);
   const people = useSelector(state => state.person.people);
   const scheduling = useSelector(state => state.scheduling.scheduling);
+  const horaryField = useSelector(state => state.horaryField.horaryFields);
+
+  const handleChange = () => {
+
+    var fieldItem = formRef.current.getFieldRef("fieldItemId").value;
+    var type = formRef.current.getFieldRef("horaryType").value;
+    var date = formRef.current.getFieldRef("date").value;
+
+    let data = {
+      type: type,
+      fieldItem: fieldItem,
+      date: date,
+      id: scheduling.id
+    }
+
+    dispatch(fetchHoraryFieldByTypeIdFieldItemRequest(data));
+  }
 
   return (
     <Card
       {...rest}
       className={clsx(classes.root, className)}
     >
-      <Form initialData={scheduling} onSubmit={handleSubmit}>
+      <Form ref={formRef} initialData={scheduling} onSubmit={handleSubmit}>
         <CardHeader
           subheader="Informações sobre o agendamento"
           title="Agendamento"
@@ -81,6 +102,7 @@ const SchedulingDetails = props => {
               xs={12}
             >
               <Input name="fieldItemId" label="Campo"
+                onChange={e => handleChange()}
                 required                              
                 select
                 SelectProps={{ native: true }}
@@ -126,6 +148,7 @@ const SchedulingDetails = props => {
               xs={12}
             >
               <Input name="date" type='date' label="Data de partida"
+                onChange={e => handleChange()}
                 required                              
                 InputLabelProps={{
                   shrink: true,
@@ -137,7 +160,8 @@ const SchedulingDetails = props => {
               md={3}
               xs={12}
             >
-              <Input name="horaryType" label="Tipo do horário"
+              <Input name="horaryType" label="Tipo do horário" 
+                onChange={e => handleChange()}
                 required                              
                 select
                 SelectProps={{ native: true }}
@@ -152,22 +176,26 @@ const SchedulingDetails = props => {
                 ))}
               </Input>
             </Grid>
+
             <Grid
               item
               md={3}
               xs={12}
             >
-              <Input name="schedulingType" label="Tipo Agendamento"
+              <Input name="horaryId" label="Horário"
                 required                              
                 select
                 SelectProps={{ native: true }}
+                InputLabelProps={{
+                  shrink: true,
+                }}
               >
-                {schedulingType.map(option => (
+                {horaryField.map(option => (
                   <option
-                    key={option.value}
-                    value={option.value}
+                    key={option.id}
+                    value={option.id}
                   >
-                    {option.label}
+                    {option.hour}
                   </option>
                 ))}
               </Input>
@@ -178,7 +206,7 @@ const SchedulingDetails = props => {
               md={3}
               xs={12}
             >
-              <Input name="horaryId" label="Horário"
+              <Input name="schedulingType" label="Tipo Agendamento" 
                 required                              
                 select
                 SelectProps={{ native: true }}

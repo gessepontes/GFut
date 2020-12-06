@@ -17,7 +17,7 @@
     "history": "^4.10.1",
     "immer": "^5.3.6",
     "lodash": "^4.17.20",
-    "material-table": "^1.69.0",
+    "material-table": "^1.69.2",
     "moment": "^2.27.0",
     "polished": "^3.6.5",
     "prop-types": "^15.7.2",

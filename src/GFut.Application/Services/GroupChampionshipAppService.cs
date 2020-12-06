@@ -9,6 +9,7 @@ using GFut.Domain.Models;
 using Microsoft.AspNetCore.Hosting;
 using System.Linq;
 using static GFut.Domain.Others.Enum;
+using System.Threading.Tasks;
 
 namespace GFut.Application.Services
 {
@@ -17,29 +18,29 @@ namespace GFut.Application.Services
         private readonly IGroupChampionshipRepository _groupChampionshipRepository;
         private readonly ISubscriptionRepository _subscriptionRepository;
         private readonly IMapper _mapper;
-        private readonly IHostingEnvironment _env;
 
-        public GroupChampionshipAppService(IMapper mapper, IGroupChampionshipRepository groupChampionshipRepository, ISubscriptionRepository subscriptionRepository, IHostingEnvironment env)
+        public GroupChampionshipAppService(IMapper mapper, IGroupChampionshipRepository groupChampionshipRepository, ISubscriptionRepository subscriptionRepository)
         {
             _groupChampionshipRepository = groupChampionshipRepository;
             _subscriptionRepository = subscriptionRepository;
             _mapper = mapper;
-            _env = env;
         }
 
-        public IEnumerable<GroupChampionshipViewModel> GetAll()
+        public async Task<IEnumerable<GroupChampionshipViewModel>> GetAll()
         {
-            return _groupChampionshipRepository.GetAll().ProjectTo<GroupChampionshipViewModel>(_mapper.ConfigurationProvider);
+            var result = await _groupChampionshipRepository.GetAll();
+            return result.Select(_mapper.Map<GroupChampionshipViewModel>);
         }
 
-        public IEnumerable<GroupChampionshipViewModel> GetGroupChampionshipByChampionshipId(int id)
+        public async Task<IEnumerable<GroupChampionshipViewModel>> GetGroupChampionshipByChampionshipId(int id)
         {
-            return _groupChampionshipRepository.GetAll().Where(p => p.Subscription.ChampionshipId == id).ProjectTo<GroupChampionshipViewModel>(_mapper.ConfigurationProvider);
+            var result = await _groupChampionshipRepository.GetAll();
+            return result.Where(p => p.Subscription.ChampionshipId == id).Select(_mapper.Map<GroupChampionshipViewModel>);
         }
 
-        public GroupChampionshipViewModel GetById(int id)
+        public async Task<GroupChampionshipViewModel> GetById(int id)
         {
-            return _mapper.Map<GroupChampionshipViewModel>(_groupChampionshipRepository.GetById(id));
+            return _mapper.Map<GroupChampionshipViewModel>(await _groupChampionshipRepository.GetById(id));
         }
 
         public void Update(GroupChampionshipViewModel groupChampionshipViewModel)
@@ -54,7 +55,10 @@ namespace GFut.Application.Services
 
         public void AutomaticGroupChampionship(int championshipId, int quantity)
         {
-            var groupChampionship = _groupChampionshipRepository.GetAll().Where(p => p.Subscription.ChampionshipId == championshipId);
+            var result = _groupChampionshipRepository.GetAll().Result;
+            var resultSubscription = _subscriptionRepository.GetAll().Result;
+
+            var groupChampionship = result.Where(p => p.Subscription.ChampionshipId == championshipId);
             int quantityGroupChampionship = groupChampionship.Count();
 
             if (quantityGroupChampionship > 0)
@@ -68,7 +72,7 @@ namespace GFut.Application.Services
             int quantityGroup = 0;
             int count = 0;
 
-            var subscriptions = _subscriptionRepository.GetAll().Where(p => p.ChampionshipId == championshipId);
+            var subscriptions = resultSubscription.Where(p => p.ChampionshipId == championshipId);
             var quantitySubscription = subscriptions.Count();
 
             int[] times = new int[quantitySubscription];
@@ -103,7 +107,7 @@ namespace GFut.Application.Services
                         RegisterDate = DateTime.Now
                     };
 
-                    var championshipRepositoryCount = _groupChampionshipRepository.GetAll().Where(p => p.SubscriptionId == groupChampionshipAdd.SubscriptionId).Count();
+                    var championshipRepositoryCount = result.Where(p => p.SubscriptionId == groupChampionshipAdd.SubscriptionId).Count();
 
                     if (championshipRepositoryCount == 0)
                     {
@@ -122,7 +126,7 @@ namespace GFut.Application.Services
                                     RegisterDate = DateTime.Now
                                 };
 
-                                var lastChampionshipRepositoryCount = _groupChampionshipRepository.GetAll().Where(p => p.SubscriptionId == lastGroupChampionship.SubscriptionId).Count();
+                                var lastChampionshipRepositoryCount = result.Where(p => p.SubscriptionId == lastGroupChampionship.SubscriptionId).Count();
 
                                 if (lastChampionshipRepositoryCount == 0)
                                 {

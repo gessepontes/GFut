@@ -11,7 +11,7 @@ namespace GFut.Application.AutoMapper
         {
             CreateMap<Person, PersonViewModel>()
                 .ForMember(dst => dst.ProfileType,
-                    map => map.MapFrom(src => src.PersonProfiles.Select(x => x.ProfileType))).MaxDepth(1);
+                    map => map.MapFrom(src => src.PersonProfiles.Select(x => (int) x.ProfileType)));
 
             CreateMap<Player, PlayerViewModel>().MaxDepth(1);
             CreateMap<Team, TeamViewModel>().MaxDepth(1);

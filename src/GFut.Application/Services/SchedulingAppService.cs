@@ -8,6 +8,7 @@ using GFut.Application.ViewModels;
 using GFut.Domain.Models;
 using System.Linq;
 using Microsoft.AspNetCore.Hosting;
+using System.Threading.Tasks;
 
 namespace GFut.Application.Services
 {
@@ -15,23 +16,22 @@ namespace GFut.Application.Services
     {
         private readonly ISchedulingRepository _schedulingRepository;
         private readonly IMapper _mapper;
-        private readonly IHostingEnvironment _env;
 
-        public SchedulingAppService(IMapper mapper, ISchedulingRepository fieldRepository, IHostingEnvironment env)
+        public SchedulingAppService(IMapper mapper, ISchedulingRepository schedulingRepository)
         {
-            _schedulingRepository = fieldRepository;
+            _schedulingRepository = schedulingRepository;
             _mapper = mapper;
-            _env = env;
         }
 
-        public IEnumerable<SchedulingViewModel> GetAll()
+        public async Task<IEnumerable<SchedulingViewModel>> GetAll()
         {
-            return _schedulingRepository.GetAll().ProjectTo<SchedulingViewModel>(_mapper.ConfigurationProvider);
+            var result = await _schedulingRepository.GetAll();
+            return result.Select(_mapper.Map<SchedulingViewModel>);
         }
 
-        public SchedulingViewModel GetById(int id)
+        public async Task<SchedulingViewModel> GetById(int id)
         {
-            return _mapper.Map<SchedulingViewModel>(_schedulingRepository.GetById(id));
+            return _mapper.Map<SchedulingViewModel>(await _schedulingRepository.GetById(id));
         }
 
         public void Update(SchedulingViewModel fieldViewModel)
@@ -53,15 +53,9 @@ namespace GFut.Application.Services
         {
             _schedulingRepository.Add(_mapper.Map<Scheduling>(fieldViewModel));
         }
-
-        public IEnumerable<SchedulingViewModel> GetSearchScheduling(string search)
+        public async Task<IEnumerable<SchedulingViewModel>> GetSchedulingByFieldId(int FieldId)
         {
-            return _mapper.Map<IEnumerable<SchedulingViewModel>>(_schedulingRepository.GetAll().Where(p => p.Person.Name.Contains(search)));
-        }
-
-        public IEnumerable<SchedulingViewModel> GetSchedulingByFieldId(int FieldId)
-        {
-            return _mapper.Map<IEnumerable<SchedulingViewModel>>(_schedulingRepository.GetSchedulingByFieldId(FieldId));
+            return _mapper.Map<IEnumerable<SchedulingViewModel>>(await _schedulingRepository.GetSchedulingByFieldId(FieldId));
         }
     }
 }

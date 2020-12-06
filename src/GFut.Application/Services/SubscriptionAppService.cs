@@ -8,6 +8,7 @@ using GFut.Application.ViewModels;
 using GFut.Domain.Models;
 using Microsoft.AspNetCore.Hosting;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace GFut.Application.Services
 {
@@ -15,28 +16,28 @@ namespace GFut.Application.Services
     {
         private readonly ISubscriptionRepository _subscriptionRepository;
         private readonly IMapper _mapper;
-        private readonly IHostingEnvironment _env;
 
-        public SubscriptionAppService(IMapper mapper, ISubscriptionRepository subscriptionRepository, IHostingEnvironment env)
+        public SubscriptionAppService(IMapper mapper, ISubscriptionRepository subscriptionRepository)
         {
             _subscriptionRepository = subscriptionRepository;
             _mapper = mapper;
-            _env = env;
         }
 
-        public IEnumerable<SubscriptionViewModel> GetAll()
+        public async Task<IEnumerable<SubscriptionViewModel>> GetAll()
         {
-            return _subscriptionRepository.GetAll().ProjectTo<SubscriptionViewModel>(_mapper.ConfigurationProvider);
+            var result = await _subscriptionRepository.GetAll();
+            return result.Select(_mapper.Map<SubscriptionViewModel>);
         }
 
-        public IEnumerable<SubscriptionViewModel> GetSubscriptionByChampionshipId(int id)
+        public async Task<IEnumerable<SubscriptionViewModel>> GetSubscriptionByChampionshipId(int id)
         {
-            return _subscriptionRepository.GetAll().Where(p => p.ChampionshipId == id).ProjectTo<SubscriptionViewModel>(_mapper.ConfigurationProvider);
+            var result = await _subscriptionRepository.GetAll();
+            return result.Where(p => p.ChampionshipId == id).Select(_mapper.Map<SubscriptionViewModel>); 
         }
 
-        public SubscriptionViewModel GetById(int id)
+        public async Task<SubscriptionViewModel> GetById(int id)
         {
-            return _mapper.Map<SubscriptionViewModel>(_subscriptionRepository.GetById(id));
+            return _mapper.Map<SubscriptionViewModel>(await _subscriptionRepository.GetById(id));
         }
 
         public void Update(SubscriptionViewModel subscriptionViewModel)

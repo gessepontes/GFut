@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using GFut.Application.Interfaces;
 using GFut.Application.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -17,28 +18,24 @@ namespace GFut.Services.Api.Controllers
             _subscriptionAppService = subscriptionAppService;
         }
 
-        [AllowAnonymous]
         [HttpGet(Name = "GetSubscription")]
-        public IEnumerable<SubscriptionViewModel> Get()
+        public async Task<IEnumerable<SubscriptionViewModel>> Get()
         {
-            return _subscriptionAppService.GetAll();
+            return await _subscriptionAppService.GetAll();
         }
 
-         [AllowAnonymous]
         [HttpGet("{id}", Name = "GetSubscriptionById")]
-        public SubscriptionViewModel Get(int id)
+        public async Task<SubscriptionViewModel> Get(int id)
         {
-            return _subscriptionAppService.GetById(id);
+            return await _subscriptionAppService.GetById(id);
         }
 
-        [AllowAnonymous]
         [HttpGet("championship/{id}", Name = "GetSubscriptionByChampionshipId")]
-        public IEnumerable<SubscriptionViewModel> GetSubscriptionByChampionshipId(int id)
+        public async Task<IEnumerable<SubscriptionViewModel>> GetSubscriptionByChampionshipId(int id)
         {
-            return _subscriptionAppService.GetSubscriptionByChampionshipId(id);
+            return await _subscriptionAppService.GetSubscriptionByChampionshipId(id);
         }
 
-        // POST: api/subscription
         [HttpPost]
         public void Post([FromBody] SubscriptionViewModel subscriptionViewModel)
         {

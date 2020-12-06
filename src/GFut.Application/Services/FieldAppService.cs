@@ -3,13 +3,12 @@ using GFut.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using GFut.Application.ViewModels;
 using GFut.Domain.Models;
 using System.Linq;
 using GFut.Domain.Others;
 using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Hosting;
+using System.Threading.Tasks;
 
 namespace GFut.Application.Services
 {
@@ -17,23 +16,24 @@ namespace GFut.Application.Services
     {
         private readonly IFieldRepository _fieldRepository;
         private readonly IMapper _mapper;
-        private readonly IHostingEnvironment _env;
+        private readonly IConfiguration _configuration;
 
-        public FieldAppService(IMapper mapper, IFieldRepository fieldRepository, IHostingEnvironment env)
+        public FieldAppService(IMapper mapper, IFieldRepository fieldRepository, IConfiguration configuration)
         {
             _fieldRepository = fieldRepository;
             _mapper = mapper;
-            _env = env;
+            _configuration = configuration;
         }
 
-        public IEnumerable<FieldViewModel> GetAll()
+        public async Task<IEnumerable<FieldViewModel>> GetAll()
         {
-            return _fieldRepository.GetAll().ProjectTo<FieldViewModel>(_mapper.ConfigurationProvider);
+            var result = await _fieldRepository.GetAll();
+            return result.Select(_mapper.Map<FieldViewModel>);
         }
 
-        public FieldViewModel GetById(int id)
+        public async Task<FieldViewModel> GetById(int id)
         {
-            return _mapper.Map<FieldViewModel>(_fieldRepository.GetById(id));
+            return _mapper.Map<FieldViewModel>(await _fieldRepository.GetById(id));
         }
 
         public void Update(FieldViewModel fieldViewModel)
@@ -64,15 +64,11 @@ namespace GFut.Application.Services
 
         public void Add(FieldViewModel fieldViewModel)
         {
-            var config = new ConfigurationBuilder()
-                .SetBasePath(_env.ContentRootPath)
-                .AddJsonFile("appsettings.json")
-                .Build();
-
+            var config = _configuration.GetValue<string>("Config:AtletaBase64");
 
             if (fieldViewModel.Picture == "")
             {
-                fieldViewModel.Picture = Divers.Base64ToImage(config.GetSection(key: "Config")["AtletaBase64"], "FIELD");
+                fieldViewModel.Picture = Divers.Base64ToImage(config, "FIELD");
             }
             else
             {
@@ -80,11 +76,6 @@ namespace GFut.Application.Services
             }
 
             _fieldRepository.Add(_mapper.Map<Field>(fieldViewModel));
-        }
-
-        public IEnumerable<FieldViewModel> GetSearchField(string search)
-        {
-            return _mapper.Map<IEnumerable<FieldViewModel>>(_fieldRepository.GetAll().Where(p => p.Name.Contains(search)));
         }
     }
 }

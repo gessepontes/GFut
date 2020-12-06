@@ -31,7 +31,7 @@ namespace GFut.Domain.Others
         public enum HoraryType : int
         {
             [Display(Name = "Padrão")]
-            Padrao = 1,
+            Default = 1,
             [Display(Name = "Extra")]
             Extra = 2
         }

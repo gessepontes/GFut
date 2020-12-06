@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using GFut.Application.Interfaces;
 using GFut.Application.ViewModels;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GFut.Services.Api.Controllers
@@ -17,27 +17,18 @@ namespace GFut.Services.Api.Controllers
             _fieldAppService = fieldAppService;
         }
 
-        [AllowAnonymous]
         [HttpGet(Name = "GetField")]
-        public IEnumerable<FieldViewModel> Get()
+        public async Task<IEnumerable<FieldViewModel>> Get()
         {
-            return _fieldAppService.GetAll();
+            return await _fieldAppService.GetAll();
         }
 
-        [HttpGet("search/{search}", Name = "GetSearchField")]
-        public IEnumerable<FieldViewModel> GetSearchField(string search)
-        {
-            return _fieldAppService.GetSearchField(search);
-        }
-
-        [AllowAnonymous]
         [HttpGet("{id}", Name = "GetFieldById")]
-        public FieldViewModel Get(int id)
+        public async Task<FieldViewModel> Get(int id)
         {
-            return _fieldAppService.GetById(id);
+            return await _fieldAppService.GetById(id);
         }
 
-        // POST: api/field
         [HttpPost]
         public void Post([FromBody] FieldViewModel fieldViewModel)
         {
@@ -45,7 +36,7 @@ namespace GFut.Services.Api.Controllers
         }
 
         [HttpPut(Name = "PutField")]
-        public void Put([FromBody]FieldViewModel fieldViewModel)
+        public void Put([FromBody] FieldViewModel fieldViewModel)
         {
             _fieldAppService.Update(fieldViewModel);
         }

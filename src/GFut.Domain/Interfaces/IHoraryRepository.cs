@@ -1,9 +1,14 @@
 ﻿using GFut.Domain.Models;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace GFut.Domain.Interfaces
 {
     public interface IHoraryRepository : IRepository<Horary> {
-        IQueryable<Horary> GetHoraryByFieldId(int FieldId);
+        Task<IEnumerable<Horary>> GetHoraryByFieldId(int fieldId);
+        Task<IEnumerable<Horary>> GetAllHorary();
+
     }
 }

@@ -78,7 +78,7 @@ export function* fetchTeam({ payload }) {
    try {    
     yield put(loading(true));
     
-    const id  = payload.data;
+    //const id  = payload.data;
 
 //    const response = yield call(api.get, `team/idperson/${id}`);
     const response = yield call(api.get, `team/`);

@@ -10,6 +10,7 @@ using System.Linq;
 using GFut.Domain.Others;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Hosting;
+using System.Threading.Tasks;
 
 namespace GFut.Application.Services
 {
@@ -17,23 +18,22 @@ namespace GFut.Application.Services
     {
         private readonly IHoraryPriceRepository _horaryPriceRepository;
         private readonly IMapper _mapper;
-        private readonly IHostingEnvironment _env;
 
-        public HoraryPriceAppService(IMapper mapper, IHoraryPriceRepository fieldRepository, IHostingEnvironment env)
+        public HoraryPriceAppService(IMapper mapper, IHoraryPriceRepository fieldRepository)
         {
             _horaryPriceRepository = fieldRepository;
             _mapper = mapper;
-            _env = env;
         }
 
-        public IEnumerable<HoraryPriceViewModel> GetAll()
+        public async Task<IEnumerable<HoraryPriceViewModel>> GetAll()
         {
-            return _horaryPriceRepository.GetAll().ProjectTo<HoraryPriceViewModel>(_mapper.ConfigurationProvider);
+            var result = await _horaryPriceRepository.GetAll();
+            return result.Select(_mapper.Map<HoraryPriceViewModel>);
         }
 
-        public HoraryPriceViewModel GetById(int id)
+        public async Task<HoraryPriceViewModel> GetById(int id)
         {
-            return _mapper.Map<HoraryPriceViewModel>(_horaryPriceRepository.GetById(id));
+            return _mapper.Map<HoraryPriceViewModel>(await _horaryPriceRepository.GetById(id));
         }
 
         public void Update(HoraryPriceViewModel fieldViewModel)
@@ -56,14 +56,15 @@ namespace GFut.Application.Services
             _horaryPriceRepository.Add(_mapper.Map<HoraryPrice>(fieldViewModel));
         }
 
-        public IEnumerable<HoraryPriceViewModel> GetSearchHoraryPrice(string search)
+        public async Task<IEnumerable<HoraryPriceViewModel>> GetSearchHoraryPrice(string search)
         {
-            return _mapper.Map<IEnumerable<HoraryPriceViewModel>>(_horaryPriceRepository.GetAll().Where(p => p.FieldItem.Name.Contains(search)));
+            var result = await _horaryPriceRepository.GetAll();
+            return _mapper.Map<IEnumerable<HoraryPriceViewModel>>(result.Where(p => p.FieldItem.Name.Contains(search)));
         }
 
-        public IEnumerable<HoraryPriceViewModel> GetHoraryPriceByFieldId(int FieldId)
+        public async Task<IEnumerable<HoraryPriceViewModel>> GetHoraryPriceByFieldId(int FieldId)
         {
-            return _mapper.Map<IEnumerable<HoraryPriceViewModel>>(_horaryPriceRepository.GetHoraryPriceByFieldId(FieldId));
+            return _mapper.Map<IEnumerable<HoraryPriceViewModel>>(await _horaryPriceRepository.GetHoraryPriceByFieldId(FieldId));
         }
     }
 }

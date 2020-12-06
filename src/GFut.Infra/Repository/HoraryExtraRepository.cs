@@ -3,6 +3,9 @@ using GFut.Domain.Models;
 using GFut.Domain.Interfaces;
 using System.Linq;
 using GFut.Infra.Data.Context;
+using System.Threading.Tasks;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace GFut.Infra.Data.Repository
 {
@@ -15,19 +18,14 @@ namespace GFut.Infra.Data.Repository
 
         }
 
-        public override IQueryable<HoraryExtra> GetAll()
+        public override async Task<IEnumerable<HoraryExtra>> GetAll()
         {
-            return Db.HoraryExtras.Include(p => p.FieldItem).OrderBy(p => p.FieldItem.Name).AsQueryable();
+            return await Db.HoraryExtras.Include(p => p.FieldItem).OrderBy(p => p.FieldItem.Name).ToListAsync();
         }
 
-        public override HoraryExtra GetById(int id)
+        public async Task<IEnumerable<HoraryExtra>> GetHoraryExtraByFieldId(int FieldId)
         {
-            return Db.HoraryExtras.Where(p => p.Id == id).FirstOrDefault();
-        }
-
-        public IQueryable<HoraryExtra> GetHoraryExtraByFieldId(int FieldId)
-        {
-            return Db.HoraryExtras.Include(p => p.FieldItem).Where(p => p.FieldItem.FieldId == FieldId);
+            return await Db.HoraryExtras.Include(p => p.FieldItem).Where(p => p.FieldItem.FieldId == FieldId).ToListAsync();
         }
     }
 }

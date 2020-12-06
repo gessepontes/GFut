@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using GFut.Application.Interfaces;
 using GFut.Application.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -18,27 +19,21 @@ namespace GFut.Services.Api.Controllers
         }
 
         [HttpGet(Name = "GetHoraryPrice")]
-        public IEnumerable<HoraryPriceViewModel> Get()
+        public async Task<IEnumerable<HoraryPriceViewModel>> Get()
         {
-            return _horaryPriceAppService.GetAll();
-        }
-
-        [HttpGet("search/{search}", Name = "GetSearchHoraryPrice")]
-        public IEnumerable<HoraryPriceViewModel> GetSearchHoraryPrice(string search)
-        {
-            return _horaryPriceAppService.GetSearchHoraryPrice(search);
+            return await _horaryPriceAppService.GetAll();
         }
 
         [HttpGet("field/{FieldId}", Name = "GetHoraryPriceByFieldId")]
-        public IEnumerable<HoraryPriceViewModel> GetHoraryPriceByFieldId(int FieldId)
+        public async Task<IEnumerable<HoraryPriceViewModel>> GetHoraryPriceByFieldId(int FieldId)
         {
-            return _horaryPriceAppService.GetHoraryPriceByFieldId(FieldId);
+            return await _horaryPriceAppService.GetHoraryPriceByFieldId(FieldId);
         }
 
         [HttpGet("{id}", Name = "GetHoraryPriceById")]
-        public HoraryPriceViewModel Get(int id)
+        public async Task<HoraryPriceViewModel> Get(int id)
         {
-            return _horaryPriceAppService.GetById(id);
+            return await _horaryPriceAppService.GetById(id);
         }
 
         [HttpPost]

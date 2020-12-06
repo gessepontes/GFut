@@ -6,6 +6,7 @@ using GFut.Application.ViewModels;
 using GFut.Domain.Models;
 using System.Linq;
 using GFut.Domain.Others;
+using System.Threading.Tasks;
 
 namespace GFut.Application.Services
 {
@@ -25,11 +26,11 @@ namespace GFut.Application.Services
             _mapper = mapper;
         }
 
-        public PersonViewModel SignIn(UserViewModel userViewModel)
+        public async Task<PersonViewModel> SignIn(UserViewModel userViewModel)
         {
             userViewModel.Password = Divers.GenerateMD5(userViewModel.Password);
 
-            Person person = _userRepository.SignIn(_mapper.Map<User>(userViewModel));
+            Person person = await _userRepository.SignIn(_mapper.Map<User>(userViewModel));
             PersonViewModel personViewModel = _mapper.Map<PersonViewModel>(person);
 
             personViewModel.Team = _mapper.Map<TeamViewModel>(person.Teams.Where(p => p.Active == true && p.State == true).FirstOrDefault());

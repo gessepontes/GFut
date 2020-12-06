@@ -135,7 +135,7 @@ export function* fetchPersonById({ payload }) {
 
 export function* fetchPersonAllDrop() {
   try {    
-   const response = yield call(api.get, `person\\PersonAllDrop`);
+   const response = yield call(api.get, `person/PersonAllDrop`);
    yield put(fetchPersonSuccess(response.data));
  } catch (err) {
    yield put(fetchPersonFailure());
@@ -144,7 +144,7 @@ export function* fetchPersonAllDrop() {
 
 export function* fetchPersonChampionshipDrop() {
   try {    
-   const response = yield call(api.get, `person\\PersonChampionshipDrop`);
+   const response = yield call(api.get, `person/PersonChampionshipDrop`);
    yield put(fetchPersonSuccess(response.data));
  } catch (err) {
    yield put(fetchPersonFailure());
@@ -153,7 +153,7 @@ export function* fetchPersonChampionshipDrop() {
 
 export function* fetchPersonFieldDrop() {
   try {    
-   const response = yield call(api.get, `person\\PersonFieldDrop`);
+   const response = yield call(api.get, `person/PersonFieldDrop`);
    yield put(fetchPersonSuccess(response.data));
  } catch (err) {
    yield put(fetchPersonFailure());

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using GFut.Application.Interfaces;
 using GFut.Application.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -18,27 +20,27 @@ namespace GFut.Services.Api.Controllers
         }
 
         [HttpGet(Name = "GetHorary")]
-        public IEnumerable<HoraryViewModel> Get()
+        public async Task<IEnumerable<HoraryViewModel>> Get()
         {
-            return _horaryAppService.GetAll();
-        }
-
-        [HttpGet("search/{search}", Name = "GetSearchHorary")]
-        public IEnumerable<HoraryViewModel> GetSearchHorary(string search)
-        {
-            return _horaryAppService.GetSearchHorary(search);
+            return await _horaryAppService.GetAll();
         }
 
         [HttpGet("{id}", Name = "GetHoraryById")]
-        public HoraryViewModel Get(int id)
+        public async Task<HoraryViewModel> Get(int id)
         {
-            return _horaryAppService.GetById(id);
+            return await _horaryAppService.GetById(id);
         }
 
-        [HttpGet("field/{FieldId}", Name = "GetHoraryByFieldId")]
-        public IEnumerable<HoraryViewModel> GetHoraryByFieldId(int FieldId)
+        [HttpGet("field/{fieldId}", Name = "GetHoraryByFieldId")]
+        public async Task<IEnumerable<HoraryViewModel>> GetHoraryByFieldId(int fieldId)
         {
-            return _horaryAppService.GetHoraryByFieldId(FieldId);
+            return await _horaryAppService.GetHoraryByFieldId(fieldId);
+        }
+
+        [HttpGet("HoraryDrop/{type}/{fieldItem}/{date}/{horaryId}", Name = "GetHoraryDrop")]
+        public async Task<IEnumerable<HoraryViewModel>> GetHoraryDrop(int type, int fieldItem, DateTime date, int horaryId)
+        {
+            return await _horaryAppService.GetHoraryDrop(type, fieldItem, date, horaryId);
         }
 
         [HttpPost]
@@ -48,7 +50,7 @@ namespace GFut.Services.Api.Controllers
         }
 
         [HttpPut(Name = "PutHorary")]
-        public void Put([FromBody]HoraryViewModel horaryPriceViewModel)
+        public void Put([FromBody] HoraryViewModel horaryPriceViewModel)
         {
             _horaryAppService.Update(horaryPriceViewModel);
         }

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 using System.Linq;
 using static GFut.Domain.Others.Enum;
 using GFut.Domain.Others;
+using System.Threading.Tasks;
 
 namespace GFut.Application.Services
 {
@@ -19,22 +20,19 @@ namespace GFut.Application.Services
         private readonly ISubscriptionRepository _subscriptionRepository;
         private readonly IGroupChampionshipRepository _groupChampionshipRepository;
         private readonly IMapper _mapper;
-        private readonly IHostingEnvironment _env;
 
         public MatchSummaryAppService(IMapper mapper,
             ISubscriptionRepository subscriptionRepository, 
             IChampionshipRepository championshipRepository,
-            IGroupChampionshipRepository groupChampionshipRepository,
-            IHostingEnvironment env)
+            IGroupChampionshipRepository groupChampionshipRepository)
         {
             _championshipRepository = championshipRepository;
             _subscriptionRepository = subscriptionRepository;
             _groupChampionshipRepository = groupChampionshipRepository;
             _mapper = mapper;
-            _env = env;
         }
 
-        public MatchSummaryViewModel GetById(int id)
+        public Task<MatchSummaryViewModel> GetById(int id)
         {
             return null; // _mapper.Map<MatchChampionshipViewModel>(_matchChampionshipRepository.GetById(id));
         }

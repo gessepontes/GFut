@@ -1,15 +1,15 @@
 ﻿using GFut.Application.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GFut.Application.Interfaces
 {
     public interface IHoraryExtraAppService : IDisposable
     {
-        IEnumerable<HoraryExtraViewModel> GetAll();
-        IEnumerable<HoraryExtraViewModel> GetSearchHoraryExtra(string search);
-        IEnumerable<HoraryExtraViewModel> GetHoraryExtraByFieldId(int FieldId);
-        HoraryExtraViewModel GetById(int id);
+        Task<IEnumerable<HoraryExtraViewModel>> GetAll();
+        Task<IEnumerable<HoraryExtraViewModel>> GetHoraryExtraByFieldId(int FieldId);
+        Task<HoraryExtraViewModel> GetById(int id);
         void Update(HoraryExtraViewModel fieldViewModel);
         void Add(HoraryExtraViewModel fieldViewModel);
         void Remove(int id);

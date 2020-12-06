@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using GFut.Application.Interfaces;
 using GFut.Application.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -17,28 +18,24 @@ namespace GFut.Services.Api.Controllers
             _playerRegistrationAppService = playerRegistrationAppService;
         }
 
-        [AllowAnonymous]
         [HttpGet(Name = "GetPlayerRegistration")]
-        public IEnumerable<PlayerRegistrationViewModel> Get()
+        public async Task<IEnumerable<PlayerRegistrationViewModel>> Get()
         {
-            return _playerRegistrationAppService.GetAll();
+            return await _playerRegistrationAppService.GetAll();
         }
 
-         [AllowAnonymous]
         [HttpGet("{id}", Name = "GetPlayerRegistrationById")]
-        public PlayerRegistrationViewModel Get(int id)
+        public async Task<PlayerRegistrationViewModel> Get(int id)
         {
-            return _playerRegistrationAppService.GetById(id);
+            return await _playerRegistrationAppService.GetById(id);
         }
 
-        [AllowAnonymous]
         [HttpGet("championship/{id}", Name = "GetPlayerRegistrationByChampionshipId")]
-        public IEnumerable<PlayerRegistrationViewModel> GetPlayerRegistrationByChampionshipId(int id)
+        public async Task<IEnumerable<PlayerRegistrationViewModel>> GetPlayerRegistrationByChampionshipId(int id)
         {
-            return _playerRegistrationAppService.GetPlayerRegistrationByChampionshipId(id);
+            return await _playerRegistrationAppService.GetPlayerRegistrationByChampionshipId(id);
         }
 
-        // POST: api/playerRegistration
         [HttpPost]
         public void Post([FromBody] PlayerRegistrationViewModel playerRegistrationViewModel)
         {

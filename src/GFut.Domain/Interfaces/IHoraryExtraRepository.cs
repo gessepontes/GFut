@@ -1,10 +1,12 @@
 ﻿using GFut.Domain.Models;
-using System.Linq;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GFut.Domain.Interfaces
 {
-    public interface IHoraryExtraRepository : IRepository<HoraryExtra> {
-        IQueryable<HoraryExtra> GetHoraryExtraByFieldId(int FieldId);
+    public interface IHoraryExtraRepository : IRepository<HoraryExtra>
+    {
+        Task<IEnumerable<HoraryExtra>> GetHoraryExtraByFieldId(int FieldId);
 
     }
 }

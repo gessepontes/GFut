@@ -8,7 +8,8 @@ import { saveHoraryFieldFailure, addHoraryFieldSuccess,
           updateHoraryFieldSuccess, deleteHoraryFieldSuccess, deleteHoraryFieldFailure,
           fetchHoraryFieldSuccess,  fetchHoraryFieldFailure, 
           fetchHoraryFieldByIdSuccess, fetchHoraryFieldByIdFieldSuccess,
-          fetchHoraryFieldByIdFieldFailure} from './actions';
+          fetchHoraryFieldByIdFieldFailure, fetchHoraryFieldByTypeIdFieldItemSuccess,
+          fetchHoraryFieldByTypeIdFieldItemFailure} from './actions';
 
 import { loading } from '~/store/modules/auth/actions';          
 
@@ -121,6 +122,25 @@ export function* fetchHoraryFieldById({ payload }) {
  }
 }
 
+export function* fetchHoraryFieldByTypeIdFieldItem({ payload }) {
+  try {    
+   yield put(loading(true));
+   
+   const { type,fieldItem,date,horaryId } = payload.data;
+   
+   const response = yield call(api.get, `horary/HoraryDrop/${type}/${fieldItem}/${date}/${horaryId}`);
+
+   yield put(fetchHoraryFieldByTypeIdFieldItemSuccess(response.data));
+
+   yield put(loading(false));
+ } catch (err) {
+   yield put(loading(false));
+
+   toast.error('Erro ao realizar a operação!');
+   yield put(fetchHoraryFieldByTypeIdFieldItemFailure());
+ }
+}
+
 export function HoraryFieldInitialValues() {
   history.push('/horaryField');
 }
@@ -136,5 +156,6 @@ export default all([
   takeLatest('@horaryField/DELETE_HORARY_FIELD_REQUEST', deleteHoraryField),
   takeLatest('@horaryField/FETCH_HORARY_FIELD_REQUEST', fetchHoraryField),
   takeLatest('@horaryField/FETCH_HORARY_FIELD_ID_REQUEST', fetchHoraryFieldById),   
-  takeLatest('@horaryField/FETCH_HORARY_FIELD_ID_FIELD_REQUEST', fetchHoraryFieldByIdField),   
+  takeLatest('@horaryField/FETCH_HORARY_FIELD_ID_FIELD_REQUEST', fetchHoraryFieldByIdField), 
+  takeLatest('@horaryField/FETCH_HORARY_FIELD_TYPE_ID_FIELD_ITEM_REQUEST', fetchHoraryFieldByTypeIdFieldItem),   
 ]);
