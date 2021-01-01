@@ -9,23 +9,23 @@ import { loading } from '~/store/modules/auth/actions';
 
 export function* updateProfile({ payload }) {
   try {
-    const { id, name, email, phone,  
-      birthDate, password, picture } = payload.data;
+    const { id, name, picture, phone, password, cpf, rg, birthDate, email , 
+      active, registerDate, profileType } = payload.data;
 
-    const profile = Object.assign(
-      { id, name, email, phone,  
-        birthDate, password, picture }
+    const person = Object.assign(
+      { id, name, picture, phone, password, cpf, rg, birthDate, email , active
+        , registerDate, profileType }
     );
 
     yield put(loading(true));
 
-    yield call(api.put, 'user', profile);
+    yield call(api.put, 'person/PutUpdateProfile', person);
 
     yield put(loading(false));
 
     toast.success('Operação realizada com sucesso!');
 
-    yield put(updateProfileSuccess(profile));
+    yield put(updateProfileSuccess(person));
   } catch (err) {
     yield put(loading(false));
 

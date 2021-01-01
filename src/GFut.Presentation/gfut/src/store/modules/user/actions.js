@@ -21,7 +21,7 @@ export function updateTeamActiveSuccess(data) {
 
 export function updateProfileFailure() {
   return {
-    type: '@user/UPDATE_PROFILE_REQUEST',
+    type: '@user/UPDATE_PROFILE_FAILURE',
   };
 }
 

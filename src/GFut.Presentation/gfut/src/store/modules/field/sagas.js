@@ -22,6 +22,9 @@ export function* saveField({ payload }) {
 
     field.cityId = 1;
 
+    field.monthlyValue = parseFloat(field.monthlyValue);
+    field.value = parseFloat(field.value);
+
     if (id !== 0){
       yield call(api.put, 'field/', field);
       yield put(updateFieldSuccess(field));

@@ -21,13 +21,6 @@ namespace GFut.Infra.Data.Repository
         {
             return await Db.Horarys.Include(p => p.FieldItem).OrderBy(p => p.FieldItem.Name).ToListAsync();
         }
-
-        public async Task<IEnumerable<Horary>> GetAllHorary()
-        {
-            var _data = await Db.Horarys.Include(p => p.FieldItem).OrderBy(p => p.FieldItem.Name).ToListAsync();
-            return _data;
-        }
-
         public async Task<IEnumerable<Horary>> GetHoraryByFieldId(int fieldId)
         {
             var _data = await Db.Horarys.Include(p => p.FieldItem).Where(p => p.FieldItem.FieldId == fieldId).ToListAsync();

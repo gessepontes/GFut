@@ -17,14 +17,11 @@ export default function horaryExtraField(state = INITIAL_STATE, action) {
       case '@horaryExtraField/FETCH_HORARY_EXTRA_FIELD_SUCCESS': {
         return { ...state, horaryExtraFields: action.payload.data };
       }
-      case '@horaryExtraField/FETCH_HORARY_EXTRA_ID_FIELD_SUCCESS': {
+      case '@horaryExtraField/FETCH_HORARY_EXTRA_FIELD_ID_FIELD_SUCCESS': {
         return { ...state, horaryExtraFields: action.payload.data };
       }
       case '@horaryExtraField/FETCH_HORARY_EXTRA_FIELD_ID_SUCCESS': {        
-        return { 
-          ...state, 
-          horaryExtraField: action.payload.data 
-        };        
+        return { ...state, horaryExtraField: action.payload.data };        
       }      
       case '@horaryExtraField/ADD_HORARY_EXTRA_FIELD_SUCCESS': {
         return { ...state, horaryExtraField: action.payload.data };        

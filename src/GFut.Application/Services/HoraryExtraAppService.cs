@@ -55,7 +55,6 @@ namespace GFut.Application.Services
 
         public async Task<IEnumerable<HoraryExtraViewModel>> GetHoraryExtraByFieldId(int FieldId)
         {
-            var result = await _horaryExtraRepository.GetAll();
             return _mapper.Map<IEnumerable<HoraryExtraViewModel>>(await _horaryExtraRepository.GetHoraryExtraByFieldId(FieldId));
         }
     }

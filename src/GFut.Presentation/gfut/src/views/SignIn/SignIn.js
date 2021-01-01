@@ -240,7 +240,7 @@ const SignIn = props => {
                   onChange={handleChange}
                   type="text"
                   value={formState.values.email || ''}
-                  variant="outlined"
+                  //variant="outlined"
                 />
                 <TextField
                   className={classes.textField}
@@ -254,7 +254,7 @@ const SignIn = props => {
                   onChange={handleChange}
                   type="password"
                   value={formState.values.password || ''}
-                  variant="outlined"
+                  //variant="outlined"
                 />
                 <Button
                   className={classes.signInButton}

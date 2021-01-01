@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using static GFut.Domain.Others.Enum;
 
 namespace GFut.Application.ViewModels
 {
@@ -41,7 +40,10 @@ namespace GFut.Application.ViewModels
         [NotMapped]
         public string Token { get; set; }
 
-        public List<int> ProfileType { get; set; }
+        public List<string> ProfileType { get; set; }
         public virtual TeamViewModel Team { get; set; }
+        public virtual List<PageProfileViewModel> PageProfiles { get; set; }
+
+
     }
 }

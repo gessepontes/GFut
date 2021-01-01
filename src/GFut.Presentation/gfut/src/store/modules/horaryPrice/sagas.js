@@ -26,6 +26,10 @@ export function* saveHoraryPrice({ payload }) {
 
     yield put(loading(true));
 
+    if(horaryPrice.endDate === ""){
+      horaryPrice.endDate = null;
+    }
+
     if (id !== 0){
       yield call(api.put, 'horaryPrice/', horaryPrice);
       yield put(updateHoraryPriceSuccess(horaryPrice));
@@ -114,7 +118,7 @@ export function* fetchHoraryPriceByIdField({ payload }) {
    
    const IdField  = payload.data;
    
-   const response = yield call(api.get, `horary/field/${IdField}`);
+   const response = yield call(api.get, `horaryPrice/field/${IdField}`);
 
    yield put(fetchHoraryPriceByIdFieldSuccess(response.data));
 

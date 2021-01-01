@@ -7,7 +7,6 @@ using AutoMapper.QueryableExtensions;
 using GFut.Application.ViewModels;
 using GFut.Domain.Models;
 using System.Linq;
-using Microsoft.AspNetCore.Hosting;
 using System.Threading.Tasks;
 
 namespace GFut.Application.Services
@@ -31,11 +30,32 @@ namespace GFut.Application.Services
 
         public async Task<SchedulingViewModel> GetById(int id)
         {
-            return _mapper.Map<SchedulingViewModel>(await _schedulingRepository.GetById(id));
+            var result = await _schedulingRepository.GetById(id);
+            SchedulingViewModel data = _mapper.Map<SchedulingViewModel>(result);
+
+            data.FieldItemId = data.HoraryType == Domain.Others.Enum.HoraryType.Default ? data.Horary.FieldItemId : data.HoraryExtra.FieldItemId;
+
+
+            if (data.HoraryType != Domain.Others.Enum.HoraryType.Default)
+            {
+                data.HoraryId = data.HoraryExtraId;
+                data.FieldItemId = data.HoraryExtra.FieldItemId;
+            }
+            else {
+                data.FieldItemId = data.Horary.FieldItemId;
+            }
+
+            return data;
         }
 
         public void Update(SchedulingViewModel fieldViewModel)
         {
+            if (fieldViewModel.HoraryType != Domain.Others.Enum.HoraryType.Default)
+            {
+                fieldViewModel.HoraryExtraId = fieldViewModel.HoraryId;
+                fieldViewModel.HoraryId = null;
+            }
+
             _schedulingRepository.Update(_mapper.Map<Scheduling>(fieldViewModel));
         }
 
@@ -51,6 +71,12 @@ namespace GFut.Application.Services
 
         public void Add(SchedulingViewModel fieldViewModel)
         {
+            if (fieldViewModel.HoraryType != Domain.Others.Enum.HoraryType.Default)
+            {
+                fieldViewModel.HoraryExtraId = fieldViewModel.HoraryId;
+                fieldViewModel.HoraryId = null;
+            }
+
             _schedulingRepository.Add(_mapper.Map<Scheduling>(fieldViewModel));
         }
         public async Task<IEnumerable<SchedulingViewModel>> GetSchedulingByFieldId(int FieldId)

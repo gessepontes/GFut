@@ -32,7 +32,7 @@ function MCheckboxList({ name, options, ...rest }) {
   }, [defaultValue, fieldName, registerField]);
 
   return (
-    <div>
+    <div> 
       <FormControl component="fieldset">
         <FormGroup>
           {options.map((option, index) => (
@@ -43,7 +43,7 @@ function MCheckboxList({ name, options, ...rest }) {
                   id={option.id}
                   name={fieldName}
                   color="primary"
-                  checked={defaultValue.find((dv) => dv === option.id)}
+                  defaultChecked={defaultValue.find((dv) => dv === option.id) === undefined ? false : true}
                   inputRef={ref => {
                           inputRefs.current[index] = ref;
                         }}

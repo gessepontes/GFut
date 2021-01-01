@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { makeStyles } from '@material-ui/styles';
+import { format } from 'date-fns';
 
 import { BottomRightFAB } from 'components';
 
@@ -16,6 +17,9 @@ import { fetchFieldItemByIdFieldRequest
 
 import { fetchPersonRequest
 } from '~/store/modules/person/actions';
+
+import { fetchHoraryFieldByTypeIdFieldItemRequest
+} from '~/store/modules/horaryField/actions';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,9 +36,17 @@ const SchedulingList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      let data = {
+        type: 1,
+        fieldItem: 0,
+        date: format(new Date(),"yyyy-MM-dd"),
+        horaryId: 0,
+      }
+
       dispatch(fetchFieldItemByIdFieldRequest(field.id));
       dispatch(fetchSchedulingByIdFieldRequest(field.id));    
-      dispatch(fetchPersonRequest());  
+      dispatch(fetchPersonRequest()); 
+      dispatch(fetchHoraryFieldByTypeIdFieldItemRequest(data));  
     }
 
     fetchData();

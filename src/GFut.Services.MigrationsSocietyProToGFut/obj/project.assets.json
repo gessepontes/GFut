@@ -6512,11 +6512,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Services.MigrationsSocietyProToGFut\\GFut.Services.MigrationsSocietyProToGFut.csproj",
+      "projectUniqueName": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Services.MigrationsSocietyProToGFut\\GFut.Services.MigrationsSocietyProToGFut.csproj",
       "projectName": "GFut.Services.MigrationsSocietyProToGFut",
-      "projectPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Services.MigrationsSocietyProToGFut\\GFut.Services.MigrationsSocietyProToGFut.csproj",
+      "projectPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Services.MigrationsSocietyProToGFut\\GFut.Services.MigrationsSocietyProToGFut.csproj",
       "packagesPath": "C:\\Users\\gessepontes\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Services.MigrationsSocietyProToGFut\\obj\\",
+      "outputPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Services.MigrationsSocietyProToGFut\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\gessepontes\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6533,11 +6533,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Application\\GFut.Application.csproj": {
-              "projectPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Application\\GFut.Application.csproj"
+            "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Application\\GFut.Application.csproj": {
+              "projectPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Application\\GFut.Application.csproj"
             },
-            "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Infra.IoC\\GFut.Infra.IoC.csproj": {
-              "projectPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Infra.IoC\\GFut.Infra.IoC.csproj"
+            "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Infra.IoC\\GFut.Infra.IoC.csproj": {
+              "projectPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Infra.IoC\\GFut.Infra.IoC.csproj"
             }
           }
         }

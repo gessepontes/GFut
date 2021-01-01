@@ -27,10 +27,21 @@ export function* saveScheduling({ payload }) {
     );
 
     scheduling.state = 1;
+    scheduling.schedulingType = parseInt(scheduling.schedulingType);
+    scheduling.horaryType = parseInt(scheduling.horaryType);
+
+    if (scheduling.personId === "" && scheduling.customerNotRegistered === "") {
+      toast.warn('Cliente é um campo obrigatório!');      
+      return false;
+    }
+
+    if (scheduling.personId === "") {
+      scheduling.personId = null;
+    }
 
     yield put(loading(true));
 
-    if (id !== 0){
+    if (id !== "0"){
       yield call(api.put, 'scheduling/', scheduling);
       yield put(updateSchedulingSuccess(scheduling));
     }else{

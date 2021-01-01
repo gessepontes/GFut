@@ -46,7 +46,7 @@ export default function InputMask({ name,label, ...rest }) {
   }, [fieldName, registerField]);
 
   return (
-      <FormControl fullWidth style={{ marginTop: 8 }} required>
+      <FormControl fullWidth style={{ marginTop: 8 }}>
         <InputLabel htmlFor={label}>{label}</InputLabel>
         <Input
           defaultValue={defaultValue}

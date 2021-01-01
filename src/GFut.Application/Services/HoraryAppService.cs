@@ -33,7 +33,7 @@ namespace GFut.Application.Services
 
         public async Task<IEnumerable<HoraryViewModel>> GetAll()
         {
-            var result = await _horaryRepository.GetAllHorary();
+            var result = await _horaryRepository.GetAll();
             return result.Select(_mapper.Map<HoraryViewModel>);
         }
 
@@ -78,9 +78,9 @@ namespace GFut.Application.Services
             {
                 int dayOfWeek = (int)date.DayOfWeek;
 
-                var horary = await _horaryRepository.GetAllHorary();
+                var horary = await _horaryRepository.GetAll();
 
-                foreach (var item in horary.Where(p => p.FieldItemId == fieldItem && p.DayWeek == dayOfWeek))
+                foreach (var item in horary.Where(p => p.FieldItemId == fieldItem && p.DayWeek == dayOfWeek && p.State == true && p.Active == true))
                 {
                     Scheduling scheduling = result.Where(p => p.Date == date && p.HoraryType == HoraryType.Default && p.HoraryId == item.Id).FirstOrDefault();
 

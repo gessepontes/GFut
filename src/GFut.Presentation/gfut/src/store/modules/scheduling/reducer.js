@@ -6,7 +6,7 @@ const INITIAL_STATE = {
     id: 0,
     date: format(new Date(),"yyyy-MM-dd"),
     horary: '',
-    horaryId: '',
+    horaryId: 0,
     fieldItemId: 0,
     schedulingType: 0,
     horaryType: 0,

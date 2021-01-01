@@ -7,39 +7,35 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
-using System.IO;
 
 namespace GFut.Services.Api
 {
     public class Startup
     {
+        private readonly IConfiguration _configuration;
+
+
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDirectoryBrowser();
 
-            services.AddSingleton<IFileProvider>(
-                new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
+            //services.addsingleton<ifileprovider>(
+            //    new physicalfileprovider(
+            //        path.combine(directory.getcurrentdirectory(), "wwwroot")));
 
-            var config = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .Build();
 
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
+            var config = _configuration.GetValue<string>("ConnectionStrings:DefaultConnection");
+
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(config));
 
             services.AddMvc();
 
@@ -106,6 +102,8 @@ namespace GFut.Services.Api
                 c.AllowAnyMethod();
                 c.AllowAnyOrigin();
             });
+
+            app.UseStaticFiles();
 
             app.UseHttpsRedirection();
 

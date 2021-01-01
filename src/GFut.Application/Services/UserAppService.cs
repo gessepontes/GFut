@@ -7,22 +7,25 @@ using GFut.Domain.Models;
 using System.Linq;
 using GFut.Domain.Others;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace GFut.Application.Services
 {
     public class UserAppService : IUserAppService
     {
-        private readonly IUserRepository _userRepository;
         private readonly IPersonRepository _personRepository;
         private readonly IPersonProfileRepository _personProfileRepository;
+        private readonly IPersonAppService _personAppService;
         private readonly IMapper _mapper;
 
-        public UserAppService(IMapper mapper, IUserRepository userRepository, 
-            IPersonRepository personRepository, IPersonProfileRepository personProfileRepository)
+        public UserAppService(IMapper mapper,
+            IPersonRepository personRepository,
+            IPersonProfileRepository personProfileRepository,
+            IPersonAppService personAppService)
         {
-            _userRepository = userRepository;
             _personRepository = personRepository;
             _personProfileRepository = personProfileRepository;
+            _personAppService = personAppService;
             _mapper = mapper;
         }
 
@@ -30,11 +33,9 @@ namespace GFut.Application.Services
         {
             userViewModel.Password = Divers.GenerateMD5(userViewModel.Password);
 
-            Person person = await _userRepository.SignIn(_mapper.Map<User>(userViewModel));
-            PersonViewModel personViewModel = _mapper.Map<PersonViewModel>(person);
+            Person person = await _personRepository.SignIn(_mapper.Map<User>(userViewModel));
 
-            personViewModel.Team = _mapper.Map<TeamViewModel>(person.Teams.Where(p => p.Active == true && p.State == true).FirstOrDefault());
-            return personViewModel;
+            return await _personAppService.GetProfileTeam(person);
         }
 
         public void SignUp(UserViewModel userViewModel)
@@ -54,15 +55,10 @@ namespace GFut.Application.Services
             PersonProfile personProfile = new PersonProfile
             {
                 PersonId = person.Id,
-                ProfileType = Domain.Others.Enum.ProfileType.Jogador
+                ProfileType = Domain.Others.Enum.ProfileType.Usuario
             };
 
             _personProfileRepository.Add(personProfile);
-        }
-
-        public void UpdateUser(UserViewModel userViewModel)
-        {
-            _userRepository.UpdateUser(_mapper.Map<User>(userViewModel));
         }
 
         public void Dispose()

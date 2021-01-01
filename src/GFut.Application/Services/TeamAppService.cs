@@ -43,9 +43,6 @@ namespace GFut.Application.Services
 
         public void Update(TeamViewModel teamViewModel)
         {
-
-            var result = _teamRepository.GetTeamPerson(teamViewModel.PersonId).Result;
-
             string[] symbol = teamViewModel.Symbol.Split('/');
 
             if (symbol[0] != "data:image")
@@ -60,6 +57,8 @@ namespace GFut.Application.Services
             teamViewModel.Picture = "semimagem.png";
 
             _teamRepository.Update(_mapper.Map<Team>(teamViewModel));
+
+            var result = _teamRepository.GetTeamPerson(teamViewModel.PersonId).Result;
 
             if (teamViewModel.Active)
             {

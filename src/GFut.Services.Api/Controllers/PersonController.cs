@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GFut.Services.Api.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Person")]
+    [Route("api/Person/[action]")]
     public class PersonController : Controller
     {
         private readonly IPersonAppService _personAppService;
@@ -26,41 +26,40 @@ namespace GFut.Services.Api.Controllers
             return _personAppService.GetAll();
         }
 
-        [HttpGet("PersonChampionshipDrop/", Name = "GetPersonChampionshipDrop")]
-        public Task<IEnumerable<PersonViewModel>> GetPersonChampionshipDrop()
+        [HttpGet]
+        public Task<IEnumerable<PersonViewModel>> PersonChampionshipDrop()
         {
             return _personAppService.GetPersonChampionshipDrop();
         }
 
-        [HttpGet("PersonFieldDrop/", Name = "GetPersonFieldDrop")]
-        public Task<IEnumerable<PersonViewModel>> GetPersonFieldDrop()
+        [HttpGet]
+        public Task<IEnumerable<PersonViewModel>> PersonFieldDrop()
         {
             return _personAppService.GetPersonFieldDrop();
         }
 
-        [HttpGet("PersonAllDrop/", Name = "GetPersonAllDrop")]
-        public Task<IEnumerable<PersonViewModel>> GetPersonAllDrop()
+        [HttpGet]
+        public Task<IEnumerable<PersonViewModel>> PersonAllDrop()
         {
             return _personAppService.GetPersonAllDrop();
-        }
-
-        [AllowAnonymous]
-        [HttpGet("{id}", Name = "GetPersonById")]
-        public Task<PersonViewModel> Get(int id)
-        {
-            return _personAppService.GetById(id);
         }
 
         [HttpPost(Name = "PostPerson")]
         public void Post([FromBody]PersonViewModel personViewModel)
         {
-            _personAppService.Register(personViewModel);
+            _personAppService.Add(personViewModel);
         }
 
         [HttpPut(Name = "PutPerson")]
         public void Put([FromBody]PersonViewModel personViewModel)
         {
             _personAppService.Update(personViewModel);
+        }
+
+        [HttpPut(Name = "PutUpdateProfile")]        
+        public void PutUpdateProfile([FromBody] PersonViewModel personViewModel)
+        {
+            _personAppService.UpdateProfile(personViewModel);
         }
 
         [HttpDelete("{id}", Name = "DeletePerson")]

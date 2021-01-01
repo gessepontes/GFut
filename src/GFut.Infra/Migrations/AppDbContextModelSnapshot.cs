@@ -528,6 +528,71 @@ namespace GFut.Infra.Data.Migrations
                     b.ToTable("MatchPlayerChampionship");
                 });
 
+            modelBuilder.Entity("GFut.Domain.Models.Page", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Href")
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("Href");
+
+                    b.Property<string>("Icon")
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("Icon");
+
+                    b.Property<bool>("Menu")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ParentId")
+                        .HasColumnType("int")
+                        .HasColumnName("ParentId");
+
+                    b.Property<DateTime>("RegisterDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("Title");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentId");
+
+                    b.ToTable("Page");
+                });
+
+            modelBuilder.Entity("GFut.Domain.Models.PageProfile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("PageId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("RegisterDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PageId");
+
+                    b.ToTable("PageProfile");
+                });
+
             modelBuilder.Entity("GFut.Domain.Models.Person", b =>
                 {
                     b.Property<int>("Id")
@@ -1068,6 +1133,26 @@ namespace GFut.Infra.Data.Migrations
                     b.Navigation("PlayerRegistration");
                 });
 
+            modelBuilder.Entity("GFut.Domain.Models.Page", b =>
+                {
+                    b.HasOne("GFut.Domain.Models.Page", "PageNavigation")
+                        .WithMany("Pages")
+                        .HasForeignKey("ParentId");
+
+                    b.Navigation("PageNavigation");
+                });
+
+            modelBuilder.Entity("GFut.Domain.Models.PageProfile", b =>
+                {
+                    b.HasOne("GFut.Domain.Models.Page", "Page")
+                        .WithMany("PageProfiles")
+                        .HasForeignKey("PageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Page");
+                });
+
             modelBuilder.Entity("GFut.Domain.Models.PersonProfile", b =>
                 {
                     b.HasOne("GFut.Domain.Models.Person", "Person")
@@ -1194,6 +1279,13 @@ namespace GFut.Infra.Data.Migrations
             modelBuilder.Entity("GFut.Domain.Models.MatchChampionship", b =>
                 {
                     b.Navigation("MatchPlayerChampionships");
+                });
+
+            modelBuilder.Entity("GFut.Domain.Models.Page", b =>
+                {
+                    b.Navigation("PageProfiles");
+
+                    b.Navigation("Pages");
                 });
 
             modelBuilder.Entity("GFut.Domain.Models.Person", b =>

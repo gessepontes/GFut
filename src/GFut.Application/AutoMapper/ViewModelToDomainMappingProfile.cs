@@ -20,9 +20,11 @@ namespace GFut.Application.AutoMapper
             CreateMap<SchedulingViewModel, Scheduling>().MaxDepth(1);
             CreateMap<UserViewModel, User>().MaxDepth(1);
             CreateMap<SubscriptionViewModel, Subscription>().MaxDepth(1);
-            CreateMap<PlayerRegistrationViewModel,PlayerRegistration>().MaxDepth(1);
+            CreateMap<PlayerRegistrationViewModel, PlayerRegistration>().MaxDepth(1);
             CreateMap<GroupChampionshipViewModel, GroupChampionship>().MaxDepth(1);
             CreateMap<MatchChampionshipViewModel, MatchChampionship>().MaxDepth(1);
+            CreateMap<PageViewModel, Page>().MaxDepth(1);
+            CreateMap<PageProfileViewModel, PageProfile>().MaxDepth(1);
         }
     }
 }

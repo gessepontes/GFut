@@ -10,6 +10,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
 import Collapse from '@material-ui/core/Collapse'
+import Icon from '@material-ui/core/Icon';
 
 import IconExpandLess from '@material-ui/icons/ExpandLess'
 import IconExpandMore from '@material-ui/icons/ExpandMore'
@@ -27,12 +28,12 @@ const CustomRouterLink = forwardRef((props, ref) => (
 export const AppMenuItemPropTypes = {
   title: PropTypes.string.isRequired,
   href: PropTypes.string,
-  Icon: PropTypes.elementType,
+  IconBase: PropTypes.string,
   items: PropTypes.array,
 }
 
 const SidebarNav = props => {
-  const { title, href, Icon, items = [] } = props
+  const { title, href, IconBase, items = [] } = props
   const classes = useStyles()
   const isExpandable = items && items.length > 0
   const [open, setOpen] = React.useState(false)
@@ -42,11 +43,11 @@ const SidebarNav = props => {
   }
 
   const MenuItemRoot = (
-    <ListItem button component={CustomRouterLink} to={href} className={classes.menuItem} onClick={handleClick}>
+    <ListItem button component={CustomRouterLink} to={"/" + href} className={classes.menuItem} onClick={handleClick}>
       {/* Display an icon if any */}
-      {!!Icon && (
-        <ListItemIcon className={classes.menuItemIcon}>
-          <Icon />
+      {!!IconBase && (
+        <ListItemIcon className={classes.menuItemIcon}>          
+          <Icon>{IconBase}</Icon>
         </ListItemIcon>
       )}
       <ListItemText primary={title} inset={!Icon} />
@@ -56,9 +57,9 @@ const SidebarNav = props => {
   const MenuItemRootWithChildren = (
     <ListItem button className={classes.menuItem} onClick={handleClick}>
       {/* Display an icon if any */}
-      {!!Icon && (
+      {!!IconBase && (
         <ListItemIcon className={classes.menuItemIcon}>
-          <Icon />
+            <Icon>{IconBase}</Icon>
         </ListItemIcon>
       )}
       <ListItemText primary={title} inset={!Icon} />
@@ -72,7 +73,7 @@ const SidebarNav = props => {
   const MenuItemChildren = isExpandable ? (
     <Collapse in={open} timeout="auto" unmountOnExit>
       <Divider />
-      <List component="div" disablePadding>
+      <List component="div" disablePadding dense>
         {items.map((item, index) => (
           <SidebarNav {...item} key={index} />
         ))}

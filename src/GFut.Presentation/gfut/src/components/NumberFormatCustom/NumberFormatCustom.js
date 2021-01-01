@@ -21,18 +21,15 @@ function NumberFormatCustom(props) {
             value: values.value,
           },
         });
-      }}
-      thousandSeparator
-      isNumericString
+      }}                 
+      isNumericString={true} 
       //prefix="R$"
     />
   );
 }
 
 NumberFormatCustom.propTypes = {
-  inputRef: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  inputRef: PropTypes.func.isRequired
 };
 
 export default function InputMask({ name,label, ...rest }) {

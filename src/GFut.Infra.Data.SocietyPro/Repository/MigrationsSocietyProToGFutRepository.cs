@@ -114,7 +114,7 @@ namespace GFut.Infra.Data.SocietyPro.Repository
             }
             catch (SqlException e)
             {
-                // Attempt to roll back the transaction.
+                e.Message.ToString();
             }
 
         }
@@ -176,7 +176,7 @@ namespace GFut.Infra.Data.SocietyPro.Repository
             }
             catch (SqlException e)
             {
-                // Attempt to roll back the transaction.
+                e.Message.ToString();
             }
         }
         public void GetJogador(int IdNew, int IdOld)
@@ -233,7 +233,7 @@ namespace GFut.Infra.Data.SocietyPro.Repository
             }
             catch (SqlException e)
             {
-                // Attempt to roll back the transaction.
+                e.Message.ToString();
             }
         }
         public void GetCampo(int IDPESSOA, int IDPESSOAOld)
@@ -295,7 +295,7 @@ namespace GFut.Infra.Data.SocietyPro.Repository
             }
             catch (SqlException e)
             {
-                // Attempt to roll back the transaction.
+                e.Message.ToString();
             }
         }
         public void GetCampoItem(int Id, int IdOld)
@@ -351,7 +351,7 @@ namespace GFut.Infra.Data.SocietyPro.Repository
             }
             catch (SqlException e)
             {
-                // Attempt to roll back the transaction.
+                e.Message.ToString();
             }
         }
         public void GetCampoValor(int Id, int IdOld)
@@ -403,7 +403,7 @@ namespace GFut.Infra.Data.SocietyPro.Repository
             }
             catch (SqlException e)
             {
-                // Attempt to roll back the transaction.
+                e.Message.ToString();
             }
         }
         public void GetHorarioPadrao(int Id, int IdOld)
@@ -459,7 +459,7 @@ namespace GFut.Infra.Data.SocietyPro.Repository
             }
             catch (SqlException e)
             {
-                // Attempt to roll back the transaction.
+                e.Message.ToString();
             }
         }
         public void GetHorarioExtra(int Id, int IdOld)
@@ -510,7 +510,7 @@ namespace GFut.Infra.Data.SocietyPro.Repository
             }
             catch (SqlException e)
             {
-                // Attempt to roll back the transaction.
+                e.Message.ToString();
             }
         }
         public void GetHorarioAgendamento(int Id, int IdOld)
@@ -566,7 +566,7 @@ namespace GFut.Infra.Data.SocietyPro.Repository
             }
             catch (SqlException e)
             {
-                // Attempt to roll back the transaction.
+                e.Message.ToString();
             }
         }
 
@@ -634,7 +634,7 @@ namespace GFut.Infra.Data.SocietyPro.Repository
             }
             catch (SqlException e)
             {
-                // Attempt to roll back the transaction.
+                e.Message.ToString();
             }
         }
         public void GetInscrito(int ChampionshipId, int TeamId, int ChampionshipIdOld, int TeamIdOld)
@@ -688,7 +688,7 @@ namespace GFut.Infra.Data.SocietyPro.Repository
             }
             catch (SqlException e)
             {
-                // Attempt to roll back the transaction.
+                e.Message.ToString();
             }
         }
         public void GetCampeonatoGrupo(int IDInscrito, int IDInscritoOld)
@@ -739,7 +739,7 @@ namespace GFut.Infra.Data.SocietyPro.Repository
             }
             catch (SqlException e)
             {
-                // Attempt to roll back the transaction.
+                e.Message.ToString();
             }
         }
         public void GetJogadorInscrito(int JogadorId, int InscritoId, int JogadorIdOld, int InscritoIdOld)
@@ -794,7 +794,7 @@ namespace GFut.Infra.Data.SocietyPro.Repository
             }
             catch (SqlException e)
             {
-                // Attempt to roll back the transaction.
+                e.Message.ToString();
             }
         }
         public void GetPartidaCampeonato(int HomeSubscriptionId, int GuestSubscriptionId, int FieldItemId, int InscritoIdOld)
@@ -853,7 +853,7 @@ namespace GFut.Infra.Data.SocietyPro.Repository
             }
             catch (SqlException e)
             {
-                // Attempt to roll back the transaction.
+                e.Message.ToString();
             }
         }
         public void GetJogadorSumula(int MatchChampionshipId, int PlayerRegistrationId, int IDSumulaoLd, int IDJogadorInscritoold)
@@ -908,7 +908,7 @@ namespace GFut.Infra.Data.SocietyPro.Repository
             }
             catch (SqlException e)
             {
-                // Attempt to roll back the transaction.
+                e.Message.ToString();
             }
         }
 

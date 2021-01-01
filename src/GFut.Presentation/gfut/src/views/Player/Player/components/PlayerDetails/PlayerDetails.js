@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -29,7 +29,7 @@ const useStyles = makeStyles(() => ({
 
 const PlayerDetails = props => {
   const dispatch = useDispatch();
-  const [dispenseDate, setDispenseDate] = useState(true);
+  //const [dispenseDate, setDispenseDate] = useState(true);
 
   const { className, ...rest } = props;
 
@@ -49,9 +49,9 @@ const PlayerDetails = props => {
     dispatch(savePlayerRequest(data));
   }
 
-  function enableDispenseDate(event) {
-    setDispenseDate(!event.target.checked);
-  }
+  // function enableDispenseDate(event) {
+  //   setDispenseDate(!event.target.checked);
+  // }
 
   const team = useSelector(state => state.user.profile.team);
   const player = useSelector(state => state.player.player);
@@ -132,10 +132,10 @@ const PlayerDetails = props => {
               md={6}
               xs={12}
             >
-              <MCheckbox name="dispensed" onChange={enableDispenseDate} label="Dispensado"/>
+              <MCheckbox name="dispensed" label="Dispensado"/>
             </Grid>
 
-            <Grid
+            {/* <Grid
               item
               md={6}
               xs={12}
@@ -145,7 +145,7 @@ const PlayerDetails = props => {
                   shrink: true,
                 }}
               />
-            </Grid>
+            </Grid> */}
           </Grid>
         </CardContent>
         <Divider />

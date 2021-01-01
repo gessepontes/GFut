@@ -19,14 +19,16 @@ namespace GFut.Application.Services
         private readonly IPersonProfileRepository _personProfileRepository;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
+        private readonly IPageProfileRepository _pageProfileRepository;
 
-
-        public PersonAppService(IMapper mapper, IPersonRepository personRepository, IPersonProfileRepository personProfileRepository, IConfiguration configuration)
+        public PersonAppService(IMapper mapper, IPersonRepository personRepository, IPersonProfileRepository personProfileRepository, IConfiguration configuration,
+            IPageProfileRepository pageProfileRepository)
         {
             _personRepository = personRepository;
             _personProfileRepository = personProfileRepository;
             _mapper = mapper;
             _configuration = configuration;
+            _pageProfileRepository = pageProfileRepository;
         }
 
         public async Task<IEnumerable<PersonViewModel>> GetAll()
@@ -41,7 +43,7 @@ namespace GFut.Application.Services
         public async Task<IEnumerable<PersonViewModel>> GetPersonChampionshipDrop()
         {
             var result = await _personRepository.GetPersonChampionshipDrop();
-            return result.Select(_mapper.Map<PersonViewModel>); 
+            return result.Select(_mapper.Map<PersonViewModel>);
         }
 
         public async Task<IEnumerable<PersonViewModel>> GetPersonFieldDrop()
@@ -61,7 +63,7 @@ namespace GFut.Application.Services
             return _mapper.Map<PersonViewModel>(await _personRepository.GetById(id));
         }
 
-        public void Register(PersonViewModel personViewModel)
+        public void Add(PersonViewModel personViewModel)
         {
             var config = _configuration.GetValue<string>("Config:AtletaBase64");
 
@@ -85,7 +87,7 @@ namespace GFut.Application.Services
                 PersonProfile _personProfile = new PersonProfile
                 {
                     PersonId = _person.Id,
-                    ProfileType = (ProfileType)item
+                    ProfileType = (ProfileType)int.Parse(item)
                 };
 
                 _personProfileRepository.Add(_personProfile);
@@ -110,10 +112,6 @@ namespace GFut.Application.Services
                 personViewModel.Picture = Divers.Base64ToImage(personViewModel.Picture, "PERSON");
             }
 
-            if (personViewModel.Password != "")
-                personViewModel.Password = Divers.GenerateMD5(personViewModel.Password);
-
-
             Person _person = _mapper.Map<Person>(personViewModel);
             _personRepository.Update(_person);
 
@@ -125,7 +123,7 @@ namespace GFut.Application.Services
                 PersonProfile _personProfile = new PersonProfile
                 {
                     PersonId = _person.Id,
-                    ProfileType = (ProfileType)item
+                    ProfileType = (ProfileType)int.Parse(item)
                 };
 
                 _personProfileRepository.Add(_personProfile);
@@ -152,6 +150,47 @@ namespace GFut.Application.Services
         public void Dispose()
         {
             GC.SuppressFinalize(this);
+        }
+
+        public void UpdateProfile(PersonViewModel personViewModel)
+        {
+            string[] picture = personViewModel.Picture.Split('/');
+
+            if (picture[0] != "data:image")
+            {
+                personViewModel.Picture = picture[picture.Count() - 1];
+            }
+            else
+            {
+                personViewModel.Picture = Divers.Base64ToImage(personViewModel.Picture, "PERSON");
+            }
+
+            Person person = _mapper.Map<Person>(personViewModel);
+            _personRepository.Update(person);
+        }
+
+        public async Task<PersonViewModel> GetProfileTeam(Person person)
+        {
+            var result = _personProfileRepository.GetAll().Result;
+            PersonViewModel personViewModel = _mapper.Map<PersonViewModel>(person);
+
+            personViewModel.Team = _mapper.Map<TeamViewModel>(person.Teams.Where(p => p.Active == true && p.State == true).FirstOrDefault());
+
+            List<PageProfileViewModel> pageProfileViewModels = new List<PageProfileViewModel>();
+
+            List<PersonProfile> personProfilesList = result.Where(p => p.PersonId == person.Id).ToList();
+
+
+            foreach (var item in personProfilesList)
+            {
+                var pageProfile = _mapper.Map<IEnumerable<PageProfileViewModel>>(await _pageProfileRepository.GetPageProfileByProfileId((int) item.ProfileType));
+
+                pageProfileViewModels.AddRange(pageProfile);
+            }
+
+            personViewModel.PageProfiles = pageProfileViewModels;
+
+            return personViewModel;
         }
     }
 }

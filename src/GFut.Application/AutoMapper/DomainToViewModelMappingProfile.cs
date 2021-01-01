@@ -32,6 +32,9 @@ namespace GFut.Application.AutoMapper
 
             CreateMap<MatchChampionship, MatchChampionshipViewModel>()
                 .ForMember(x => x.HomeSubscription, x => x.MapFrom(c => c.HomeSubscription));
+
+            CreateMap<Page, PageViewModel>().MaxDepth(2);
+            CreateMap<PageProfile, PageProfileViewModel>().MaxDepth(1);
         }
     }
 }

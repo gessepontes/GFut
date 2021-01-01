@@ -4,17 +4,12 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Divider, Drawer, Hidden } from '@material-ui/core';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import PeopleIcon from '@material-ui/icons/People';
-import PersonIcon from '@material-ui/icons/Person';
-import BuildIcon from '@material-ui/icons/Build';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-import FlagIcon from '@material-ui/icons/Flag';
 
 import List from '@material-ui/core/List'
 
 import { Profile, SidebarNav } from './components';
+
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
   drawer: {
@@ -42,115 +37,21 @@ const useStyles = makeStyles(theme => ({
 const Sidebar = props => {
   const { open, variant, onClose, className, ...rest } = props;
 
+  const pages = useSelector(state => state.user.profile.pageProfiles);
   const classes = useStyles();
-  const pages = [
+
+  const pagesDefault = [
     {
       title: 'Dashboard',
-      href: '/dashboard',
-      Icon: DashboardIcon 
-    },
-    {
-      title: 'Usuário',
-      href: '/people',
-      Icon: PeopleIcon 
-    },
-    {
-      title: 'Time',
-      href: '/teams',
-      Icon: FlagIcon 
-    },    
-    {
-      title: 'Atleta',
-      href: '/players',
-      Icon: PersonIcon 
-    },    
-    {
-      title: 'Campos',
-      href: '',
-      Icon: LocationOnIcon ,
-      items: [
-        {
-          title: 'Campo',
-          href: '/fields',
-        },
-        {
-          title: 'Campo Item',
-          href: '/fieldItensField',
-        },
-        {
-          title: 'Valor',
-          href: '/horaryPricesField',
-        },   
-        {
-          title: 'Horários',
-          href: '/horaryFieldsField',
-        }, 
-        {
-          title: 'Horário Extra',
-          href: '/horaryExtraFieldsField',
-        }, 
-        {
-          title: 'Agendar Horário',
-          href: '/schedulingField',
-        },     
-      ],
-    },  
-    {
-      title: 'Campeonatos',
-      href: '',
-      Icon: BuildIcon ,
-      items: [
-        {
-          title: 'Campeonato',
-          href: '/championships',
-        },
-        {
-          title: 'Inscrição',
-          href: '/subscriptionChampionship',
-        },
-        {
-          title: 'Inscrição de jogador',
-          href: '/playerRegistrationChampionship',
-        },   
-        {
-          title: 'Grupos',
-          href: '/groupChampionshipChampionship',
-        }, 
-        {
-          title: 'Partidas',
-          href: '/matchChampionshipChampionship',
-        },   
-        {
-          title: 'Geração grupos automático',
-          href: '/automaticGroup',
-        },
-        {
-          title: 'Geração partidas automático',
-          href: '/automaticMatch',
-        },
-        {
-          title: 'Classificação',
-          href: '/standingsListChampionship',
-        },   
-        {
-          title: 'Artilharia',
-          href: '/topScorersListChampionship',
-        }, 
-        {
-          title: 'Suspensão',
-          href: '/suspendedPlayersChampionship',
-        }, 
-        {
-          title: 'Súmulas',
-          href: '/matchSummaryChampionship',
-        },                  
-      ],
-    },  
-    {
-      title: 'Perfil',
-      href: '/account',
-      Icon: AccountBoxIcon 
-    },
+      href: 'dashboard',
+      icon: 'dashboard' 
+    }
+    // }, 
+    // {
+    //   title: 'Perfil',
+    //   href: '/account',
+    //   Icon: AccountBoxIcon 
+    // },
   ];
 
   return (
@@ -168,17 +69,33 @@ const Sidebar = props => {
         <Profile />
         <Divider className={classes.divider} />
         <Hidden lgUp>
-              <List component="nav" className={classes.appMenu} disablePadding>
+          
+              <List component="nav" className={classes.appMenu} disablePadding dense>
                 {pages.map((item, index) => (
-                  <SidebarNav {...item} key={index} />
-                ))}
+                  item.page.menu ? <SidebarNav title={item.page.title} 
+                    href={item.page.href} 
+                    IconBase={item.page.icon} key={index} />  : null
+                ))}  
               </List>
         </Hidden>
         <Hidden mdDown>
-              <List component="nav" className={classes.appMenu} disablePadding>
-                {pages.map((item, index) => (
-                  <SidebarNav {...item} key={index} />
-                ))}
+              <List component="nav" className={classes.appMenu} disablePadding dense>
+                <div>
+                
+                  {pagesDefault.map((item, index) => (
+                      <SidebarNav title={item.title} 
+                        href={item.href} 
+                        IconBase={item.icon} key={index} />
+                    ))}
+                  {pages.map((item, index) => (
+                    item.page.menu ? <SidebarNav title={item.page.title} 
+                      href={item.page.href} 
+                      IconBase={item.page.icon}
+                      items={item.page.pages}
+                      key={index} /> : null
+                  ))} 
+
+                </div>          
               </List>
         </Hidden>
       </div>

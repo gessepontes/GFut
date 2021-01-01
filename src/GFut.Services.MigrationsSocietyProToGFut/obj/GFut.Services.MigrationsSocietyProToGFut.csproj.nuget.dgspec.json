@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Services.MigrationsSocietyProToGFut\\GFut.Services.MigrationsSocietyProToGFut.csproj": {}
+    "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Services.MigrationsSocietyProToGFut\\GFut.Services.MigrationsSocietyProToGFut.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Application\\GFut.Application.csproj": {
+    "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Application\\GFut.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Application\\GFut.Application.csproj",
+        "projectUniqueName": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Application\\GFut.Application.csproj",
         "projectName": "GFut.Application",
-        "projectPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Application\\GFut.Application.csproj",
+        "projectPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Application\\GFut.Application.csproj",
         "packagesPath": "C:\\Users\\gessepontes\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Application\\obj\\",
+        "outputPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\gessepontes\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj": {
-                "projectPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj"
+              "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj": {
+                "projectPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj"
               }
             }
           }
@@ -79,14 +79,14 @@
         }
       }
     },
-    "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj": {
+    "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj",
         "projectName": "GFut.Domain",
-        "projectPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj",
+        "projectPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj",
         "packagesPath": "C:\\Users\\gessepontes\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Domain\\obj\\",
+        "outputPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\gessepontes\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -152,14 +152,14 @@
         }
       }
     },
-    "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Infra.Data.SocietyPro\\GFut.Infra.Data.SocietyPro.csproj": {
+    "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Infra.Data.SocietyPro\\GFut.Infra.Data.SocietyPro.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Infra.Data.SocietyPro\\GFut.Infra.Data.SocietyPro.csproj",
+        "projectUniqueName": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Infra.Data.SocietyPro\\GFut.Infra.Data.SocietyPro.csproj",
         "projectName": "GFut.Infra.Data.SocietyPro",
-        "projectPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Infra.Data.SocietyPro\\GFut.Infra.Data.SocietyPro.csproj",
+        "projectPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Infra.Data.SocietyPro\\GFut.Infra.Data.SocietyPro.csproj",
         "packagesPath": "C:\\Users\\gessepontes\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Infra.Data.SocietyPro\\obj\\",
+        "outputPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Infra.Data.SocietyPro\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\gessepontes\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -176,8 +176,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Infra\\GFut.Infra.Data.csproj": {
-                "projectPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Infra\\GFut.Infra.Data.csproj"
+              "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Infra\\GFut.Infra.Data.csproj": {
+                "projectPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Infra\\GFut.Infra.Data.csproj"
               }
             }
           }
@@ -231,14 +231,14 @@
         }
       }
     },
-    "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Infra.IoC\\GFut.Infra.IoC.csproj": {
+    "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Infra.IoC\\GFut.Infra.IoC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Infra.IoC\\GFut.Infra.IoC.csproj",
+        "projectUniqueName": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Infra.IoC\\GFut.Infra.IoC.csproj",
         "projectName": "GFut.Infra.IoC",
-        "projectPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Infra.IoC\\GFut.Infra.IoC.csproj",
+        "projectPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Infra.IoC\\GFut.Infra.IoC.csproj",
         "packagesPath": "C:\\Users\\gessepontes\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Infra.IoC\\obj\\",
+        "outputPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Infra.IoC\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\gessepontes\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -255,17 +255,17 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Application\\GFut.Application.csproj": {
-                "projectPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Application\\GFut.Application.csproj"
+              "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Application\\GFut.Application.csproj": {
+                "projectPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Application\\GFut.Application.csproj"
               },
-              "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj": {
-                "projectPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj"
+              "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj": {
+                "projectPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj"
               },
-              "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Infra.Data.SocietyPro\\GFut.Infra.Data.SocietyPro.csproj": {
-                "projectPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Infra.Data.SocietyPro\\GFut.Infra.Data.SocietyPro.csproj"
+              "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Infra.Data.SocietyPro\\GFut.Infra.Data.SocietyPro.csproj": {
+                "projectPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Infra.Data.SocietyPro\\GFut.Infra.Data.SocietyPro.csproj"
               },
-              "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Infra\\GFut.Infra.Data.csproj": {
-                "projectPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Infra\\GFut.Infra.Data.csproj"
+              "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Infra\\GFut.Infra.Data.csproj": {
+                "projectPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Infra\\GFut.Infra.Data.csproj"
               }
             }
           }
@@ -301,14 +301,14 @@
         }
       }
     },
-    "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Infra\\GFut.Infra.Data.csproj": {
+    "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Infra\\GFut.Infra.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Infra\\GFut.Infra.Data.csproj",
+        "projectUniqueName": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Infra\\GFut.Infra.Data.csproj",
         "projectName": "GFut.Infra.Data",
-        "projectPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Infra\\GFut.Infra.Data.csproj",
+        "projectPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Infra\\GFut.Infra.Data.csproj",
         "packagesPath": "C:\\Users\\gessepontes\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Infra\\obj\\",
+        "outputPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Infra\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\gessepontes\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -325,8 +325,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj": {
-                "projectPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj"
+              "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj": {
+                "projectPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Domain\\GFut.Domain.csproj"
               }
             }
           }
@@ -386,14 +386,14 @@
         }
       }
     },
-    "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Services.MigrationsSocietyProToGFut\\GFut.Services.MigrationsSocietyProToGFut.csproj": {
+    "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Services.MigrationsSocietyProToGFut\\GFut.Services.MigrationsSocietyProToGFut.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Services.MigrationsSocietyProToGFut\\GFut.Services.MigrationsSocietyProToGFut.csproj",
+        "projectUniqueName": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Services.MigrationsSocietyProToGFut\\GFut.Services.MigrationsSocietyProToGFut.csproj",
         "projectName": "GFut.Services.MigrationsSocietyProToGFut",
-        "projectPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Services.MigrationsSocietyProToGFut\\GFut.Services.MigrationsSocietyProToGFut.csproj",
+        "projectPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Services.MigrationsSocietyProToGFut\\GFut.Services.MigrationsSocietyProToGFut.csproj",
         "packagesPath": "C:\\Users\\gessepontes\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Services.MigrationsSocietyProToGFut\\obj\\",
+        "outputPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Services.MigrationsSocietyProToGFut\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\gessepontes\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -410,11 +410,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Application\\GFut.Application.csproj": {
-                "projectPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Application\\GFut.Application.csproj"
+              "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Application\\GFut.Application.csproj": {
+                "projectPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Application\\GFut.Application.csproj"
               },
-              "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Infra.IoC\\GFut.Infra.IoC.csproj": {
-                "projectPath": "C:\\Users\\gessepontes\\Source\\Repos\\GFut\\src\\GFut.Infra.IoC\\GFut.Infra.IoC.csproj"
+              "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Infra.IoC\\GFut.Infra.IoC.csproj": {
+                "projectPath": "C:\\Users\\gessepontes\\source\\repos\\GFut\\src\\GFut.Infra.IoC\\GFut.Infra.IoC.csproj"
               }
             }
           }

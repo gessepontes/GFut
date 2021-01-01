@@ -15,8 +15,6 @@ namespace GFut.Application.ViewModels
 
         public string Picture { get; set; }
 
-        [MinLength(2)]
-        [MaxLength(100)]
         [DisplayName("Password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }

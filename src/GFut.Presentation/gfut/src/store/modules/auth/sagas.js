@@ -28,6 +28,7 @@ export function* signIn({ payload }) {
       return;
     }
 
+    user.picture = `http://localhost:51933/picture/person/${user.picture}`;
     user.birthDate = format(new Date(user.birthDate),"yyyy-MM-dd");
 
     api.defaults.headers.Authorization = `Bearer ${user.token}`;

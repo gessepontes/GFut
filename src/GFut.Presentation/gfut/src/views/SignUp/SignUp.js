@@ -271,7 +271,7 @@ const SignUp = props => {
                   onChange={handleChange}
                   type="text"
                   value={formState.values.firstName || ''}
-                  variant="outlined"
+                  //variant="outlined"
                 />
                 <TextField
                   className={classes.textField}
@@ -285,7 +285,7 @@ const SignUp = props => {
                   onChange={handleChange}
                   type="text"
                   value={formState.values.lastName || ''}
-                  variant="outlined"
+                  //variant="outlined"
                 />
                 <TextField
                   className={classes.textField}
@@ -299,7 +299,7 @@ const SignUp = props => {
                   onChange={handleChange}
                   type="text"
                   value={formState.values.email || ''}
-                  variant="outlined"
+                  //variant="outlined"
                 />
                 <TextField
                   className={classes.textField}
@@ -313,7 +313,7 @@ const SignUp = props => {
                   onChange={handleChange}
                   type="password"
                   value={formState.values.password || ''}
-                  variant="outlined"
+                  //variant="outlined"
                 />
                 <div className={classes.policy}>
                   <Checkbox

@@ -27,10 +27,10 @@ export function* savePerson({ payload }) {
     yield put(loading(true));
 
     if (id !== 0){
-      yield call(api.put, 'person', person);
+      yield call(api.put, 'person/put', person);
       yield put(updatePersonSuccess(person));
     }else{
-      yield call(api.post, 'person', person); 
+      yield call(api.post, 'person/post', person); 
       yield put(addPersonSuccess(person));
     }
   
@@ -76,7 +76,7 @@ export function* fetchPerson() {
    try {    
     yield put(loading(true));
        
-    const response = yield call(api.get, `person/`);
+    const response = yield call(api.get, `person/get`);
 
     yield put(fetchPersonSuccess(response.data));
 

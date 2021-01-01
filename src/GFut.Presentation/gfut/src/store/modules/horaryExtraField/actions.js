@@ -112,21 +112,21 @@ export function horaryExtraFieldInitialValues() {
 
 export function fetchHoraryExtraFieldByIdFieldRequest(data) {
   return {
-    type: '@horaryExtraField/FETCH_HORARY_EXTRA_ID_FIELD_REQUEST',
+    type: '@horaryExtraField/FETCH_HORARY_EXTRA_FIELD_ID_FIELD_REQUEST',
     payload: { data },
   };
 }
 
 export function fetchHoraryExtraFieldByIdFieldSuccess(data) {
   return {
-    type: '@horaryExtraField/FETCH_HORARY_EXTRA_ID_FIELD_SUCCESS',
+    type: '@horaryExtraField/FETCH_HORARY_EXTRA_FIELD_ID_FIELD_SUCCESS',
     payload: { data },
   };
 }
 
 export function fetchHoraryExtraFieldByIdFieldFailure() {
   return {
-    type: '@horaryExtraField/FETCH_HORARY_EXTRA_ID_FIELD_FAILURE',
+    type: '@horaryExtraField/FETCH_HORARY_EXTRA_FIELD_ID_FIELD_FAILURE',
   };
 }
 

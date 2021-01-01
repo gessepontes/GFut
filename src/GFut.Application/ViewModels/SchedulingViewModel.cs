@@ -1,6 +1,5 @@
 ﻿using System;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using static GFut.Domain.Others.Enum;
 
 namespace GFut.Application.ViewModels
@@ -13,6 +12,9 @@ namespace GFut.Application.ViewModels
 
         public int? HoraryId { get; set; }
         public int? HoraryExtraId { get; set; }
+
+        [NotMapped]
+        public int? FieldItemId { get; set; }        
 
         public SchedulingType SchedulingType { get; set; }
 

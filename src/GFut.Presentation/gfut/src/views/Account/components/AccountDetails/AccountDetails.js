@@ -36,6 +36,8 @@ const AccountDetails = props => {
 
     data.id = profile.id; 
     data.picture = profile.picture; 
+    data.active = profile.active; 
+    data.registerDate = profile.registerDate; 
 
     dispatch(updateProfileRequest(data));
   }

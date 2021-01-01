@@ -34,6 +34,8 @@ namespace GFut.Infra.IoC
             services.AddScoped<IGroupChampionshipRepository, GroupChampionshipRepository>();
             services.AddScoped<IMatchChampionshipRepository, MatchChampionshipRepository>();
             services.AddScoped<IMatchPlayerChampionshipRepository, MatchPlayerChampionshipRepository>();
+            services.AddScoped<IPageRepository, PageRepository>();
+            services.AddScoped<IPageProfileRepository, PageProfileRepository>();
 
             services.AddScoped<IMigrationsSocietyProToGFutRepository, MigrationsSocietyProToGFutRepository>();
 
@@ -59,6 +61,8 @@ namespace GFut.Infra.IoC
             services.AddScoped<ITopScorersAppService, TopScorersAppService>();
             services.AddScoped<ISuspendedPlayersAppService, SuspendedPlayersAppService>();
             services.AddScoped<IMatchSummaryAppService, MatchSummaryAppService>();
+            services.AddScoped<IPageAppService, PageAppService>();
+            services.AddScoped<IPageProfileAppService, PageProfileAppService>();
 
 
             services.AddScoped<IMigrationsSocietyProToGFutAppService, MigrationsSocietyProToGFutAppService>();

@@ -25,10 +25,14 @@ export function* savePlayer({ payload }) {
     );
 
     if(!dispensed){
-      player.dispenseDate = "";
+      player.dispenseDate = null;
+    }else{
+      player.dispenseDate = format(new Date(),"yyyy-MM-dd");
     }
 
     yield put(loading(true));
+
+    player.position = parseInt(player.position);
 
     if (id !== 0){
       yield call(api.put, 'player', player);

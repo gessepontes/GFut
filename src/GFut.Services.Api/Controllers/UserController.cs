@@ -27,11 +27,5 @@ namespace GFut.Services.Api.Controllers
         {
             return await _userAppService.SignIn(userViewModel);
         }
-
-        [HttpPut(Name = "PutUser")]
-        public void Put([FromBody]UserViewModel userViewModel)
-        {
-            _userAppService.UpdateUser(userViewModel);
-        }
     }
 }

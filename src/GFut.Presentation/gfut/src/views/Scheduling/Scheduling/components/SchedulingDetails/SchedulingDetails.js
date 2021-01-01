@@ -45,8 +45,7 @@ const SchedulingDetails = props => {
   };
 
   function handleSubmit(data) {
-    data.horaryId = scheduling.horaryId; 
-    data.horary = scheduling.horary; 
+    data.id = scheduling.id; 
     data.active = scheduling.active; 
     data.registerDate = scheduling.registerDate;
     dispatch(saveSchedulingRequest(data));
@@ -68,7 +67,7 @@ const SchedulingDetails = props => {
       type: type,
       fieldItem: fieldItem,
       date: date,
-      id: scheduling.id
+      horaryId: scheduling.horaryId
     }
 
     dispatch(fetchHoraryFieldByTypeIdFieldItemRequest(data));

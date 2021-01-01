@@ -1,6 +1,5 @@
 ﻿using GFut.Domain.Models;
 using GFut.Infra.Data.Mappings;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -9,21 +8,19 @@ namespace GFut.Infra.Data.Context
     public class AppDbContext : DbContext
     {
 
-        private readonly IHostingEnvironment _env;
+        // private readonly IHostingEnvironment _env;
+        private readonly IConfiguration _configuration;
 
-        public AppDbContext(IHostingEnvironment env)
+        public AppDbContext(IConfiguration configuration)
         {
-            _env = env;
+            //_env = env;
+            _configuration = configuration;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var config = new ConfigurationBuilder()
-                .SetBasePath(_env.ContentRootPath)
-                .AddJsonFile("appsettings.json")
-                .Build();
-
-            optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
+            var config = _configuration.GetValue<string>("ConnectionStrings:DefaultConnection");
+            optionsBuilder.UseSqlServer(config);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -46,6 +43,8 @@ namespace GFut.Infra.Data.Context
             modelBuilder.ApplyConfiguration(new MatchPlayerMap());
             modelBuilder.ApplyConfiguration(new PlayerRegistrationMap());
             modelBuilder.ApplyConfiguration(new SubscriptionMap());
+            modelBuilder.ApplyConfiguration(new PageMap());
+            modelBuilder.ApplyConfiguration(new PageProfileMap());
 
             base.OnModelCreating(modelBuilder);
         }
@@ -66,6 +65,10 @@ namespace GFut.Infra.Data.Context
         public DbSet<PlayerRegistration> PlayerRegistrations { get; set; }
         public DbSet<GroupChampionship> GroupChampionships { get; set; }
         public DbSet<MatchChampionship> MatchChampionships { get; set; }
-        public DbSet<MatchPlayerChampionship> MatchPlayerChampionships { get; set; }        
+        public DbSet<MatchPlayerChampionship> MatchPlayerChampionships { get; set; }
+        public DbSet<Page> Pages { get; set; }
+        public DbSet<PageProfile> PageProfiles { get; set; }
+        
+
     }
 }

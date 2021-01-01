@@ -7,6 +7,7 @@ namespace GFut.Domain.Interfaces
     public interface IPersonRepository : IRepository<Person>
     {
         Task<Person> Authenticate(string email, string password);
+        Task<Person> SignIn(User user);
         Task<IEnumerable<Person>> GetPersonChampionshipDrop();
         Task<IEnumerable<Person>> GetPersonAllDrop();
         Task<IEnumerable<Person>> GetPersonFieldDrop();
